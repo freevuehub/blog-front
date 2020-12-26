@@ -17,11 +17,18 @@ const MenuStyled = styled.header`
       a {
         text-transform: capitalize;
         ${(props: ITheme) => ({ color: props.theme?.text })}
-        &:hover {
-          transition: color 0.3s;
-          ${(props: ITheme) => ({ color: props.theme?.primary })}
+
+        @media (min-width: 601px) {
+          &:hover {
+            transition: color 0.3s;
+            ${(props: ITheme) => ({ color: props.theme?.primary })}
+          }
         }
       }
+    }
+
+    @media (max-width: 840px) {
+      display: none;
     }
   }
 `

@@ -31,12 +31,16 @@ const SocialAreaStyled = styled.footer`
         color: #fff;
         transition: all .3s;
         font-size: 16px;
-        transition: all 0.3s;
-        &.youtube:hover {
-          background-color: #ff0000;
-        }
-        &.linkedin:hover {
-          background-color: #0077b5;
+
+        @media (min-width: 601px) {
+          transition: all 0.3s;
+
+          &.youtube:hover {
+            background-color: #ff0000;
+          }
+          &.linkedin:hover {
+            background-color: #0077b5;
+          }
         }
       }
       &:last-child {

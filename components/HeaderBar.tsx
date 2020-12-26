@@ -25,9 +25,12 @@ const HeaderStyled = styled.header`
     font-weight: 700;
     a {
       ${(props: ITheme) => ({ color: props.theme?.text })}
-      &:hover {
-        transition: color 0.3s;
-        ${(props: ITheme) => ({ color: props.theme?.primary })}
+
+      @media (min-width: 601px) {
+        &:hover {
+          transition: color 0.3s;
+          ${(props: ITheme) => ({ color: props.theme?.primary })}
+        }
       }
     }
   }
