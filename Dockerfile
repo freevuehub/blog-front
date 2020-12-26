@@ -1,4 +1,4 @@
-FROM node:latest
+FROM node:15.5.0
 
 # /app 디렉토리 생성
 RUN mkdir -p /app
