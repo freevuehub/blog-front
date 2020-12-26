@@ -1,6 +1,5 @@
 import React from 'react'
 import styled from '@emotion/styled'
-import Link from 'next/link'
 import { Icon } from '../'
 import { faYoutube, faLinkedinIn } from '@fortawesome/free-brands-svg-icons'
 
