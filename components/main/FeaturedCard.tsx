@@ -59,6 +59,20 @@ const FeaturedCardStyled = styled.a`
     z-index: 5;
   }
 
+  @media (max-width: 1000px) {
+    .caption {
+      h2 {
+        font-size: 24px;
+      }
+    }
+  }
+  @media (max-width: 840px) {
+    margin-top: 20px;
+    &.main {
+      grid-column: auto;
+      grid-row: auto;
+    }
+  }
   @media (min-width: 601px) {
     &:hover {
       .featured-overlay {

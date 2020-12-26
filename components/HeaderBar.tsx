@@ -11,7 +11,9 @@ const HeaderStyled = styled.header`
   top: 0;
   right: 0;
   height: 60px;
-  box-shadow: 0 3px 4px 0 rgba(0,0,0,.03);
+  box-shadow: 0 2px 4px -1px rgba(0, 0 ,0, 0.2),
+    0 4px 5px 0 rgba(0, 0, 0, 0.14),
+    0 1px 10px 0 rgba(0, 0, 0, 0.12);
   z-index: 50;
   display: flex;
   padding: 0 20px;

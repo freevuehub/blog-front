@@ -9,6 +9,14 @@ const FeaturedStyled = styled.div`
   grid-column-gap: 4px;
   grid-row-gap: 4px;
   margin-bottom: 50px;
+
+  @media (max-width: 1000px) {
+    grid-template-rows: 200px 200px;
+  }
+  @media (max-width: 840px) {
+    grid-template-columns: repeat(1, auto);
+    grid-template-rows: repeat(3, 270px);
+  }
 `
 
 const Featured: React.FC = () => {
