@@ -1,0 +1,50 @@
+stages:
+  # - Test
+  - Build
+  - Setting
+  - Deploy
+
+# Unit Test:
+#   stage: Test
+#   image: node:latest
+#   script:
+#     - npm install
+#     - npm run test
+#   tags:
+#     - Test
+
+Docker Image Build:
+  stage: Build
+  image: docker:latest
+  before_script:
+    - cd /volume1/docker/Blog-Front
+    - git pull origin master
+  script:
+    - docker build --tag blog/front .
+  only:
+    - tags
+
+Docker Container Stop:
+  stage: Setting
+  image: docker:latest
+  script:
+    - docker stop Blog-Front
+    - docker rm Blog-Front
+  only:
+    - tags
+
+Docker Image Delete:
+  stage: Setting
+  image: docker:latest
+  script:
+    - docker rmi `docker images |  awk '$1 ~ /\<none\>/ {print $3}'`
+  only:
+    - tags
+
+Docker Container Start:
+  stage: Deploy
+  image: docker:latest
+  script:
+    - docker run -d --name=Blog-Front --restart=always -p 18932:3000 blog/front:latest
+  only:
+    - tags
