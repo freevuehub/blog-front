@@ -14,6 +14,13 @@ const FooterStyled = styled.footer`
     max-width: 968px;
     margin: 0 auto;
   }
+
+  @media (max-width: 600px) {
+    padding: 20px 0;
+    .inner {
+      flex-direction: column;
+    }
+  }
 `
 const FooterBar: React.FC = () => {
   return (

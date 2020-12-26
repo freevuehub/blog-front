@@ -39,6 +39,13 @@ const SocialAreaStyled = styled.footer`
           background-color: #0077b5;
         }
       }
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+
+    @media (max-width: 600px) {
+      justify-content: center;
     }
   }
 `
