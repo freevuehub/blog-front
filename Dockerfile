@@ -10,6 +10,7 @@ WORKDIR /app
 ADD . /app
 
 # npm install 을 실행
+RUN node -v
 RUN yarn
 RUN yarn build
 
