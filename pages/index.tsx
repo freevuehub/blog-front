@@ -1,8 +1,21 @@
 import React from 'react'
+import { Featured } from '../components'
+import styled from '@emotion/styled'
+
+const ContentStyled = styled.article`
+  display: flex;
+  max-width: 968px;
+  margin: 0 auto;
+`
 
 const HomePage: React.FC = () => {
   return (
-    <div>Hello World!!</div>
+    <>
+      <Featured />
+      <ContentStyled>
+        Hello World!!
+      </ContentStyled>
+    </>
   )
 }
 
