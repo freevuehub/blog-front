@@ -1,15 +1,21 @@
 import React from 'react'
 import { useRouter } from 'next/router'
+import styled from '@emotion/styled'
 
-const IdPage: React.FC = () => {
+const PostPageStyled = styled.article`
+  margin: 100px auto 0;
+  max-width: 968px;
+`
+
+const PostPage: React.FC = () => {
   const router = useRouter()
 
   return (
-    <div>
+    <PostPageStyled>
       {router.query.category}
       {router.query.id}
-    </div>
+    </PostPageStyled>
   )
 }
 
-export default IdPage
+export default PostPage
