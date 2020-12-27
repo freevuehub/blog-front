@@ -1,14 +1,21 @@
 import React from 'react'
 import { useRouter } from 'next/router'
+import styled from '@emotion/styled'
+import { CategoryTitle } from '../../components'
 
-const DevlogPage: React.FC = () => {
+const CategoryPageStyled = styled.article`
+  margin: 100px auto 0;
+  max-width: 968px;
+`
+
+const CategoryPage: React.FC = () => {
   const router = useRouter()
 
   return (
-    <div>
-      {router.query.category}
-    </div>
+    <CategoryPageStyled>
+      <CategoryTitle>{router.query.category}</CategoryTitle>
+    </CategoryPageStyled>
   )
 }
 
-export default DevlogPage
+export default CategoryPage
