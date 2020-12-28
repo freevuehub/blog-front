@@ -4,6 +4,7 @@ import { client, ITheme } from '../lib'
 import { categories } from '../gql'
 import Link from 'next/link'
 import Menu from './Menu'
+import SearchInput from './SearchInput'
 
 const HeaderStyled = styled.header`
   position: fixed;
@@ -59,6 +60,7 @@ const HeaderBar: React.FC = () => {
         <Link href="/">FreeVue Blog</Link>
       </h1>
       <Menu list={list} />
+      <SearchInput />
     </HeaderStyled>
   )
 }
