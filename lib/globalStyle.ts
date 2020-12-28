@@ -117,4 +117,9 @@ export const GlobalStyle = css`
   code {
     font-family: 'Nanum Gothic Coding', monospace;
   }
+  button {
+    background-color: transparent;
+    border: 0;
+    outline: 0;
+  }
 `
