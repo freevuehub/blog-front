@@ -8,7 +8,7 @@ interface IProps {
   list: ICategory[]
 }
 
-const MenuStyled = styled.header`
+const MenuStyled = styled.div`
   margin-left: auto;
   ul {
     display: flex;
