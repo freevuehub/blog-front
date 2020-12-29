@@ -1,7 +1,7 @@
 import React from 'react'
 import { HeaderBar, FooterBar } from '../components'
 import styled from '@emotion/styled'
-import { ITheme } from '../lib'
+import { ITheme } from '../types'
 
 const SectionStyled = styled.section`
   ${(props: ITheme) => ({

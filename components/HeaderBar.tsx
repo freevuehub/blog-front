@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import styled from '@emotion/styled'
-import { client, ITheme } from '../lib'
+import { client } from '../lib'
+import { ITheme } from '../types'
 import { categories } from '../gql'
 import Link from 'next/link'
 import Menu from './Menu'

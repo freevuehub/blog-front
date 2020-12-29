@@ -2,7 +2,7 @@ import React, { ChangeEvent, FormEvent, useState } from 'react'
 import styled from '@emotion/styled'
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
 import Icon from './Icon'
-import { ITheme } from '../lib'
+import { ITheme } from '../types'
 import { useRouter } from 'next/router'
 
 const SearchWrapStyled = styled.div`

@@ -2,7 +2,7 @@ import React from 'react'
 import styled from '@emotion/styled'
 import Link from 'next/link'
 import { ICategory } from '../types'
-import { ITheme } from '../lib'
+import { ITheme } from '../types'
 
 interface IProps {
   list: ICategory[]
