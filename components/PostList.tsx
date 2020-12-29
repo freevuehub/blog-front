@@ -28,7 +28,7 @@ const PostListStyled = styled.ul`
         height: 124px;
         position: relative;
         border-radius: 15px;
-        box-shadow: 5px 5px 10px #d9d9d9, -5px -5px 10px #fff;
+        box-shadow: ${(props: ITheme) => props.theme?.shadow.new};
         margin-right: 25px;
         object-fit: cover;
         overflow: hidden;

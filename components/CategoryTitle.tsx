@@ -1,9 +1,11 @@
 import React from 'react'
 import styled from '@emotion/styled'
+import { ITheme } from '../types'
 
 const TitleWrapStyled = styled.div`
   margin-bottom: 10px;
   h2 {
+    color: ${(props: ITheme) => props.theme?.text};
     font-size: 28px;
     text-transform: capitalize;
   }
