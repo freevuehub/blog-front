@@ -3,7 +3,7 @@ import { ApolloProvider } from '@apollo/client'
 import { Global, ThemeProvider } from '@emotion/react'
 import { client } from '../lib'
 import { IThemeSet } from '../types'
-import { FontStyle, ResetStyle, MarkdownStyle, CodeStyle } from '../styles'
+import { FontStyle, ResetStyle, MarkdownStyle } from '../styles'
 import { Layout } from '../components'
 
 interface IProps {
@@ -53,7 +53,6 @@ const App: React.FC<IProps> = (props) => {
         <Global styles={FontStyle} />
         <Global styles={ResetStyle} />
         <Global styles={(theme) => MarkdownStyle(theme)} />
-        <Global styles={(theme) => CodeStyle(theme)} />
         <Layout>
           <props.Component {...props.pageProps} />
         </Layout>
