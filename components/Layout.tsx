@@ -11,6 +11,13 @@ const SectionStyled = styled.section`
     padding-top: 60px;
     min-height: calc(100vh - 120px);
   }
+
+  @media (max-width: 840px) {
+    .container {
+      width: 100%;
+      padding: 0 20px;
+    }
+  }
 `
 
 const Layout: React.FC = (props) => {

@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import styled from '@emotion/styled'
+import dayjs from 'dayjs'
+import relativeTime from 'dayjs/plugin/relativeTime'
+import 'dayjs/locale/ko'
 import ReactMrkdown from 'react-markdown'
 import gfm from 'remark-gfm'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
@@ -9,6 +12,8 @@ import { client } from '../../lib'
 import { post } from '../../gql'
 import { ITheme } from '../../types'
 import { LazyImage } from '../../components'
+
+dayjs.extend(relativeTime)
 
 const PostPageStyled = styled.article`
   margin: 100px auto 0;
@@ -28,6 +33,9 @@ const PostPageStyled = styled.article`
       line-height: 22px;
       margin-top: 7px;
     }
+    .article-image {
+      object-fit: cover;
+    }
   }
   .article-markdown {
     margin: 40px auto 120px;
@@ -35,6 +43,9 @@ const PostPageStyled = styled.article`
   }
 `
 
+const dateFormat = (date: string) => {
+  return dayjs(date, 'YYYY-MM-DD HH:mm').format('MMM DD, YYYY')
+}
 const renderers = {
   code: ({ language, value }: { language: string, value: string }) => {
     return <SyntaxHighlighter style={a11yDark} language={language} children={value} />
@@ -72,9 +83,12 @@ const PostPage: React.FC = () => {
     <PostPageStyled>
       <header>
         <h1>{data.title}</h1>
-        <p className="create-date">{data.updateDate}</p>
+        <p className="create-date">
+          {dateFormat(data.createDate)} / {dayjs().locale('ko').to(dayjs(data.updateDate))} / {data.clickCount}회
+        </p>
         <LazyImage
-          width={740}
+          className="article-image"
+          width="100%"
           height={416}
           alt={data.title}
           src={data.image}

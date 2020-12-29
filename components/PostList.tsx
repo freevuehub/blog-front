@@ -2,7 +2,7 @@ import React from 'react'
 import styled from '@emotion/styled'
 import Link from 'next/link'
 import { ITheme } from '../types'
-import { LazyImage } from './'
+import { LazyImage, PostListItem } from './'
 
 interface IPostListItem {
   id: string
@@ -24,55 +24,14 @@ const PostListStyled = styled.ul`
     border-bottom: 1px solid #e6e6e6;
     a {
       display: flex;
-      .img-wrap {
-        width: 220px;
-        height: 124px;
-        position: relative;
-        border-radius: 15px;
-        box-shadow: ${(props: ITheme) => props.theme?.shadow.new};
-        margin-right: 25px;
-        overflow: hidden;
-      }
-      .text-wrap {
-        position: relative;
-        flex: 1;
-        .text-category {
-          font-size: 12px;
-          line-height: 17px;
-          color: #8f9698;
-          text-transform: uppercase;
-          font-weight: 700;
-        }
-        h3 {
-          ${(props: ITheme) => ({ color: props.theme?.text })}
-          font-size: 24px;
-          cursor: pointer;
-        }
-        p {
-          margin-top: 10px;
-          font-size: 14px;
-          line-height: 17px;
-          ${(props: ITheme) => ({ color: props.theme?.text })}
-          opacity: 0.8;
-        }
-        .text-datetime {
-          position: absolute;
-          right: 0;
-          bottom: 0;
-          ${(props: ITheme) => ({ color: props.theme?.text })}
-          opacity: 0.5;
-          font-size: 12px;
-        }
-      }
-
 
       @media (min-width: 601px) {
         &:hover {
-
-        .text-wrap {
-          h3 {
-            transition: color 0.3s;
-            ${(props: ITheme) => ({ color: props.theme?.primary })}
+          .text-wrap {
+            h3 {
+              transition: color 0.3s;
+              ${(props: ITheme) => ({ color: props.theme?.primary })}
+            }
           }
         }
       }
@@ -88,20 +47,7 @@ const PostList: React.FC<IProps> = (props) => {
           <li key={item.id}>
             <Link href={`/${item.category}/${item.id}`}>
               <a>
-                <div className="img-wrap">
-                  <LazyImage
-                    width={220}
-                    height={124}
-                    src={item.image}
-                    alt={item.title}
-                  />
-                </div>
-                <div className="text-wrap">
-                  <span className="text-category">{item.category}</span>
-                  <h3>{item.title}</h3>
-                  <p>{item.description}</p>
-                  <span className="text-datetime">{item.createDate}</span>
-                </div>
+                <PostListItem item={item} />
               </a>
             </Link>
           </li>
