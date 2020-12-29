@@ -4,8 +4,13 @@ export const post = ($id: string) => ({
   query: gql`
     {
       post(id: "${$id}") {
+        image
         title
         markdown
+        clickCount
+        source
+        createDate
+        updateDate
       }
     }
   `

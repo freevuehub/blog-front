@@ -2,6 +2,7 @@ import React from 'react'
 import styled from '@emotion/styled'
 import Link from 'next/link'
 import { ITheme } from '../types'
+import { LazyImage } from './'
 
 interface IPostListItem {
   id: string
@@ -30,19 +31,7 @@ const PostListStyled = styled.ul`
         border-radius: 15px;
         box-shadow: ${(props: ITheme) => props.theme?.shadow.new};
         margin-right: 25px;
-        object-fit: cover;
         overflow: hidden;
-        img {
-          display: block;
-          position: absolute;
-          top: 0px;
-          left: 0px;
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-          object-position: center center;
-          opacity: 1;
-        }
       }
       .text-wrap {
         position: relative;
@@ -100,7 +89,12 @@ const PostList: React.FC<IProps> = (props) => {
             <Link href={`/${item.category}/${item.id}`}>
               <a>
                 <div className="img-wrap">
-                  <img src={item.image} alt={item.title} />
+                  <LazyImage
+                    width={220}
+                    height={124}
+                    src={item.image}
+                    alt={item.title}
+                  />
                 </div>
                 <div className="text-wrap">
                   <span className="text-category">{item.category}</span>

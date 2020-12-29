@@ -7,10 +7,28 @@ import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 import { a11yDark } from 'react-syntax-highlighter/dist/esm/styles/prism'
 import { client } from '../../lib'
 import { post } from '../../gql'
+import { ITheme } from '../../types'
+import { LazyImage } from '../../components'
 
 const PostPageStyled = styled.article`
   margin: 100px auto 0;
   max-width: 968px;
+  header {
+    max-width: 740px;
+    margin: 100px auto 0;
+    ${(props: ITheme) => ({
+      color: props.theme?.text,
+    })}
+    h1 {
+      padding: 4px 2px;
+      font-size: 40px;
+    }
+    .create-date {
+      font-size: 16px;
+      line-height: 22px;
+      margin-top: 7px;
+    }
+  }
   .article-markdown {
     margin: 40px auto 120px;
     max-width: 740px;
@@ -25,8 +43,13 @@ const renderers = {
 const PostPage: React.FC = () => {
   const router = useRouter()
   const [data, setData] = useState({
+    image: '',
     title: '',
     markdown: '',
+    clickCount: 0,
+    source: '',
+    createDate: '',
+    updateDate: '',
   })
 
   const getPosts = async () => {
@@ -47,10 +70,16 @@ const PostPage: React.FC = () => {
 
   return (
     <PostPageStyled>
-      {data.title}
-      <br/>
-      test
-      <br/>
+      <header>
+        <h1>{data.title}</h1>
+        <p className="create-date">{data.updateDate}</p>
+        <LazyImage
+          width={740}
+          height={416}
+          alt={data.title}
+          src={data.image}
+        />
+      </header>
       <ReactMrkdown
         renderers={renderers}
         children={data.markdown}
