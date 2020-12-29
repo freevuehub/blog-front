@@ -1,17 +1,19 @@
 stages:
-  # - Test
+  - Test
   - Build
   - Setting
   - Deploy
 
-# Unit Test:
-#   stage: Test
-#   image: node:latest
-#   script:
-#     - npm install
-#     - npm run test
-#   tags:
-#     - Test
+Build Test:
+  stage: Test
+  image: node:latest
+  script:
+    - yarn
+    - yarn build
+  tags:
+    - Test
+  only:
+    - merge_requests
 
 Docker Image Build:
   stage: Build
