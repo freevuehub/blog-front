@@ -2,7 +2,7 @@ import React from 'react'
 import styled from '@emotion/styled'
 import Link from 'next/link'
 import { ITheme } from '../types'
-import { LazyImage, PostListItem } from './'
+import { PostListItem } from './'
 
 interface IPostListItem {
   id: string
