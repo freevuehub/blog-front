@@ -4,7 +4,7 @@ import styled from '@emotion/styled'
 import ReactMrkdown from 'react-markdown'
 import gfm from 'remark-gfm'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
-import { dark } from 'react-syntax-highlighter/dist/esm/styles/prism'
+import { a11yDark } from 'react-syntax-highlighter/dist/esm/styles/prism'
 import { client } from '../../lib'
 import { post } from '../../gql'
 
@@ -19,7 +19,7 @@ const PostPageStyled = styled.article`
 
 const renderers = {
   code: ({ language, value }: { language: string, value: string }) => {
-    return <SyntaxHighlighter style={dark} language={language} children={value} />
+    return <SyntaxHighlighter style={a11yDark} language={language} children={value} />
   }
 }
 const PostPage: React.FC = () => {
