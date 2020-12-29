@@ -11,6 +11,9 @@ export interface IThemeSet {
     material: string
     flat: string
   }
+  border: {
+    color: string
+  }
 }
 
 export interface ITheme {

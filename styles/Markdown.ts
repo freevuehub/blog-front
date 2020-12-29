@@ -140,6 +140,10 @@ const Markdown = (props: any) => css`
         left: -12px;
       }
     }
+    a {
+      color: ${props.text};
+      text-decoration: underline;
+    }
   }
 `
 
