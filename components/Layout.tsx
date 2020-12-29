@@ -15,7 +15,7 @@ const SectionStyled = styled.section`
   @media (max-width: 840px) {
     .container {
       width: 100%;
-      padding: 0 20px;
+      padding: 60px 20px 0;
     }
   }
 `

@@ -11,7 +11,7 @@ interface IProps {
   pageProps: any
 }
 
-const mode = 'light'
+const mode = 'dark'
 const colorSet: {
   light: IThemeSet
   dark: IThemeSet
@@ -29,6 +29,9 @@ const colorSet: {
       material: '5px 5px 10px #d9d9d9, -5px -5px 10px #ffffff',
       flat: 'unset',
     },
+    border: {
+      color: '#e6e6e6',
+    },
   },
   dark: {
     white: '#fff',
@@ -42,7 +45,10 @@ const colorSet: {
       new: '5px 5px 10px #0f0f0f, -5px -5px 10px #151515',
       material: '5px 5px 10px #0f0f0f, -5px -5px 10px #151515',
       flat: 'unset',
-    }
+    },
+    border: {
+      color: '#1c1c1c',
+    },
   },
 }
 const theme = colorSet[mode]

@@ -16,11 +16,12 @@ import { LazyImage } from '../../components'
 dayjs.extend(relativeTime)
 
 const PostPageStyled = styled.article`
-  margin: 100px auto 0;
+  margin: 0 auto;
+  padding-top: 40px;
   max-width: 968px;
   header {
     max-width: 740px;
-    margin: 100px auto 0;
+    margin: 0 auto;
     ${(props: ITheme) => ({
       color: props.theme?.text,
     })}
