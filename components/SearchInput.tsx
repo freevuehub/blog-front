@@ -1,9 +1,9 @@
 import React, { ChangeEvent, FormEvent, useState } from 'react'
+import { useRouter } from 'next/router'
 import styled from '@emotion/styled'
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
 import Icon from './Icon'
 import { ITheme } from '../types'
-import { useRouter } from 'next/router'
 
 const SearchWrapStyled = styled.div`
   position: relative;
@@ -18,9 +18,12 @@ const SearchWrapStyled = styled.div`
       border: 1px solid #bcbcbc;
       border-radius: 4px;
       font-size: 13px;
-      color: #6bb3b8;
+      ${(props: ITheme) => ({
+        color: props.theme?.primary,
+        backgroundColor: props.theme?.background.app,
+      })}
       &:focus {
-        outline: 1px auto #6bb3b8;
+        ${(props: ITheme) => ({ outline: `1px auto ${props.theme?.primary}` })}
       }
     }
     button {
@@ -29,11 +32,16 @@ const SearchWrapStyled = styled.div`
       right: 6px;
       top: 50%;
       transform: translateY(-50%);
+      cursor: pointer;
       .icon {
         font-size: 14px;
         ${(props: ITheme) => ({ color: props.theme?.text })}
       }
     }
+  }
+
+  @media (max-width: 600px) {
+    display: none;
   }
 `
 
