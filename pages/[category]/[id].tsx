@@ -90,13 +90,17 @@ const PostPage: React.FC = () => {
         <p className="create-date">
           {dateFormat(data.createDate)} / {dayjs().locale('ko').to(dayjs(data.updateDate))} / {data.clickCount}회
         </p>
-        <LazyImage
-          className="article-image"
-          width="100%"
-          height={416}
-          alt={data.title}
-          src={data.image}
-        />
+        {
+          data.image && (
+            <LazyImage
+              className="article-image"
+              width="100%"
+              height={416}
+              alt={data.title}
+              src={data.image}
+            />
+          )
+        }
       </header>
       <ReactMrkdown
         renderers={renderers}
