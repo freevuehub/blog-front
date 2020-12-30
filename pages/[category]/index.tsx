@@ -23,16 +23,18 @@ const CategoryPageStyled = styled.article`
 const CategoryPage: React.FC = () => {
   const router = useRouter()
   const [list, setList] = useState<IPostListItem[]>([])
+  const [count, setCount] = useState<number>(0)
   const getPosts = async () => {
     try {
-      const { data } = await client.query(posts({
+      const { data: { post } } = await client.query(posts({
         type: 'category',
         value: router.query.category ? `${router.query.category}` : '',
       }))
 
-      setList(data.list)
+      setList(post.list)
+      setCount(post.total)
     } catch {
-
+      setList([])
     }
   }
 
@@ -44,6 +46,7 @@ const CategoryPage: React.FC = () => {
     <CategoryPageStyled>
       <CategoryTitle>{router.query.category}</CategoryTitle>
       <PostList list={list} />
+      <p>{count}</p>
     </CategoryPageStyled>
   )
 }

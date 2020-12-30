@@ -4,13 +4,15 @@ export const post = ($id: string) => ({
   query: gql`
     {
       post(id: "${$id}") {
-        image
-        title
-        markdown
-        clickCount
-        source
-        createDate
-        updateDate
+        list {
+          image
+          title
+          markdown
+          clickCount
+          source
+          createDate
+          updateDate
+        }
       }
     }
   `
@@ -19,16 +21,19 @@ export const post = ($id: string) => ({
 export const posts = ({ type, value }: { type?: string, value?: string }) => ({
   query: gql`
     {
-      list: post(
+      post(
         type: "${type}",
         value: "${value}"
       ) {
-        id
-        category
-        image
-        title
-        description
-        createDate
+        list {
+          id
+          category
+          image
+          title
+          description
+          createDate
+        }
+        total: totalCount
       }
     }
   `
