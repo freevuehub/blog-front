@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from '@emotion/styled'
-import { ITheme } from '../types'
+import { ITheme, IPostListItem } from '../types'
 import { LazyImage } from './'
 
 const ImageWrapStyled = styled.div`
@@ -11,6 +11,9 @@ const ImageWrapStyled = styled.div`
   box-shadow: ${(props: ITheme) => props.theme?.shadow.new};
   margin-right: 25px;
   overflow: hidden;
+  .image {
+    object-fit: cover;
+  }
 
   @media (max-width: 840px) {
     width: 160px;
@@ -68,13 +71,7 @@ const TextWrapStyled = styled.div`
 `
 
 interface IProps {
-  item: {
-    image: string
-    title: string
-    description: string
-    category: string
-    createDate: string
-  }
+  item: IPostListItem
 }
 
 const PostListItem: React.FC<IProps> = (props) => {
@@ -84,7 +81,9 @@ const PostListItem: React.FC<IProps> = (props) => {
         props.item.image && (
           <ImageWrapStyled className="img-wrap">
             <LazyImage
+              className="image"
               width="100%"
+              height={124}
               src={props.item.image}
               alt={props.item.title}
             />

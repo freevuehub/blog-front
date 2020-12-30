@@ -24,3 +24,12 @@ export interface ICategory {
   name: string
   id: string
 }
+
+export interface IPostListItem {
+  id: string
+  category: string
+  image: string
+  title: string
+  description: string
+  createDate: string
+}

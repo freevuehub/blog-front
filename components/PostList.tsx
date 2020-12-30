@@ -1,17 +1,8 @@
 import React from 'react'
 import styled from '@emotion/styled'
 import Link from 'next/link'
-import { ITheme } from '../types'
+import { ITheme, IPostListItem } from '../types'
 import { PostListItem } from './'
-
-interface IPostListItem {
-  id: string
-  category: string
-  image: string
-  title: string
-  description: string
-  createDate: string
-}
 
 interface IProps {
   list: IPostListItem[]
