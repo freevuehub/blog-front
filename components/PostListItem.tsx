@@ -80,13 +80,17 @@ interface IProps {
 const PostListItem: React.FC<IProps> = (props) => {
   return (
     <>
-      <ImageWrapStyled className="img-wrap">
-        <LazyImage
-          width="100%"
-          src={props.item.image}
-          alt={props.item.title}
-        />
-      </ImageWrapStyled>
+      {
+        props.item.image && (
+          <ImageWrapStyled className="img-wrap">
+            <LazyImage
+              width="100%"
+              src={props.item.image}
+              alt={props.item.title}
+            />
+          </ImageWrapStyled>
+        )
+      }
       <TextWrapStyled className="text-wrap">
         <span className="text-category">{props.item.category}</span>
         <h3>{props.item.title}</h3>
