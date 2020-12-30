@@ -30,9 +30,9 @@ const HomePage: React.FC = () => {
 
   return (
     <>
-      <Featured />
+      <Featured list={postList.slice(0, 3)} />
       <ContentStyled>
-        <PostList list={postList} />
+        <PostList list={postList.slice(3)} />
       </ContentStyled>
     </>
   )
