@@ -16,10 +16,13 @@ export const post = ($id: string) => ({
   `
 })
 
-export const posts = () => ({
+export const posts = ({ type, value }: { type?: string, value?: string }) => ({
   query: gql`
     {
-      list: posts {
+      list: post(
+        type: "${type}",
+        value: "${value}"
+      ) {
         id
         category
         image

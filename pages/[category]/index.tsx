@@ -25,7 +25,10 @@ const CategoryPage: React.FC = () => {
   const [list, setList] = useState<IPostListItem[]>([])
   const getPosts = async () => {
     try {
-      const { data } = await client.query(posts())
+      const { data } = await client.query(posts({
+        type: 'category',
+        value: router.query.category ? `${router.query.category}` : '',
+      }))
 
       setList(data.list)
     } catch {
