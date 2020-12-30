@@ -67,9 +67,13 @@ const PostPage: React.FC = () => {
   const getPosts = async () => {
     try {
       if (router.query.id) {
-        const { data } = await client.query(post(`${router.query.id}`))
+        const {
+          data: {
+            post: [data]
+          },
+        } = await client.query(post(`${router.query.id}`))
 
-        setData(data.post)
+        setData(data)
       }
     } catch {
 
