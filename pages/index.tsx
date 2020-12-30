@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react'
-import { Featured } from '../components'
 import styled from '@emotion/styled'
 import { client } from '../lib'
 import { posts } from '../gql'
+import { Featured, PostList } from '../components'
 
 const ContentStyled = styled.article`
-  display: flex;
   max-width: 968px;
   margin: 0 auto;
 `
@@ -15,9 +14,11 @@ const HomePage: React.FC = () => {
 
   const getMainPost = async () => {
     try {
-      const { data } = await client.query(posts({ type: 'main' }))
+      const {
+        data: { post }
+      } = await client.query(posts({ type: 'main' }))
 
-      console.log(data)
+      setPostList(post.list)
     } catch {
       setPostList([])
     }
@@ -31,7 +32,7 @@ const HomePage: React.FC = () => {
     <>
       <Featured />
       <ContentStyled>
-        Hello World!!
+        <PostList list={postList} />
       </ContentStyled>
     </>
   )

@@ -11,7 +11,7 @@ interface IProps {
   pageProps: any
 }
 
-const mode = 'dark'
+const mode: 'dark' | 'light' = 'light'
 const colorSet: {
   light: IThemeSet
   dark: IThemeSet
