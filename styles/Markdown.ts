@@ -6,6 +6,16 @@ const Markdown = (props: any) => css`
       padding: 3px 2px;
       word-break: break-word;
       color: ${props.text};
+      code {
+        font-family: SFMono-Regular,Consolas,Liberation Mono,Menlo,Courier,monospace;
+        line-height: normal;
+        background: rgba(135,131,120,.15);
+        color: #eb5757;
+        border-radius: 3px;
+        font-size: 85%;
+        padding: .2em .4em;
+        word-break: break-word;
+      }
     }
     h1 {
       margin: {
@@ -45,16 +55,6 @@ const Markdown = (props: any) => css`
       line-height: 24px;
       padding: 4px 2px;
       margin: 4px 0;
-      code {
-        font-family: SFMono-Regular,Consolas,Liberation Mono,Menlo,Courier,monospace;
-        line-height: normal;
-        background: rgba(135,131,120,.15);
-        color: #eb5757;
-        border-radius: 3px;
-        font-size: 85%;
-        padding: .2em .4em;
-        word-break: break-word;
-      }
       img {
         display: block;
         margin: auto;
