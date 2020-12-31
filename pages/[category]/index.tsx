@@ -44,9 +44,8 @@ const CategoryPage: React.FC = () => {
 
   return (
     <CategoryPageStyled>
-      <CategoryTitle>{router.query.category}</CategoryTitle>
+      <CategoryTitle>{router.query.category}<span>({count})</span></CategoryTitle>
       <PostList list={list} />
-      <p>{count}</p>
     </CategoryPageStyled>
   )
 }

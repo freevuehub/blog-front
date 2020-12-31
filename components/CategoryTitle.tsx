@@ -8,6 +8,9 @@ const TitleWrapStyled = styled.div`
     color: ${(props: ITheme) => props.theme?.text};
     font-size: 28px;
     text-transform: capitalize;
+    span {
+      font-size: 20px;
+    }
   }
 `
 
