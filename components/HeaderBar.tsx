@@ -45,7 +45,7 @@ const HeaderStyled = styled.header`
     }
   }
   .menu-btn {
-    margin-left: auto;
+    margin-right: auto;
     font-size: 20px;
     ${(props: ITheme) => ({ color: props.theme?.text })}
 
@@ -59,6 +59,9 @@ const HeaderBar: React.FC<IProps> = (props) => {
   const onMenuClick = (event: React.MouseEvent) => {
     event.preventDefault()
 
+    props.onClick()
+  }
+  const onMenuBgClick = () => {
     props.onClick()
   }
 
@@ -78,17 +81,17 @@ const HeaderBar: React.FC<IProps> = (props) => {
 
   return (
     <HeaderStyled>
+      <button className="menu-btn" onClick={onMenuClick}>
+        <Icon icon={faBars} />
+      </button>
       <h1 className="ibmplexsans">
         <Link href="/">FreeVue Blog</Link>
       </h1>
       <Menu
         list={list}
         className={props.className}
-        timer={props.timer}
+        onBgClick={onMenuBgClick}
       />
-      <button className="menu-btn" onClick={onMenuClick}>
-        <Icon icon={faBars} />
-      </button>
       <SearchInput />
     </HeaderStyled>
   )

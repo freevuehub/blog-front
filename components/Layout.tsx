@@ -10,6 +10,9 @@ const WrapStyled = styled.div`
   @media (max-width: 840px) {
     width: 100vw;
     height: 100vh;
+    &.on, &.move-out, &.move-in {
+      overflow: hidden;
+    }
   }
 `
 const SectionStyled = styled.section`
@@ -23,26 +26,23 @@ const SectionStyled = styled.section`
 
   @media (max-width: 840px) {
     transition: all ${timer}ms;
-    top: 0;
     border-radius: 0;
-    transform: translate(0) translateZ(0) scale(1);
-    &.on {
-      position: fixed;
+    transform: translateX(0) translateZ(0) scale(1);
+    will-change: transform, border-radius box-shadow;
+    box-shadow: 0;
+    width: 100vw;
+    &.on, &.move-in {
       height: 100vh;
       overflow: hidden;
-      width: 100vw;
-      top: 50%;
-      transform: translate(50%, -50%) translateZ(0) scale(0.6);
-      box-shadow: 25px 25px 50px #bcbcbc, -25px -25px 50px #fefefe;
+      transform: translateX(50%) translateZ(0) scale(0.6);
       border-radius: 50px;
+      ${(props: ITheme) => ({ boxShadow: props.theme?.shadow.background })}
     }
-    &.move {
-      border-radius: 0;
-      box-shadow: 25px 25px 50px #bcbcbc, -25px -25px 50px #fefefe;
-      position: fixed;
+    &.move-out {
       height: 100vh;
       overflow: hidden;
-      width: 100vw;
+      transform: translateX(0) translateZ(0) scale(1);
+      ${(props: ITheme) => ({ boxShadow: props.theme?.shadow.background })}
     }
     .container {
       width: 100%;
@@ -55,18 +55,22 @@ const Layout: React.FC = (props) => {
   const [menu, setMenu] = useState<string>('')
   const onMenuClick = () => {
     if (menu) {
-      setMenu('move')
+      setMenu('move-out')
 
       setTimeout(() => {
         setMenu('')
       }, timer)
     } else {
-      setMenu('on')
+      setMenu('move-in')
+
+      setTimeout(() => {
+        setMenu('on')
+      }, timer)
     }
   }
 
   return (
-    <WrapStyled>
+    <WrapStyled className={menu}>
       <HeaderBar
         onClick={onMenuClick}
         className={menu}

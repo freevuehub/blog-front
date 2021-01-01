@@ -7,7 +7,7 @@ import { ITheme } from '../types'
 interface IProps {
   list: ICategory[]
   className: string
-  timer: number
+  onBgClick: Function
 }
 
 const MenuStyled = styled.div`
@@ -32,11 +32,12 @@ const MenuStyled = styled.div`
 
   @media (max-width: 840px) {
     display: none;
-    &.on {
+    &.on, &.move-in, &.move-out {
       display: block;
+    }
+    &.on {
       ul {
         li {
-          transition-delay: 1s;
           transform: translateX(0);
           opacity: 1;
         }
@@ -55,8 +56,7 @@ const MenuStyled = styled.div`
       height: 100%;
       li {
         transition: all 0.3s;
-        transition-delay: 0;
-        transform: translateX(-50%);
+        transform: translateX(-80%);
         opacity: 0;
         margin: 20px 0;
         padding-left: 30px;
@@ -69,16 +69,24 @@ const MenuStyled = styled.div`
 `
 
 const listMap = (item: ICategory) => {
+  const onMenuClick = (event: React.MouseEvent) => {
+    event.stopPropagation()
+  }
+
   return (
-    <li key={item.id}>
+    <li key={item.id} onClick={onMenuClick}>
       <Link href={`/${item.name}`}>{item.name}</Link>
     </li>
   )
 }
 const Menu: React.FC<IProps> = (props) => {
+  const onMenuBgClick = () => {
+    props.onBgClick()
+  }
+
   return (
     <MenuStyled className={props.className}>
-      <ul className="gmarketsans">
+      <ul className="gmarketsans" onClick={onMenuBgClick}>
         {props.list.map(listMap)}
       </ul>
     </MenuStyled>

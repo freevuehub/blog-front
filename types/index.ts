@@ -10,6 +10,7 @@ export interface IThemeSet {
     new: string
     material: string
     flat: string
+    background: string
   }
   border: {
     color: string
