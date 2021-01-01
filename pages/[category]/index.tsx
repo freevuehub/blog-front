@@ -24,6 +24,7 @@ const CategoryPage: React.FC = () => {
   const router = useRouter()
   const [list, setList] = useState<IPostListItem[]>([])
   const [count, setCount] = useState<number>(0)
+
   const getPosts = async () => {
     try {
       const { data: { post } } = await client.query(posts({
