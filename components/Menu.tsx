@@ -108,9 +108,9 @@ const Menu: React.FC<IProps> = (props) => {
   }
 
   return (
-    <MenuStyled className={props.className}>
+    <MenuStyled className={props.className} onClick={onMenuBgClick}>
       <SearchInput className="search-wrap" />
-      <ul className="gmarketsans" onClick={onMenuBgClick}>
+      <ul className="gmarketsans">
         {props.list.map(listMap)}
       </ul>
     </MenuStyled>
