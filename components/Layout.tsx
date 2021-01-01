@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import { useRouter } from 'next/router'
 import { HeaderBar, FooterBar } from '../components'
 import styled from '@emotion/styled'
 import { ITheme } from '../types'
@@ -52,15 +53,22 @@ const SectionStyled = styled.section`
 `
 
 const Layout: React.FC = (props) => {
+  const router = useRouter()
   const [menu, setMenu] = useState<string>('')
+  const [scrollY, setScrollY] = useState<number>(0)
   const onMenuClick = () => {
     if (menu) {
+      const moveTo = scrollY
+
       setMenu('move-out')
 
       setTimeout(() => {
         setMenu('')
+        setScrollY(0)
+        window.scrollTo(0, moveTo)
       }, timer)
     } else {
+      setScrollY(window.scrollY)
       setMenu('move-in')
 
       setTimeout(() => {
@@ -68,6 +76,10 @@ const Layout: React.FC = (props) => {
       }, timer)
     }
   }
+
+  useEffect(() => {
+    setScrollY(0)
+  }, [router])
 
   return (
     <WrapStyled className={menu}>
@@ -77,7 +89,7 @@ const Layout: React.FC = (props) => {
         timer={timer}
       />
       <SectionStyled className={menu}>
-        <main className="container">
+        <main className="container" style={{ marginTop: `-${scrollY}px` }}>
           {props.children}
         </main>
         <FooterBar />
