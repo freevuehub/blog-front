@@ -49,7 +49,7 @@ const SearchWrapStyled = styled.div`
   }
 `
 
-const SearchInput: React.FC<{ className: string }> = (props) => {
+const SearchInput: React.FC<{ className?: string }> = (props) => {
   const router = useRouter()
   const [text, setText] = useState<string>('')
   const onInutChange = (event: ChangeEvent<HTMLInputElement>) => {
