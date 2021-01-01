@@ -68,8 +68,8 @@ const Layout: React.FC = (props) => {
         window.scrollTo(0, moveTo)
       }, timer)
     } else {
-      setScrollY(window.scrollY)
       setMenu('move-in')
+      setScrollY(window.scrollY)
 
       setTimeout(() => {
         setMenu('on')
