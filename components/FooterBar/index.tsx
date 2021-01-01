@@ -15,10 +15,15 @@ const FooterStyled = styled.footer`
     margin: 0 auto;
   }
 
+  @media (max-width: 840px) {
+    .inner {
+      padding: 0 20px;
+    }
+  }
   @media (max-width: 600px) {
-    padding: 20px 0;
     .inner {
       flex-direction: column;
+      padding: 20px 0;
     }
   }
 `
