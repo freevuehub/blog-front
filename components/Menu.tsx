@@ -31,6 +31,11 @@ const MenuStyled = styled.div`
     }
   }
 
+  @media (min-width: 601px) {
+    .search-wrap {
+      display: none;
+    }
+  }
   @media (max-width: 840px) {
     display: none;
     &.on, &.move-in, &.move-out {
