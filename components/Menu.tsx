@@ -3,6 +3,7 @@ import styled from '@emotion/styled'
 import Link from 'next/link'
 import { ICategory } from '../types'
 import { ITheme } from '../types'
+import SearchInput from './SearchInput'
 
 interface IProps {
   list: ICategory[]
@@ -33,7 +34,9 @@ const MenuStyled = styled.div`
   @media (max-width: 840px) {
     display: none;
     &.on, &.move-in, &.move-out {
-      display: block;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
     }
     &.on {
       ul {
@@ -53,7 +56,6 @@ const MenuStyled = styled.div`
       flex-direction: column;
       align-items: flex-start;
       justify-content: center;
-      height: 100%;
       li {
         transition: all 0.3s;
         transform: translateX(-80%);
@@ -64,6 +66,27 @@ const MenuStyled = styled.div`
           font-size: 18px;
         }
       }
+    }
+  }
+  @media (max-width: 600px) {
+    &.on, &.move-in, &.move-out {
+      .search-wrap {
+        display: block;
+      }
+    }
+    &.on {
+      .search-wrap {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+    .search-wrap {
+      transition: all 0.3s;
+      transform: translateX(-80%);
+      opacity: 0;
+      margin-left: 30px;
+      margin-bottom: 40px;
+      width: 45vw;
     }
   }
 `
@@ -86,6 +109,7 @@ const Menu: React.FC<IProps> = (props) => {
 
   return (
     <MenuStyled className={props.className}>
+      <SearchInput className="search-wrap" />
       <ul className="gmarketsans" onClick={onMenuBgClick}>
         {props.list.map(listMap)}
       </ul>

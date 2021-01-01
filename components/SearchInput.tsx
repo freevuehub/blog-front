@@ -12,6 +12,7 @@ const SearchWrapStyled = styled.div`
   form {
     display: block;
     input {
+      width: 100%;
       display: block;
       height: 32px;
       padding: 7px 23px 7px 7px;
@@ -48,7 +49,7 @@ const SearchWrapStyled = styled.div`
   }
 `
 
-const SearchInput: React.FC = () => {
+const SearchInput: React.FC<{ className: string }> = (props) => {
   const router = useRouter()
   const [text, setText] = useState<string>('')
   const onInutChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -61,7 +62,7 @@ const SearchInput: React.FC = () => {
   }
 
   return (
-    <SearchWrapStyled>
+    <SearchWrapStyled className={props.className}>
       <form onSubmit={onSearchSubmit}>
         <input type="text" value={text} onChange={onInutChange} />
         <button>
