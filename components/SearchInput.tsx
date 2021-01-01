@@ -40,6 +40,9 @@ const SearchWrapStyled = styled.div`
     }
   }
 
+  @media (max-width: 840px) {
+    margin-left: auto;
+  }
   @media (max-width: 600px) {
     display: none;
   }
