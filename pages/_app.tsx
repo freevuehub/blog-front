@@ -17,16 +17,20 @@ const colorSet: {
   dark: IThemeSet
 } = {
   light: {
-    white: '#fff',
+    white: '#ffffff',
     primary: '#6bb3b8',
     background: {
-      app: '#fff',
-      content: '#fff',
+      app: '#ffffff',
+      content: '#ffffff',
     },
     text: '#37352f',
     shadow: {
       new: '5px 5px 10px #d9d9d9, -5px -5px 10px #ffffff',
-      material: '5px 5px 10px #d9d9d9, -5px -5px 10px #ffffff',
+      material: `
+        0 2px 4px -1px rgba(0, 0 ,0, 0.2),
+        0 4px 5px 0 rgba(0, 0, 0, 0.14),
+        0 1px 10px 0 rgba(0, 0, 0, 0.12);
+      `,
       flat: 'unset',
     },
     border: {
@@ -34,16 +38,20 @@ const colorSet: {
     },
   },
   dark: {
-    white: '#fff',
+    white: '#ffffff',
     primary: '#6bb3b8',
     background: {
       app: '#121212',
       content: '#1e1e1e',
     },
-    text: '#fff',
+    text: '#ffffff',
     shadow: {
       new: '5px 5px 10px #0f0f0f, -5px -5px 10px #151515',
-      material: '5px 5px 10px #0f0f0f, -5px -5px 10px #151515',
+      material: `
+        0 2px 4px -1px rgba(0, 0 ,0, 0.2),
+        0 4px 5px 0 rgba(0, 0, 0, 0.14),
+        0 1px 10px 0 rgba(0, 0, 0, 0.12);
+      `,
       flat: 'unset',
     },
     border: {

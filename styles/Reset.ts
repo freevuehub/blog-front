@@ -7,6 +7,8 @@ export default css`
     box-sizing: border-box;
   }
   html, body {
+    height: 100%;
+    width: 100%;
     font-size: 14px;
     font-weight: 400;
     font-family: 'IBMPlexSansKR';

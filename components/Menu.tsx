@@ -6,6 +6,8 @@ import { ITheme } from '../types'
 
 interface IProps {
   list: ICategory[]
+  className: string
+  timer: number
 }
 
 const MenuStyled = styled.div`
@@ -26,9 +28,42 @@ const MenuStyled = styled.div`
         }
       }
     }
+  }
 
-    @media (max-width: 840px) {
-      display: none;
+  @media (max-width: 840px) {
+    display: none;
+    &.on {
+      display: block;
+      ul {
+        li {
+          transition-delay: 1s;
+          transform: translateX(0);
+          opacity: 1;
+        }
+      }
+    }
+    position: fixed;
+    left: 0;
+    top: 60px;
+    width: 100%;
+    padding-bottom: 60px;
+    height: calc(100vh - 60px);
+    ul {
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+      height: 100%;
+      li {
+        transition: all 0.3s;
+        transition-delay: 0;
+        transform: translateX(-50%);
+        opacity: 0;
+        margin: 20px 0;
+        padding-left: 30px;
+        a {
+          font-size: 18px;
+        }
+      }
     }
   }
 `
@@ -42,7 +77,7 @@ const listMap = (item: ICategory) => {
 }
 const Menu: React.FC<IProps> = (props) => {
   return (
-    <MenuStyled>
+    <MenuStyled className={props.className}>
       <ul className="gmarketsans">
         {props.list.map(listMap)}
       </ul>
