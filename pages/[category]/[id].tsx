@@ -30,9 +30,17 @@ const PostPageStyled = styled.article`
       font-size: 40px;
     }
     .create-date {
-      font-size: 16px;
+      display: flex;
+      font-size: 14px;
       line-height: 22px;
-      margin-top: 7px;
+      opacity: 0.5;
+      align-items: center;
+      .count {
+        margin-left: auto;
+        border: 1px solid #fff;
+        border-radius: 15px;
+        padding: 0 10px;
+      }
     }
     .article-image {
       object-fit: cover;
@@ -86,10 +94,11 @@ const PostPage: React.FC = () => {
   return (
     <PostPageStyled>
       <header>
-        <h1>{data.title}</h1>
         <p className="create-date">
-          {dateFormat(data.createDate)} / {dayjs().locale('ko').to(dayjs(data.updateDate))} / {data.clickCount}회
+          {dateFormat(data.createDate)} / {dayjs().locale('ko').to(dayjs(data.updateDate))}
+          <span className="count">view {data.clickCount}</span>
         </p>
+        <h1>{data.title}</h1>
         {
           data.image && (
             <LazyImage
