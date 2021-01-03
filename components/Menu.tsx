@@ -32,24 +32,25 @@ const MenuStyled = styled.div`
   }
 
   @media (min-width: 601px) {
+    display: flex;
+    align-items: center;
     .search-wrap {
       display: none;
     }
   }
   @media (max-width: 840px) {
     display: none;
+    transition: all 0.3s;
+    transform: translateX(-80%);
+    opacity: 0;
     &.on, &.move-in, &.move-out {
       display: flex;
       flex-direction: column;
       justify-content: center;
     }
     &.on {
-      ul {
-        li {
-          transform: translateX(0);
-          opacity: 1;
-        }
-      }
+      transform: translateX(0);
+      opacity: 1;
     }
     position: fixed;
     left: 0;
@@ -62,9 +63,6 @@ const MenuStyled = styled.div`
       align-items: flex-start;
       justify-content: center;
       li {
-        transition: all 0.3s;
-        transform: translateX(-80%);
-        opacity: 0;
         margin: 20px 0;
         padding-left: 30px;
         a {
@@ -79,16 +77,7 @@ const MenuStyled = styled.div`
         display: block;
       }
     }
-    &.on {
-      .search-wrap {
-        transform: translateX(0);
-        opacity: 1;
-      }
-    }
     .search-wrap {
-      transition: all 0.3s;
-      transform: translateX(-80%);
-      opacity: 0;
       margin-left: 30px;
       margin-bottom: 40px;
       width: 45vw;

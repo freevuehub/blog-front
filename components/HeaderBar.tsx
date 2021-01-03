@@ -87,6 +87,12 @@ const HeaderBar: React.FC<IProps> = (props) => {
       <h1 className="ibmplexsans">
         <Link href="/">FreeVue Blog</Link>
       </h1>
+      {/* <iframe
+        src="https://ghbtns.com/github-btn.html?user=freevuehub&repo=freevuehub.github.io&type=star&count=true&size=large"
+        scrolling="0"
+        width="120px"
+        height="30px"
+      /> */}
       <Menu
         list={list}
         className={props.className}
