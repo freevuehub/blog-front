@@ -1,15 +1,13 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { AppProps } from "next/app";
+import { useRouter } from "next/router";
 import { ApolloProvider } from '@apollo/client'
 import { Global, ThemeProvider } from '@emotion/react'
 import { client } from '../lib'
 import { IThemeSet } from '../types'
 import { FontStyle, ResetStyle, MarkdownStyle } from '../styles'
 import { Layout } from '../components'
-
-interface IProps {
-  Component: any
-  pageProps: any
-}
+import * as gtag from '../lib/gtag'
 
 const mode: 'dark' | 'light' = 'dark'
 const colorSet: {
@@ -62,7 +60,21 @@ const colorSet: {
   },
 }
 const theme = colorSet[mode]
-const App: React.FC<IProps> = (props) => {
+const App: React.FC<AppProps> = (props) => {
+  const router = useRouter()
+
+  useEffect(() => {
+    const onRouteChange = (url: URL) => {
+      gtag.pageview(url)
+    }
+
+    router.events.on('routeChangeComplete', onRouteChange)
+
+    return () => {
+      router.events.off('routeChangeComplete', onRouteChange)
+    }
+  }, [router.events])
+
   return (
     <ApolloProvider client={client}>
       <ThemeProvider theme={theme}>
