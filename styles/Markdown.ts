@@ -1,6 +1,7 @@
 import { css } from '@emotion/react'
+import { IThemeSet } from '../types'
 
-const Markdown = (props: any) => css`
+const Markdown = (props: IThemeSet) => css`
   .article-markdown {
     & > * {
       padding: 3px 2px;
@@ -87,33 +88,29 @@ const Markdown = (props: any) => css`
       }
     }
     table {
-      border: {
-        top-right-radius: 0.1875rem;
-        bottom-right-radius: 0.1875rem;
-      }
+      border-radius: 3px;
       overflow-x: auto;
-      margin-top: 0.75rem;
+      margin-top: 12px;
       width: 100%;
       th {
-        border-color: #D7E2EB;
-        background-color: rgba(50,50,144,0.02);
-        color: #263747;
+        background-color: ${props.table.background};
+        color: ${props.table.th};
         font-size: 16px;
         line-height: 1.6;
         letter-spacing: -0.009em;
         padding: 0.25rem 0.75rem;
         vertical-align: middle;
-        border: 1px solid #D7E2EB;
+        border: 1px solid ${props.table.border};
         min-width: 4rem;
       }
       td {
-        border-color: #D7E2EB;
-        background-color: rgba(50,50,144,0.02);
+        background-color: ${props.table.background};
+        color: ${props.table.td};
         line-height: 1.6;
         letter-spacing: -0.009em;
         padding: 0.25rem 0.75rem;
         vertical-align: middle;
-        border: 1px solid #D7E2EB;
+        border: 1px solid ${props.table.border};
         font-size: 16px;
       }
     }

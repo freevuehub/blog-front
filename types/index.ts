@@ -15,6 +15,12 @@ export interface IThemeSet {
   border: {
     color: string
   }
+  table: {
+    th: string
+    td: string
+    background: string
+    border: string
+  }
 }
 
 export interface ITheme {
