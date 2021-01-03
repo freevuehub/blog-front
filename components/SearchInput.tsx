@@ -52,6 +52,9 @@ const SearchWrapStyled = styled.div`
 const SearchInput: React.FC<{ className?: string }> = (props) => {
   const router = useRouter()
   const [text, setText] = useState<string>('')
+  const onSearchWrapClick = (event: React.MouseEvent) => {
+    event.stopPropagation()
+  }
   const onInutChange = (event: ChangeEvent<HTMLInputElement>) => {
     setText(event.target.value)
   }
@@ -62,7 +65,7 @@ const SearchInput: React.FC<{ className?: string }> = (props) => {
   }
 
   return (
-    <SearchWrapStyled className={props.className}>
+    <SearchWrapStyled className={props.className} onClick={onSearchWrapClick}>
       <form onSubmit={onSearchSubmit}>
         <input type="text" value={text} onChange={onInutChange} />
         <button>
