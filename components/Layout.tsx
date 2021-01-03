@@ -9,8 +9,6 @@ const WrapStyled = styled.div`
   ${(props: ITheme) => ({ backgroundColor: props.theme?.background.app })}
 
   @media (max-width: 840px) {
-    width: 100vw;
-    height: 100vh;
     &.on, &.move-out, &.move-in {
       overflow: hidden;
     }
@@ -31,7 +29,7 @@ const SectionStyled = styled.section`
     transform: translateX(0) translateZ(0) scale(1);
     will-change: transform, border-radius box-shadow;
     box-shadow: 0;
-    width: 100vw;
+    width: 100%;
     &.on, &.move-in {
       height: 100vh;
       overflow: hidden;
@@ -64,19 +62,14 @@ const Layout: React.FC = (props) => {
 
       setTimeout(() => {
         setMenu('')
-        setTimeout(() => {
-          setScrollY(0)
-          window.scrollTo(0, moveTo)
-        })
+        setScrollY(0)
+        window.scrollTo(0, moveTo)
       }, timer)
     } else {
       const moveTo = window.scrollY
 
       setMenu('move-in')
-
-      setTimeout(() => {
-        setScrollY(moveTo)
-      })
+      setScrollY(moveTo)
 
       setTimeout(() => {
         setMenu('on')

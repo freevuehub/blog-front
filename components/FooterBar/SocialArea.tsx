@@ -50,6 +50,7 @@ const SocialAreaStyled = styled.footer`
 
     @media (max-width: 600px) {
       justify-content: center;
+      margin-bottom: 20px;
     }
   }
 `
