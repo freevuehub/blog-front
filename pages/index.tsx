@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import Head from 'next/head'
 import styled from '@emotion/styled'
 import { client } from '../lib'
 import { posts } from '../gql'
@@ -30,6 +31,9 @@ const HomePage: React.FC = () => {
 
   return (
     <>
+      <Head>
+        <title>Freevue Blog</title>
+      </Head>
       <Featured list={postList.slice(0, 3)} />
       <ContentStyled>
         <PostList list={postList.slice(3)} />

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
+import Head from 'next/head'
 import styled from '@emotion/styled'
 import dayjs from 'dayjs'
 import relativeTime from 'dayjs/plugin/relativeTime'
@@ -93,6 +94,9 @@ const PostPage: React.FC = () => {
 
   return (
     <PostPageStyled>
+      <Head>
+        <title>Freevue Blog | {data.title}</title>
+      </Head>
       <header>
         <p className="create-date">
           {dateFormat(data.createDate)} / {dayjs().locale('ko').to(dayjs(data.updateDate))}

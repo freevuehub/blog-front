@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
+import Head from 'next/head'
 import styled from '@emotion/styled'
 import { client } from '../../lib'
 import { posts } from '../../gql'
@@ -45,6 +46,9 @@ const CategoryPage: React.FC = () => {
 
   return (
     <CategoryPageStyled>
+      <Head>
+        <title>Freevue Blog | {`${router.query.category}`.toUpperCase()}</title>
+      </Head>
       <CategoryTitle>{router.query.category}<span>({count})</span></CategoryTitle>
       <PostList list={list} />
     </CategoryPageStyled>

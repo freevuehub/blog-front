@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
+import Head from 'next/head'
 import styled from '@emotion/styled'
 import { client } from '../../lib'
 import { posts } from '../../gql'
@@ -39,6 +40,9 @@ const SearchPage: React.FC = () => {
 
   return (
     <SearchPageStyled>
+      <Head>
+        <title>Freevue Blog | {router.query.q}</title>
+      </Head>
       <CategoryTitle>"{router.query.q}"<span>에 대한 검색결과</span></CategoryTitle>
       <PostList list={list} />
     </SearchPageStyled>
