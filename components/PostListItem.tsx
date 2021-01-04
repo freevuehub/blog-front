@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from '@emotion/styled'
+import dayjs from 'dayjs'
 import { ITheme, IPostListItem } from '../types'
 // import { LazyImage } from './'
 
@@ -91,7 +92,7 @@ const PostListItem: React.FC<IProps> = (props) => {
         <span className="text-category">{props.item.category}</span>
         <h3>{props.item.title}</h3>
         <p>{props.item.description}</p>
-        <span className="text-datetime">{props.item.createDate}</span>
+        <span className="text-datetime">{dayjs(props.item.createDate, 'YYYY-MM-DD HH:mm').format('MMM DD, YYYY')}</span>
       </TextWrapStyled>
     </>
   )
