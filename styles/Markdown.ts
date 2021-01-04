@@ -30,17 +30,12 @@ const Markdown = (props: IThemeSet) => css`
       fill: inherit;
     }
     h2 {
+      font-size: 1.5em;
       margin-top: 40px;
     }
     h3 {
-      margin: {
-        top: 1em;
-        bottom: 1px;
-      }
-      font: {
-        weight: 400;
-        size: 1.25em;
-      }
+      margin-top: 25px;
+      font-size: 1.25em;
       line-height: 1.3;
     }
     p {
