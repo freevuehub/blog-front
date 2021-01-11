@@ -30,6 +30,7 @@ import { ITheme, IPostListItem } from '../types'
 const TextWrapStyled = styled.div`
   position: relative;
   flex: 1;
+  width: 100%;
   .text-category {
     font-size: 12px;
     line-height: 17px;
@@ -54,6 +55,14 @@ const TextWrapStyled = styled.div`
     opacity: 0.5;
     font-size: 12px;
   }
+  &.mini {
+    h3 {
+      font-size: 18px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+  }
 
   @media (max-width: 600px) {
     h3 {
@@ -70,6 +79,7 @@ const TextWrapStyled = styled.div`
 
 interface IProps {
   item: IPostListItem
+  mini: boolean
 }
 
 const PostListItem: React.FC<IProps> = (props) => {
@@ -88,10 +98,12 @@ const PostListItem: React.FC<IProps> = (props) => {
         //   </ImageWrapStyled>
         // )
       }
-      <TextWrapStyled className="text-wrap">
+      <TextWrapStyled className={`text-wrap ${props.mini ? 'mini' : ''}`}>
         <span className="text-category">{props.item.category}</span>
         <h3>{props.item.title}</h3>
-        <p>{props.item.description}</p>
+        {
+          props.mini || (<p>{props.item.description}</p>)
+        }
         <span className="text-datetime">{dayjs(props.item.createDate, 'YYYY-MM-DD HH:mm').format('MMM DD, YYYY')}</span>
       </TextWrapStyled>
     </>

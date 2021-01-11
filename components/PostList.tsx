@@ -6,10 +6,11 @@ import { PostListItem } from './'
 
 interface IProps {
   list: IPostListItem[]
+  mini?: boolean
 }
 
 const PostListStyled = styled.ul`
-  margin: 5px 0;
+  margin: 5px 0 30px;
   li {
     padding: 25px 0;
     border-bottom: 1px solid ${(props: ITheme) => props.theme?.border.color};
@@ -27,6 +28,9 @@ const PostListStyled = styled.ul`
         }
       }
     }
+    &.mini {
+      padding: 20px 0;
+    }
   }
 `
 
@@ -35,10 +39,10 @@ const PostList: React.FC<IProps> = (props) => {
     <PostListStyled>
       {
         props.list.map((item: IPostListItem) => (
-          <li key={item.id}>
+          <li key={item.id} className={props.mini ? 'mini' : ''}>
             <Link href={`/${item.category}/${item.id}`}>
               <a>
-                <PostListItem item={item} />
+                <PostListItem item={item} mini={!!props.mini} />
               </a>
             </Link>
           </li>
