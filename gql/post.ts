@@ -38,3 +38,22 @@ export const posts = ({ type, value }: { type?: string, value?: string }) => ({
     }
   `
 })
+
+export const topPosts = () => ({
+  query: gql`
+    {
+      post(
+        type: "top"
+      ) {
+        list {
+          id
+          category
+          image
+          title
+          description
+          createDate
+        }
+      }
+    }
+  `
+})
