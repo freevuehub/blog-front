@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import Head from 'next/head'
 import styled from '@emotion/styled'
-import { client } from '../lib'
+import { client, breakPoint } from '../lib'
 import { posts, topPosts } from '../gql'
 import { Featured, PostList, MainAreaTitle } from '../components'
 import { ITheme } from '../types'
@@ -20,6 +20,30 @@ const ContentStyled = styled.article`
   }
   .right-area {
     width: 300px;
+  }
+
+  @media (max-width: ${breakPoint.tabletPro}) {
+    padding: 0 25px;
+  }
+
+  @media (max-width: ${breakPoint.tabletAir}) {
+    padding: 0;
+    .right-area {
+      width: 250px;
+    }
+  }
+
+  @media (max-width: ${breakPoint.mobile}) {
+    flex-direction: column;
+    .left-area {
+      padding-right: 0;
+      margin-right: 0;
+      border: 0;
+      margin-bottom: 20px;
+    }
+    .right-area {
+      width: 100%;
+    }
   }
 `
 

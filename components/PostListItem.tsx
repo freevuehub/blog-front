@@ -68,6 +68,9 @@ const TextWrapStyled = styled.div`
   @media (max-width: ${breakPoint.mobile}) {
     h3 {
       font-size: 18px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
     }
     p {
       display: none;
