@@ -1,5 +1,12 @@
 import { IThemeSet } from '../types'
 
+export const breakPoint = {
+  desktop: '1920px',
+  tabletPro: '1024px',
+  tabletAir: '840px',
+  mobile: '640px',
+}
+
 export const colorSet: {
   light: IThemeSet
   dark: IThemeSet

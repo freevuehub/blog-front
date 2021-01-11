@@ -3,6 +3,7 @@ import styled from '@emotion/styled'
 import Link from 'next/link'
 import { ICategory } from '../types'
 import { ITheme } from '../types'
+import { breakPoint } from '../lib'
 import SearchInput from './SearchInput'
 
 interface IProps {
@@ -21,7 +22,7 @@ const MenuStyled = styled.div`
         text-transform: capitalize;
         ${(props: ITheme) => ({ color: props.theme?.text })}
 
-        @media (min-width: 601px) {
+        @media (min-width: ${breakPoint.mobile}) {
           &:hover {
             transition: color 0.3s;
             ${(props: ITheme) => ({ color: props.theme?.primary })}
@@ -31,14 +32,14 @@ const MenuStyled = styled.div`
     }
   }
 
-  @media (min-width: 601px) {
+  @media (min-width: ${breakPoint.mobile}) {
     display: flex;
     align-items: center;
     .search-wrap {
       display: none;
     }
   }
-  @media (max-width: 840px) {
+  @media (max-width: ${breakPoint.tabletAir}) {
     display: none;
     transition: all 0.3s;
     transform: translateX(-80%);
@@ -71,7 +72,7 @@ const MenuStyled = styled.div`
       }
     }
   }
-  @media (max-width: 600px) {
+  @media (max-width: ${breakPoint.mobile}) {
     &.on, &.move-in, &.move-out {
       .search-wrap {
         display: block;

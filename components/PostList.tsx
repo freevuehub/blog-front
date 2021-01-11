@@ -3,6 +3,7 @@ import styled from '@emotion/styled'
 import Link from 'next/link'
 import { ITheme, IPostListItem } from '../types'
 import { PostListItem } from './'
+import { breakPoint } from '../lib'
 
 interface IProps {
   list: IPostListItem[]
@@ -17,7 +18,7 @@ const PostListStyled = styled.ul`
     a {
       display: flex;
 
-      @media (min-width: 601px) {
+      @media (min-width: ${breakPoint.mobile}) {
         &:hover {
           .text-wrap {
             h3 {

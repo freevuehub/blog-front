@@ -3,12 +3,13 @@ import { useRouter } from 'next/router'
 import { HeaderBar, FooterBar } from '../components'
 import styled from '@emotion/styled'
 import { ITheme } from '../types'
+import { breakPoint } from '../lib'
 
 const timer = 500
 const WrapStyled = styled.div`
   ${(props: ITheme) => ({ backgroundColor: props.theme?.background.app })}
 
-  @media (max-width: 840px) {
+  @media (max-width: ${breakPoint.tabletAir}) {
     &.on, &.move-out, &.move-in {
       overflow: hidden;
     }
@@ -23,7 +24,7 @@ const SectionStyled = styled.section`
     min-height: calc(100vh - 120px);
   }
 
-  @media (max-width: 840px) {
+  @media (max-width: ${breakPoint.tabletAir}) {
     transition: all ${timer}ms;
     border-radius: 0;
     transform: translateX(0) translateZ(0) scale(1);

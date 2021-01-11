@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import styled from '@emotion/styled'
 import Link from 'next/link'
 import { faBars } from '@fortawesome/free-solid-svg-icons'
-import { client } from '../lib'
+import { client, breakPoint } from '../lib'
 import { ITheme } from '../types'
 import { categories } from '../gql'
 import Menu from './Menu'
@@ -39,7 +39,7 @@ const HeaderStyled = styled.header`
       a {
         ${(props: ITheme) => ({ color: props.theme?.text })}
 
-        @media (min-width: 601px) {
+        @media (min-width: ${breakPoint.mobile}) {
           &:hover {
             transition: color 0.3s;
             ${(props: ITheme) => ({ color: props.theme?.primary })}
@@ -52,7 +52,7 @@ const HeaderStyled = styled.header`
       font-size: 20px;
       ${(props: ITheme) => ({ color: props.theme?.text })}
 
-      @media (min-width: 841px) {
+      @media (min-width: ${breakPoint.tabletAir}) {
         display: none;
       }
     }

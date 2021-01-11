@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from '@emotion/styled'
+import { breakPoint } from '../../lib'
 import SocialArea  from './SocialArea'
 
 const FooterStyled = styled.footer`
@@ -15,12 +16,12 @@ const FooterStyled = styled.footer`
     margin: 0 auto;
   }
 
-  @media (max-width: 840px) {
+  @media (max-width: ${breakPoint.tabletAir}) {
     .inner {
       padding: 0 20px;
     }
   }
-  @media (max-width: 600px) {
+  @media (max-width: ${breakPoint.mobile}) {
     .inner {
       flex-direction: column;
       padding: 20px 0;

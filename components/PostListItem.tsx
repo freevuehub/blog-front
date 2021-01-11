@@ -2,6 +2,7 @@ import React from 'react'
 import styled from '@emotion/styled'
 import dayjs from 'dayjs'
 import { ITheme, IPostListItem } from '../types'
+import { breakPoint } from '../lib'
 // import { LazyImage } from './'
 
 // const ImageWrapStyled = styled.div`
@@ -64,7 +65,7 @@ const TextWrapStyled = styled.div`
     }
   }
 
-  @media (max-width: 600px) {
+  @media (max-width: ${breakPoint.mobile}) {
     h3 {
       font-size: 18px;
     }

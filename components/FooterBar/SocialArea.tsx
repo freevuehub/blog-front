@@ -1,7 +1,8 @@
 import React from 'react'
 import styled from '@emotion/styled'
-import { Icon } from '../'
 import { faYoutube, faLinkedinIn } from '@fortawesome/free-brands-svg-icons'
+import { Icon } from '../'
+import { breakPoint } from '../../lib'
 
 interface ISns {
   name: string
@@ -32,7 +33,7 @@ const SocialAreaStyled = styled.footer`
         transition: all .3s;
         font-size: 16px;
 
-        @media (min-width: 601px) {
+        @media (min-width: ${breakPoint.mobile}) {
           transition: all 0.3s;
 
           &.youtube:hover {
@@ -48,7 +49,7 @@ const SocialAreaStyled = styled.footer`
       }
     }
 
-    @media (max-width: 600px) {
+    @media (max-width: ${breakPoint.mobile}) {
       justify-content: center;
       margin-bottom: 20px;
     }

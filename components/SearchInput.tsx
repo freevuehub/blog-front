@@ -4,6 +4,7 @@ import styled from '@emotion/styled'
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
 import Icon from './Icon'
 import { ITheme } from '../types'
+import { breakPoint } from '../lib'
 
 const SearchWrapStyled = styled.div`
   position: relative;
@@ -41,10 +42,10 @@ const SearchWrapStyled = styled.div`
     }
   }
 
-  @media (max-width: 840px) {
+  @media (max-width: ${breakPoint.tabletAir}) {
     margin-left: auto;
   }
-  @media (max-width: 600px) {
+  @media (max-width: ${breakPoint.mobile}) {
     display: none;
   }
 `

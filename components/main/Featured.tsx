@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from '@emotion/styled'
 import { IPostListItem } from '../../types'
+import { breakPoint } from '../../lib'
 import FeaturedCard from './FeaturedCard'
 
 interface IProps {
@@ -15,10 +16,10 @@ const FeaturedStyled = styled.div`
   grid-row-gap: 4px;
   margin-bottom: 50px;
 
-  @media (max-width: 1000px) {
+  @media (max-width: ${breakPoint.tabletPro}) {
     grid-template-rows: 200px 200px;
   }
-  @media (max-width: 840px) {
+  @media (max-width: ${breakPoint.tabletAir}) {
     grid-template-columns: repeat(1, auto);
     grid-template-rows: repeat(3, 270px);
   }

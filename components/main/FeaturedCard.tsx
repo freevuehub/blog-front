@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from '@emotion/styled'
 import Link from 'next/link'
+import { breakPoint } from '../../lib'
 
 interface IProps {
   src: string
@@ -59,21 +60,21 @@ const FeaturedCardStyled = styled.a`
     z-index: 5;
   }
 
-  @media (max-width: 1000px) {
+  @media (max-width: ${breakPoint.tabletPro}) {
     .caption {
       h2 {
         font-size: 24px;
       }
     }
   }
-  @media (max-width: 840px) {
+  @media (max-width: ${breakPoint.tabletAir}) {
     margin-top: 20px;
     &.main {
       grid-column: auto;
       grid-row: auto;
     }
   }
-  @media (min-width: 601px) {
+  @media (min-width: ${breakPoint.mobile}) {
     &:hover {
       .featured-overlay {
         background-color: rgba(0, 0, 0, 0.125);
