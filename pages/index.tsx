@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import Head from 'next/head'
 import styled from '@emotion/styled'
 import { client } from '../lib'
-import { posts } from '../gql'
+import { posts, topPosts } from '../gql'
 import { Featured, PostList, MainAreaTitle } from '../components'
 import { ITheme } from '../types'
 
@@ -25,14 +25,19 @@ const ContentStyled = styled.article`
 
 const HomePage: React.FC = () => {
   const [postList, setPostList] = useState([])
+  const [topPostList, setTopPostList] = useState([])
 
   const getMainPost = async () => {
     try {
       const {
         data: { post }
       } = await client.query(posts({ type: 'main' }))
+      const {
+        data: { post: topPost }
+      } = await client.query(topPosts())
 
       setPostList(post.list)
+      setTopPostList(topPost.list)
     } catch {
       setPostList([])
     }
@@ -50,11 +55,12 @@ const HomePage: React.FC = () => {
       <Featured list={postList.slice(0, 3)} />
       <ContentStyled>
         <div className="left-area">
+          <MainAreaTitle>최신글</MainAreaTitle>
           <PostList list={postList.slice(3)} />
         </div>
         <div className="right-area">
           <MainAreaTitle>인기글</MainAreaTitle>
-          <PostList list={postList.slice(3)} />
+          <PostList list={topPostList} mini />
         </div>
       </ContentStyled>
     </>
