@@ -48,8 +48,13 @@ const SocialAreaStyled = styled.footer`
         margin-right: 0;
       }
     }
+  }
 
-    @media (max-width: ${breakPoint.mobile}) {
+  @media (max-width: ${breakPoint.mobile}) {
+    h3 {
+      text-align: center;
+    }
+    ul {
       justify-content: center;
       margin-bottom: 20px;
     }

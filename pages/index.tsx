@@ -7,7 +7,7 @@ import { ITheme } from '../types'
 
 const ContentStyled = styled.article`
   display: flex;
-  max-width: 968px;
+  max-width: 960px;
   margin: 50px auto 0;
   .left-area {
     flex: 1;

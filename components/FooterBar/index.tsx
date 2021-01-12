@@ -16,7 +16,7 @@ const FooterStyled = styled.footer`
     margin: 0 auto;
   }
 
-  @media (max-width: ${breakPoint.tabletAir}) {
+  @media (max-width: ${breakPoint.tabletPro}) {
     .inner {
       padding: 0 20px;
     }
