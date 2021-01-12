@@ -69,6 +69,8 @@ const Layout: React.FC = (props) => {
     } else {
       const moveTo = window.scrollY
 
+      window.scrollTo(0, 0)
+
       setMenu('move-in')
       setScrollY(moveTo)
 
