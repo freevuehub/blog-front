@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react'
-import Head from 'next/head'
 import styled from '@emotion/styled'
 import { client, breakPoint } from '../lib'
 import { posts, topPosts } from '../gql'
-import { Featured, PostList, MainAreaTitle } from '../components'
+import { Featured, PostList, MainAreaTitle, HeadSet } from '../components'
 import { ITheme } from '../types'
 
 const ContentStyled = styled.article`
@@ -73,9 +72,7 @@ const HomePage: React.FC = () => {
 
   return (
     <>
-      <Head>
-        <title>Freevue Blog</title>
-      </Head>
+      <HeadSet />
       <Featured list={postList.slice(0, 3)} />
       <ContentStyled>
         <div className="left-area">

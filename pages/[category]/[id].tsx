@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
-import Head from 'next/head'
 import styled from '@emotion/styled'
 import dayjs from 'dayjs'
 import relativeTime from 'dayjs/plugin/relativeTime'
@@ -12,7 +11,7 @@ import { a11yDark } from 'react-syntax-highlighter/dist/cjs/styles/prism'
 import { client } from '../../lib'
 import { post } from '../../gql'
 import { ITheme } from '../../types'
-import { LazyImage } from '../../components'
+import { LazyImage, HeadSet } from '../../components'
 
 dayjs.extend(relativeTime)
 
@@ -67,6 +66,7 @@ const PostPage: React.FC = () => {
     image: '',
     title: '',
     markdown: '',
+    description: '',
     clickCount: 0,
     source: '',
     createDate: '',
@@ -94,9 +94,11 @@ const PostPage: React.FC = () => {
 
   return (
     <PostPageStyled>
-      <Head>
-        <title>Freevue Blog | {data.title}</title>
-      </Head>
+      <HeadSet
+        title={data.title}
+        description={data.description}
+        image={data.image}
+      />
       <header>
         <p className="create-date">
           {dateFormat(data.createDate)} / {dayjs().locale('ko').to(dayjs(data.updateDate))}
