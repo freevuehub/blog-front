@@ -40,7 +40,7 @@ const SectionStyled = styled.section<any>`
       ${(props: ITheme) => ({ boxShadow: props.theme?.shadow.background })}
     }
     &.on {
-      filter: blur(${(props) => props.rotate ? '5px' : '0px'});
+      filter: blur(5px);
     }
     &.move-out {
       height: 100vh;
@@ -58,7 +58,6 @@ const SectionStyled = styled.section<any>`
 const Layout: React.FC = (props) => {
   const router = useRouter()
   const [menu, setMenu] = useState<string>('')
-  const [rotate, setRotate] = useState<boolean>(false)
   const [scrollY, setScrollY] = useState<number>(0)
   const onMenuClick = () => {
     if (menu) {
@@ -86,13 +85,6 @@ const Layout: React.FC = (props) => {
   }
 
   useEffect(() => {
-
-    if (menu === 'on') {
-      setRotate(true)
-    }
-  })
-
-  useEffect(() => {
     setScrollY(0)
   }, [router])
 
@@ -103,7 +95,7 @@ const Layout: React.FC = (props) => {
         className={menu}
         timer={timer}
       />
-      <SectionStyled className={menu} rotate={rotate}>
+      <SectionStyled className={menu}>
         <main className="container" style={{ marginTop: `-${scrollY}px` }}>
           {props.children}
         </main>
