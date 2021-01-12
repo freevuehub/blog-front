@@ -35,6 +35,7 @@ const SearchWrapStyled = styled.div`
       top: 50%;
       transform: translateY(-50%);
       cursor: pointer;
+      width: 14px;
       .icon {
         font-size: 14px;
         ${(props: ITheme) => ({ color: props.theme?.text })}

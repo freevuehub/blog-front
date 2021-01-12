@@ -32,6 +32,9 @@ const SocialAreaStyled = styled.footer`
         color: #fff;
         transition: all .3s;
         font-size: 16px;
+        .icon {
+          width: 16px;
+        }
 
         @media (min-width: ${breakPoint.mobile}) {
           transition: all 0.3s;
@@ -82,7 +85,7 @@ const snsMap = (item: ISns) => {
   return (
     <li key={item.name}>
       <a href={item.to} className={item.name} target="_blank" rel="noopener noreferrer">
-        <Icon icon={item.icon} />
+        <Icon icon={item.icon} className="icon" />
       </a>
     </li>
   )

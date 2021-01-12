@@ -50,6 +50,7 @@ const HeaderStyled = styled.header`
     .menu-btn {
       margin-right: auto;
       font-size: 20px;
+      width: 20px;
       ${(props: ITheme) => ({ color: props.theme?.text })}
 
       @media (min-width: ${breakPoint.tabletAir}) {
