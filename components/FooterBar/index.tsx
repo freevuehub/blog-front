@@ -33,7 +33,7 @@ const FooterBar: React.FC = () => {
     <FooterStyled>
       <div className="inner">
         <SocialArea />
-        <div><b>FreeVue</b> Copyright © {new Date().getFullYear()}</div>
+        <div>© <b>FreeVue</b></div>
       </div>
     </FooterStyled>
   )
