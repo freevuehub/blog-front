@@ -18,7 +18,7 @@ dayjs.extend(relativeTime)
 const PostPageStyled = styled.article`
   margin: 0 auto;
   padding-top: 40px;
-  max-width: 968px;
+  max-width: 960px;
   header {
     max-width: 740px;
     margin: 0 auto;

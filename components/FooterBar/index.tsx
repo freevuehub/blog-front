@@ -7,24 +7,19 @@ const FooterStyled = styled.footer`
   background: #000;
   color: #fff;
   min-height: 120px;
+  padding: 0 20px;
   .inner {
     display: flex;
     justify-content: space-between;
     align-items: center;
     min-height: 120px;
-    max-width: 968px;
+    max-width: 960px;
     margin: 0 auto;
   }
 
-  @media (max-width: ${breakPoint.tabletPro}) {
-    .inner {
-      padding: 0 20px;
-    }
-  }
   @media (max-width: ${breakPoint.mobile}) {
     .inner {
       flex-direction: column;
-      padding: 20px 0;
     }
   }
 `

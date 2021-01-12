@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import styled from '@emotion/styled'
-import { client } from '../../lib'
+import { client, breakPoint } from '../../lib'
 import { posts } from '../../gql'
 import { CategoryTitle, PostList, HeadSet } from '../../components'
 
@@ -17,7 +17,11 @@ interface IPostListItem {
 const CategoryPageStyled = styled.article`
   margin: 0 auto;
   padding-top: 40px;
-  max-width: 968px;
+  max-width: 960px;
+
+  @media (max-width: ${breakPoint.tabletPro}) {
+    max-width: 600px;
+  }
 `
 
 const CategoryPage: React.FC = () => {
