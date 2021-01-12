@@ -12,10 +12,11 @@ const WrapStyled = styled.div`
   @media (max-width: ${breakPoint.tabletAir}) {
     &.on, &.move-out, &.move-in {
       overflow: hidden;
+      perspective: 400px;
     }
   }
 `
-const SectionStyled = styled.section`
+const SectionStyled = styled.section<any>`
   ${(props: ITheme) => ({
     backgroundColor: props.theme?.background.app,
   })}
@@ -27,21 +28,24 @@ const SectionStyled = styled.section`
   @media (max-width: ${breakPoint.tabletAir}) {
     transition: all ${timer}ms;
     border-radius: 0;
-    transform: translateX(0) translateZ(0) scale(1);
+    transform: translateX(0) translateZ(0) scale(1) rotateY(0);
     will-change: transform, border-radius box-shadow;
     box-shadow: 0;
     width: 100%;
     &.on, &.move-in {
       height: 100vh;
       overflow: hidden;
-      transform: translateX(50%) translateZ(0) scale(0.6);
+      transform: translateX(50%) translateZ(0) scale(0.6) rotateY(-10deg);
       border-radius: 50px;
       ${(props: ITheme) => ({ boxShadow: props.theme?.shadow.background })}
+    }
+    &.on {
+      filter: blur(${(props) => props.rotate ? '5px' : '0px'});
     }
     &.move-out {
       height: 100vh;
       overflow: hidden;
-      transform: translateX(0) translateZ(0) scale(1);
+      transform: translateX(0) translateZ(0) scale(1) rotateY(0);
       ${(props: ITheme) => ({ boxShadow: props.theme?.shadow.background })}
     }
     .container {
@@ -54,6 +58,7 @@ const SectionStyled = styled.section`
 const Layout: React.FC = (props) => {
   const router = useRouter()
   const [menu, setMenu] = useState<string>('')
+  const [rotate, setRotate] = useState<boolean>(false)
   const [scrollY, setScrollY] = useState<number>(0)
   const onMenuClick = () => {
     if (menu) {
@@ -81,6 +86,13 @@ const Layout: React.FC = (props) => {
   }
 
   useEffect(() => {
+
+    if (menu === 'on') {
+      setRotate(true)
+    }
+  })
+
+  useEffect(() => {
     setScrollY(0)
   }, [router])
 
@@ -91,7 +103,7 @@ const Layout: React.FC = (props) => {
         className={menu}
         timer={timer}
       />
-      <SectionStyled className={menu}>
+      <SectionStyled className={menu} rotate={rotate}>
         <main className="container" style={{ marginTop: `-${scrollY}px` }}>
           {props.children}
         </main>
