@@ -7,6 +7,7 @@ export const post = ($id: string) => ({
         list {
           image
           title
+          description
           markdown
           clickCount
           source
