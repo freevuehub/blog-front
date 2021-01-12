@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
-import { AppProps } from "next/app";
-import { useRouter } from "next/router";
+import { AppProps } from 'next/app'
+import { useRouter } from 'next/router'
 import { ApolloProvider } from '@apollo/client'
 import { Global, ThemeProvider } from '@emotion/react'
 import { client, colorSet } from '../lib'
