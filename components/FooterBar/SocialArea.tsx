@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from '@emotion/styled'
-import { faYoutube, faLinkedinIn } from '@fortawesome/free-brands-svg-icons'
+import { faYoutube, faLinkedinIn, faGithub } from '@fortawesome/free-brands-svg-icons'
 import { Icon } from '../'
 import { breakPoint } from '../../lib'
 
@@ -66,6 +66,11 @@ const snsList: ISns[] = [
     name: 'linkedin',
     to: 'https://www.linkedin.com/in/%EC%84%B1%EC%A4%80-%ED%99%8D-6bb854171/',
     icon: faLinkedinIn,
+  },
+  {
+    name: 'github',
+    to: 'https://github.com/freevuehub',
+    icon: faGithub,
   },
 ]
 const snsMap = (item: ISns) => {
