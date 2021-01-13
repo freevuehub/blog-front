@@ -5,10 +5,10 @@ import { ITheme } from '../types'
 const TitleStyled = styled.h1`
   ${(props: ITheme) => ({
     backgroundColor: props.theme?.primary,
-    color: props.theme?.white
   })}
-  line-height: 34px;
+  color: #1d1d1d;
   padding: 0 14px;
+  line-height: 34px;
 `
 
 const MainAreaTitle: React.FC = (props) => {
