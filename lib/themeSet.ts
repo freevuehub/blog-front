@@ -7,13 +7,17 @@ export const breakPoint = {
   mobile: '640px',
 }
 
+const primary = '#6bb3b8'
+
 export const colorSet: {
+  primary: string
   light: IThemeSet
   dark: IThemeSet
 } = {
+  primary,
   light: {
     white: '#ffffff',
-    primary: '#6bb3b8',
+    primary,
     background: {
       app: '#ffffff',
       content: '#ffffff',
@@ -41,7 +45,7 @@ export const colorSet: {
   },
   dark: {
     white: '#ffffff',
-    primary: '#6bb3b8',
+    primary,
     background: {
       app: '#121212',
       content: '#1e1e1e',
