@@ -87,7 +87,7 @@ const HeaderBar: React.FC<IProps> = (props) => {
   return (
     <HeaderStyled>
       <div className="inner">
-        <button className="menu-btn" onClick={onMenuClick}>
+        <button className="menu-btn" onClick={onMenuClick} aria-label="Menu Button">
           <Icon icon={faBars} />
         </button>
         <h1 className="ibmplexsans">
