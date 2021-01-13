@@ -11,7 +11,7 @@ interface ISns {
 }
 
 const SocialAreaStyled = styled.footer`
-  h3 {
+  h1 {
     color: hsla(0,0%,100%,.5);
     font-size: 21px;
     font-weight: 700;
@@ -31,7 +31,7 @@ const SocialAreaStyled = styled.footer`
         align-items: center;
         color: #fff;
         transition: all .3s;
-        font-size: 16px;
+        font-size: 0;
         .icon {
           width: 16px;
         }
@@ -44,6 +44,9 @@ const SocialAreaStyled = styled.footer`
           }
           &.linkedin:hover {
             background-color: #0077b5;
+          }
+          &.github:hover {
+            background-color: #1e2327;
           }
         }
       }
@@ -85,6 +88,7 @@ const snsMap = (item: ISns) => {
   return (
     <li key={item.name}>
       <a href={item.to} className={item.name} target="_blank" rel="noopener noreferrer">
+        test
         <Icon icon={item.icon} className="icon" />
       </a>
     </li>
@@ -93,7 +97,7 @@ const snsMap = (item: ISns) => {
 const SocialArea: React.FC = () => {
   return (
     <SocialAreaStyled>
-      <h3 className="ibmplexsans">Follow Us</h3>
+      <h1 className="ibmplexsans">Follow Us</h1>
       <ul>
         {snsList.map(snsMap)}
       </ul>

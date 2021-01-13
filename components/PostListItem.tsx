@@ -39,7 +39,7 @@ const TextWrapStyled = styled.div`
     text-transform: uppercase;
     font-weight: 700;
   }
-  h3 {
+  h1 {
     ${(props: ITheme) => ({ color: props.theme?.text })}
     font-size: 24px;
     cursor: pointer;
@@ -104,7 +104,7 @@ const PostListItem: React.FC<IProps> = (props) => {
       }
       <TextWrapStyled className={`text-wrap ${props.mini ? 'mini' : ''}`}>
         <span className="text-category">{props.item.category}</span>
-        <h3>{props.item.title}</h3>
+        <h1>{props.item.title}</h1>
         {
           props.mini || (<p>{props.item.description}</p>)
         }
