@@ -8,10 +8,11 @@ import ReactMrkdown from 'react-markdown'
 import gfm from 'remark-gfm'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 import { a11yDark } from 'react-syntax-highlighter/dist/cjs/styles/prism'
+import { faShareAlt } from '@fortawesome/free-solid-svg-icons'
 import { client } from '../../lib'
 import { post } from '../../gql'
 import { ITheme } from '../../types'
-import { LazyImage, HeadSet } from '../../components'
+import { LazyImage, HeadSet, Icon } from '../../components'
 
 dayjs.extend(relativeTime)
 
