@@ -2,6 +2,7 @@ import React from 'react'
 import styled from '@emotion/styled'
 import Link from 'next/link'
 import { breakPoint } from '../../lib'
+import { LazyImage } from '../'
 
 interface IProps {
   src: string
@@ -88,7 +89,7 @@ const FeaturedCard: React.FC<IProps> = (props) => {
     <Link href={props.href}>
       <FeaturedCardStyled className={props.className}>
         <div className="image-wrapper">
-          <img src={props.src} alt=""/>
+          <LazyImage src={props.src} alt="" />
         </div>
         <div className="caption">
           <h2>{props.title}</h2>
