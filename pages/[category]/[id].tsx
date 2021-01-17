@@ -8,11 +8,10 @@ import ReactMrkdown from 'react-markdown'
 import gfm from 'remark-gfm'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 import { a11yDark } from 'react-syntax-highlighter/dist/cjs/styles/prism'
-import { faShareAlt } from '@fortawesome/free-solid-svg-icons'
 import { client } from '../../lib'
 import { post } from '../../gql'
 import { ITheme } from '../../types'
-import { LazyImage, HeadSet, Icon } from '../../components'
+import { LazyImage, HeadSet } from '../../components'
 
 dayjs.extend(relativeTime)
 
@@ -28,7 +27,9 @@ const PostPageStyled = styled.article`
     })}
     h1 {
       padding: 4px 2px;
+      margin: 5px 0;
       font-size: 40px;
+      word-break: keep-all;
     }
     .create-date {
       display: flex;
