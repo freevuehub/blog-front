@@ -10,7 +10,7 @@ interface IProps {
 
 const FeaturedStyled = styled.div`
   display: grid;
-  grid-template-columns: repeat(3,auto);
+  grid-template-columns: repeat(3, 33.333%);
   grid-template-rows: 250px 250px;
   grid-column-gap: 4px;
   grid-row-gap: 4px;
@@ -20,7 +20,7 @@ const FeaturedStyled = styled.div`
     grid-template-rows: 200px 200px;
   }
   @media (max-width: ${breakPoint.tabletAir}) {
-    grid-template-columns: repeat(1, auto);
+    grid-template-columns: repeat(1, 100%);
     grid-template-rows: repeat(3, 270px);
   }
 `
