@@ -12,8 +12,6 @@ const FeaturedStyled = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 33.333%);
   grid-template-rows: 250px 250px;
-  grid-column-gap: 4px;
-  grid-row-gap: 4px;
   margin-bottom: 50px;
 
   @media (max-width: ${breakPoint.tabletPro}) {
