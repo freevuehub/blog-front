@@ -49,8 +49,15 @@ const PostPageStyled = styled.article`
     }
   }
   .article-markdown {
-    margin: 40px auto 120px;
+    margin: 40px auto;
     max-width: 740px;
+  }
+  footer {
+    max-width: 740px;
+    margin: 0 auto 120px;
+    ${(props: ITheme) => ({
+      color: props.theme?.text,
+    })}
   }
 `
 
@@ -107,17 +114,7 @@ const PostPage: React.FC = () => {
           <span className="count">view {data.clickCount}</span>
         </p>
         <h1>{data.title}</h1>
-        {
-          data.image && (
-            <LazyImage
-              className="article-image"
-              width="100%"
-              height={416}
-              alt={data.title}
-              src={data.image}
-            />
-          )
-        }
+        <LazyImage className="article-image" src={data.image} />
       </header>
       <ReactMrkdown
         renderers={renderers}
@@ -125,6 +122,9 @@ const PostPage: React.FC = () => {
         className="article-markdown"
         plugins={[gfm]}
       />
+      <footer>
+        {data.source && <p>출처: {data.source}</p>}
+      </footer>
     </PostPageStyled>
   )
 }
