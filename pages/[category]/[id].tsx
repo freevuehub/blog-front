@@ -5,7 +5,7 @@ import styled from '@emotion/styled'
 import dayjs from 'dayjs'
 import relativeTime from 'dayjs/plugin/relativeTime'
 import 'dayjs/locale/ko'
-import ReactMrkdown from 'react-markdown'
+import ReactMarkdown from 'react-markdown'
 import gfm from 'remark-gfm'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 import { a11yDark } from 'react-syntax-highlighter/dist/cjs/styles/prism'
@@ -123,7 +123,7 @@ const PostPage: React.FC = () => {
         <h1>{data.title}</h1>
         <LazyImage className="article-image" src={data.image} />
       </header>
-      <ReactMrkdown
+      <ReactMarkdown
         renderers={renderers}
         children={data.markdown}
         className="article-markdown"
