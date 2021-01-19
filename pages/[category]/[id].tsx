@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
+import Link from 'next/link'
 import styled from '@emotion/styled'
 import dayjs from 'dayjs'
 import relativeTime from 'dayjs/plugin/relativeTime'
@@ -58,6 +59,12 @@ const PostPageStyled = styled.article`
     ${(props: ITheme) => ({
       color: props.theme?.text,
     })}
+    a {
+      font-style: italic;
+      ${(props: ITheme) => ({
+        color: props.theme?.primary,
+      })}
+    }
   }
 `
 
@@ -123,7 +130,13 @@ const PostPage: React.FC = () => {
         plugins={[gfm]}
       />
       <footer>
-        {data.source && <p>출처: {data.source}</p>}
+        {
+          data.source && (
+            <p>
+              출처: <Link href={data.source}>{data.source}</Link>
+            </p>
+          )
+        }
       </footer>
     </PostPageStyled>
   )
