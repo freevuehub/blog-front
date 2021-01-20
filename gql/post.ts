@@ -1,5 +1,20 @@
 import { gql } from '../lib'
 
+export const staticPost = ({ type, value }: { type?: string, value?: string }) => ({
+  query: gql`
+    {
+      post(
+        type: "${type}",
+        value: "${value}"
+      ) {
+        list{
+          markdown
+        }
+      }
+    }
+  `
+})
+
 export const post = ($id: string) => ({
   query: gql`
     {

@@ -10,3 +10,15 @@ export const categories = () => ({
     }
   `
 })
+
+export const category = (name: string) => ({
+  query: gql`
+    {
+      category(id: "${name}", type: "name") {
+        id
+        name
+        type
+      }
+    }
+  `
+})
