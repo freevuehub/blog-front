@@ -5,14 +5,10 @@ import styled from '@emotion/styled'
 import dayjs from 'dayjs'
 import relativeTime from 'dayjs/plugin/relativeTime'
 import 'dayjs/locale/ko'
-import ReactMarkdown from 'react-markdown'
-import gfm from 'remark-gfm'
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
-import { a11yDark } from 'react-syntax-highlighter/dist/cjs/styles/prism'
 import { client } from '../../lib'
 import { post } from '../../gql'
 import { ITheme } from '../../types'
-import { LazyImage, HeadSet } from '../../components'
+import { LazyImage, HeadSet, MarkDown } from '../../components'
 
 dayjs.extend(relativeTime)
 
@@ -71,11 +67,6 @@ const PostPageStyled = styled.article`
 const dateFormat = (date: string) => {
   return dayjs(date, 'YYYY-MM-DD HH:mm').format('MMM DD, YYYY')
 }
-const renderers = {
-  code: ({ language, value }: { language: string, value: string }) => {
-    return <SyntaxHighlighter style={a11yDark} language={language} children={value} />
-  }
-}
 const PostPage: React.FC = () => {
   const router = useRouter()
   const [data, setData] = useState({
@@ -123,12 +114,7 @@ const PostPage: React.FC = () => {
         <h1>{data.title}</h1>
         <LazyImage className="article-image" src={data.image} />
       </header>
-      <ReactMarkdown
-        renderers={renderers}
-        children={data.markdown}
-        className="article-markdown"
-        plugins={[gfm]}
-      />
+      <MarkDown md={data.markdown} />
       <footer>
         {
           data.source && (

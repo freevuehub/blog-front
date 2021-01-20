@@ -19,18 +19,14 @@ const Markdown = (props: IThemeSet) => css`
       }
     }
     h1 {
-      margin: {
-        top: 2em;
-        bottom: 4px;
-      }
-      font: {
-        size: 1.875em;
-      }
+      padding: 3px 2px;
+      font-size: 40px;
       line-height: 1.3;
       fill: inherit;
     }
     h2 {
-      font-size: 1.5em;
+      padding: 3px 2px;
+      font-size: 24px;
       margin-top: 40px;
     }
     h3 {
