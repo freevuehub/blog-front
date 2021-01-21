@@ -11,7 +11,6 @@ interface IProps {
 }
 
 const PostListStyled = styled.ul`
-  margin: 5px 0 30px;
   li {
     padding: 25px 0;
     border-bottom: 1px solid ${(props: ITheme) => props.theme?.border.color};

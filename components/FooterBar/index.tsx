@@ -18,6 +18,7 @@ const FooterStyled = styled.footer`
   }
 
   @media (max-width: ${breakPoint.mobile}) {
+    padding: 20px;
     .inner {
       flex-direction: column;
     }

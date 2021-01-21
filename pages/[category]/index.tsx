@@ -19,7 +19,7 @@ interface  IStaticItem {
 }
 
 const CategoryPageStyled = styled.article`
-  margin: 0 auto;
+  margin: 0 auto 50px;
   padding-top: 40px;
   max-width: 960px;
 

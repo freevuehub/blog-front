@@ -57,7 +57,7 @@ const SocialAreaStyled = styled.footer`
   }
 
   @media (max-width: ${breakPoint.mobile}) {
-    h3 {
+    h1 {
       text-align: center;
     }
     ul {

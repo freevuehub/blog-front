@@ -8,7 +8,7 @@ import { ITheme } from '../types'
 const ContentStyled = styled.article`
   display: flex;
   max-width: 960px;
-  margin: 50px auto 0;
+  margin: 50px auto;
   .left-area {
     flex: 1;
     padding-right: 25px;
@@ -38,7 +38,7 @@ const ContentStyled = styled.article`
       padding-right: 0;
       margin-right: 0;
       border: 0;
-      margin-bottom: 20px;
+      margin-bottom: 40px;
     }
     .right-area {
       width: 100%;
