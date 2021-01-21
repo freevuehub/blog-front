@@ -52,14 +52,17 @@ const PostPageStyled = styled.article`
   footer {
     max-width: 740px;
     margin: 0 auto 120px;
-    ${(props: ITheme) => ({
-      color: props.theme?.text,
-    })}
-    a {
-      font-style: italic;
+    p {
       ${(props: ITheme) => ({
-        color: props.theme?.primary,
+        color: props.theme?.text,
       })}
+      word-break: break-all;
+      a {
+        font-style: italic;
+        ${(props: ITheme) => ({
+          color: props.theme?.primary,
+        })}
+      }
     }
   }
 `
