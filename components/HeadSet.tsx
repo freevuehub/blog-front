@@ -24,7 +24,7 @@ const HeadSet: React.FC<IProps> = (props) => {
   return (
     <Head>
       <meta charSet="utf-8" />
-      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
       <meta name="theme-color" content={colorSet.primary} />
       <meta name="keywords" content={keywords} />
       <meta name="description" content={description} />
@@ -71,7 +71,7 @@ const HeadSet: React.FC<IProps> = (props) => {
       <meta name="twitter:url" content="https://freevue.dev" />
       <meta name="twitter:card" content="summary_large_image" />
 
-      <link rel="image_src" href={defaultImage} />
+      <link rel="image_src" href={image} />
     </Head>
   )
 }
