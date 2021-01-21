@@ -10,6 +10,13 @@ interface  IProps {
 }
 
 const renderers = {
+  table: (value: { children: React.ReactChildren }) => {
+    return (
+      <div className="table-wrap">
+        <table>{value.children}</table>
+      </div>
+    )
+  },
   code: ({ language, value }: { language: string, value: string }) => {
     return <SyntaxHighlighter style={a11yDark} language={language} children={value} />
   }
