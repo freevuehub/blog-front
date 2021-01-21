@@ -132,6 +132,11 @@ const Markdown = (props: IThemeSet) => css`
       color: ${props.text};
       text-decoration: underline;
     }
+    hr {
+      padding: 0;
+      border-bottom: 0;
+      border-color: #ffffff50;
+    }
   }
 `
 
