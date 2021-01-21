@@ -78,31 +78,38 @@ const Markdown = (props: IThemeSet) => css`
         line-height: 1.8;
       }
     }
-    table {
-      border-radius: 3px;
+    .table-wrap {
+      padding: 0;
       overflow-x: auto;
-      margin-top: 12px;
-      width: 100%;
-      th {
-        background-color: ${props.table.background};
-        color: ${props.table.th};
-        font-size: 16px;
-        line-height: 1.6;
-        letter-spacing: -0.009em;
-        padding: 0.25rem 0.75rem;
-        vertical-align: middle;
-        border: 1px solid ${props.table.border};
-        min-width: 4rem;
-      }
-      td {
-        background-color: ${props.table.background};
-        color: ${props.table.td};
-        line-height: 1.6;
-        letter-spacing: -0.009em;
-        padding: 0.25rem 0.75rem;
-        vertical-align: middle;
-        border: 1px solid ${props.table.border};
-        font-size: 16px;
+      overflow-y: hidden;
+      table {
+        border-radius: 3px;
+        margin-top: 12px;
+        width: auto;
+        min-width: 100%;
+        th {
+          background-color: ${props.table.background};
+          color: ${props.table.th};
+          font-size: 16px;
+          line-height: 1.6;
+          letter-spacing: -0.009em;
+          padding: 0.25rem 0.75rem;
+          vertical-align: middle;
+          border: 1px solid ${props.table.border};
+          min-width: 4rem;
+          white-space: nowrap;
+        }
+        td {
+          background-color: ${props.table.background};
+          color: ${props.table.td};
+          line-height: 1.6;
+          letter-spacing: -0.009em;
+          padding: 0.25rem 0.75rem;
+          vertical-align: middle;
+          border: 1px solid ${props.table.border};
+          font-size: 16px;
+          white-space: nowrap;
+        }
       }
     }
     blockquote {
