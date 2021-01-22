@@ -84,8 +84,6 @@ const Layout: React.FC = (props) => {
     }
   }
 
-  console.log(router)
-
   useEffect(() => {
     setScrollY(0)
   }, [router])
