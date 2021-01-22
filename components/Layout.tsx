@@ -84,17 +84,23 @@ const Layout: React.FC = (props) => {
     }
   }
 
+  console.log(router)
+
   useEffect(() => {
     setScrollY(0)
   }, [router])
 
   return (
     <WrapStyled className={menu}>
-      <HeaderBar
-        onClick={onMenuClick}
-        className={menu}
-        timer={timer}
-      />
+      {
+        router.route === '/login' || (
+          <HeaderBar
+            onClick={onMenuClick}
+            className={menu}
+            timer={timer}
+          />
+        )
+      }
       <SectionStyled className={menu}>
         <main className="container" style={{ marginTop: `-${scrollY}px` }}>
           {props.children}
