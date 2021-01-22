@@ -34,6 +34,7 @@ const SocialAreaStyled = styled.footer`
         font-size: 0;
         .icon {
           width: 16px;
+          font-size: 16px;
         }
 
         @media (min-width: ${breakPoint.mobile}) {
