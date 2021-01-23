@@ -19,21 +19,22 @@ const CategoryPageStyled = styled.article`
 
 const CategoryPage: NextPage<IInitialData<any>> = ({ initialData }) => {
   const router = useRouter()
+  const category = `${router.query.category}`.toUpperCase()
+  const { list, total } = initialData.post
 
   return (
     <CategoryPageStyled>
-      <HeadSet
-        title={`${router.query.category}`.toUpperCase()}
-        description={`${router.query.category}`.toUpperCase()}
-      />
+      <HeadSet title={category} description={category} />
       {
         initialData.type === 'post' ? (
           <>
-            <CategoryTitle>{router.query.category}<span>({initialData.post.total})</span></CategoryTitle>
-            <PostList list={initialData.post.list} />
+            <CategoryTitle>
+              {router.query.category}<span>({total})</span>
+            </CategoryTitle>
+            <PostList list={list} />
           </>
         ) : (
-          <MarkDown md={initialData.item.markdown} />
+          <MarkDown md={list[0].markdown} />
         )
       }
     </CategoryPageStyled>
@@ -48,37 +49,20 @@ CategoryPage.getInitialProps = async (context: NextPageContext) => {
     },
   } = await client.query(categoryQuery(`${category}`))
 
-  if (type === 'post') {
-    const {
-      data: { post },
-    } = await client.query(posts({
+  const { data } = await client.query(
+    type === 'post' ? posts({
       type: 'category',
       value: category ? `${category}` : '',
-    }))
-
-    return {
-      initialData: {
-        type,
-        post
-      }
-    }
-  } else {
-    const {
-      data: {
-        post: {
-          list: [item]
-        },
-      },
-    } = await client.query(staticPost({
+    }) : staticPost({
       type: 'static',
       value: id,
-    }))
+    })
+  )
 
-    return {
-      initialData: {
-        type,
-        item,
-      }
+  return {
+    initialData: {
+      type,
+      post: data.post,
     }
   }
 }
