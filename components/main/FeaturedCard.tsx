@@ -59,6 +59,7 @@ const FeaturedCardStyled = styled.a`
     background-color: rgba(0, 0, 0, 0.5);
     transition: all .4s ease;
     z-index: 5;
+    font-size: 0;
   }
 
   @media (max-width: ${breakPoint.tabletPro}) {
@@ -95,7 +96,7 @@ const FeaturedCard: React.FC<IProps> = (props) => {
           <h2>{props.title}</h2>
           <span>{props.category}</span>
         </div>
-        <div className="featured-overlay"></div>
+        <div className="featured-overlay">Featured Overlay</div>
       </FeaturedCardStyled>
     </Link>
   )
