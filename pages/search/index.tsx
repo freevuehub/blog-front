@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
+import { NextPage, NextPageContext } from 'next'
 import { useRouter } from 'next/router'
 import styled from '@emotion/styled'
 import { client } from '../../lib'
 import { posts } from '../../gql'
-import { IPostListItem } from '../../types'
+import { IPostListItem, IInitialData } from '../../types'
 import { PostList, CategoryTitle, HeadSet } from '../../components'
 
 const SearchPageStyled = styled.article`
@@ -12,30 +13,8 @@ const SearchPageStyled = styled.article`
   max-width: 968px;
 `
 
-const SearchPage: React.FC = () => {
+const SearchPage: NextPage<IInitialData<{ list: IPostListItem[] }>> = ({ initialData }) => {
   const router = useRouter()
-  const [list, setList] = useState<IPostListItem[]>([])
-
-  const getPosts = async () => {
-    try {
-      if (router.query.q) {
-        const { data: { post } } = await client.query(posts({
-          type: 'search',
-          value: `${router.query.q}`,
-        }))
-
-        console.log(post.list)
-
-        setList(post.list)
-      }
-    } catch {
-      setList([])
-    }
-  }
-
-  useEffect(() => {
-    getPosts()
-  }, [router.query.q])
 
   return (
     <SearchPageStyled>
@@ -44,9 +23,19 @@ const SearchPage: React.FC = () => {
         description={`${router.query.q}에 대한 검색결과입니다.`}
       />
       <CategoryTitle>"{router.query.q}"<span>에 대한 검색결과</span></CategoryTitle>
-      <PostList list={list} />
+      <PostList list={initialData.list} />
     </SearchPageStyled>
   )
+}
+
+SearchPage.getInitialProps = async (context: NextPageContext) => {
+  const { data } = await client.query(
+    posts({ type: 'search', value: `${context.query.q}` })
+  )
+
+  return {
+    initialData: data.post,
+  }
 }
 
 export default SearchPage

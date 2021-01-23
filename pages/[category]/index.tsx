@@ -1,22 +1,11 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
+import { NextPage, NextPageContext } from 'next'
 import { useRouter } from 'next/router'
 import styled from '@emotion/styled'
+import { IInitialData } from '../../types'
 import { client, breakPoint } from '../../lib'
 import { posts, staticPost, category as categoryQuery } from '../../gql'
 import {CategoryTitle, PostList, HeadSet, MarkDown} from '../../components'
-
-interface IPostListItem {
-  id: string
-  category: string
-  image: string
-  title: string
-  description: string
-  createDate: string
-}
-
-interface  IStaticItem {
-  markdown: string
-}
 
 const CategoryPageStyled = styled.article`
   margin: 0 auto 50px;
@@ -28,49 +17,8 @@ const CategoryPageStyled = styled.article`
   }
 `
 
-const CategoryPage: React.FC = () => {
+const CategoryPage: NextPage<IInitialData<any>> = ({ initialData }) => {
   const router = useRouter()
-  const [list, setList] = useState<IPostListItem[]>([])
-  const [count, setCount] = useState<number>(0)
-  const [type, setType] = useState<string>('')
-  const [staticItem, setStaticItem] = useState<IStaticItem>({
-    markdown: ''
-  })
-
-  const getPosts = async () => {
-    try {
-      const { data: { category } } = await client.query(categoryQuery(`${router.query.category}`))
-
-      setType(category.type)
-
-      if (category.type === 'post') {
-        const { data: { post } } = await client.query(posts({
-          type: 'category',
-          value: router.query.category ? `${router.query.category}` : '',
-        }))
-
-        setList(post.list)
-        setCount(post.total)
-      } else {
-        const { data:
-          {
-            post: { list: [item] }
-          }
-        } = await client.query(staticPost({
-          type: 'static',
-          value: category.id,
-        }))
-
-        setStaticItem(item)
-      }
-    } catch {
-      setList([])
-    }
-  }
-
-  useEffect(() => {
-    getPosts()
-  }, [router.query.category])
 
   return (
     <CategoryPageStyled>
@@ -79,17 +27,60 @@ const CategoryPage: React.FC = () => {
         description={`${router.query.category}`.toUpperCase()}
       />
       {
-        type === 'post' ? (
+        initialData.type === 'post' ? (
           <>
-            <CategoryTitle>{router.query.category}<span>({count})</span></CategoryTitle>
-            <PostList list={list} />
+            <CategoryTitle>{router.query.category}<span>({initialData.post.total})</span></CategoryTitle>
+            <PostList list={initialData.post.list} />
           </>
         ) : (
-          <MarkDown md={staticItem.markdown} />
+          <MarkDown md={initialData.item.markdown} />
         )
       }
     </CategoryPageStyled>
   )
+}
+
+CategoryPage.getInitialProps = async (context: NextPageContext) => {
+  const { category } = context.query
+  const {
+    data: {
+      category: { type, id },
+    },
+  } = await client.query(categoryQuery(`${category}`))
+
+  if (type === 'post') {
+    const {
+      data: { post },
+    } = await client.query(posts({
+      type: 'category',
+      value: category ? `${category}` : '',
+    }))
+
+    return {
+      initialData: {
+        type,
+        post
+      }
+    }
+  } else {
+    const {
+      data: {
+        post: {
+          list: [item]
+        },
+      },
+    } = await client.query(staticPost({
+      type: 'static',
+      value: id,
+    }))
+
+    return {
+      initialData: {
+        type,
+        item,
+      }
+    }
+  }
 }
 
 export default CategoryPage
