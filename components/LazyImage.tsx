@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react'
+import React, { useEffect, useRef } from 'react'
 import styled from '@emotion/styled'
 
 interface  IProps {
@@ -7,6 +7,14 @@ interface  IProps {
   className?: string
 }
 
+const ImageWrapStyled = styled.div`
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`
 const CanvasStyled = styled.canvas`
   display: block;
   width: 100%;
@@ -44,7 +52,11 @@ const LazyImage: React.FC<IProps> = (props) => {
     image.src = props.src
   }, [props.src])
 
-  return props.src ? <CanvasStyled className={props.className || ''} ref={canvas} /> : <></>
+  return props.src ? (
+      <ImageWrapStyled>
+        <CanvasStyled className={props.className || ''} ref={canvas} />
+      </ImageWrapStyled>
+    ) : <></>
 }
 
 export default LazyImage
