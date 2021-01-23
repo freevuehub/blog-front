@@ -51,3 +51,7 @@ export interface IPostDetail {
   createDate: string
   updateDate: string
 }
+
+export interface IInitialData<T> {
+  initialData: T
+}

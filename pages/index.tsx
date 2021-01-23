@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
+import { NextPage } from 'next'
 import styled from '@emotion/styled'
 import { client, breakPoint } from '../lib'
 import { posts, topPosts } from '../gql'
 import { Featured, PostList, MainAreaTitle, HeadSet } from '../components'
-import { ITheme } from '../types'
+import { ITheme, IInitialData } from '../types'
 
 const ContentStyled = styled.article`
   display: flex;
@@ -46,46 +47,37 @@ const ContentStyled = styled.article`
   }
 `
 
-const HomePage: React.FC = () => {
-  const [postList, setPostList] = useState([])
-  const [topPostList, setTopPostList] = useState([])
+const HomePage: NextPage<IInitialData<any>> = ({ initialData }) => (
+  <>
+    <HeadSet />
+    <Featured list={initialData.post.list.slice(0, 3)} />
+    <ContentStyled>
+      <div className="left-area">
+        <MainAreaTitle>최신글</MainAreaTitle>
+        <PostList list={initialData.post.list.slice(3)} />
+      </div>
+      <div className="right-area">
+        <MainAreaTitle>인기글</MainAreaTitle>
+        <PostList list={initialData.topPost.list} mini />
+      </div>
+    </ContentStyled>
+  </>
+)
 
-  const getMainPost = async () => {
-    try {
-      const {
-        data: { post }
-      } = await client.query(posts({ type: 'main' }))
-      const {
-        data: { post: topPost }
-      } = await client.query(topPosts())
+HomePage.getInitialProps = async () => {
+  const {
+    data: { post }
+  } = await client.query(posts({ type: 'main' }))
+  const {
+    data: { post: topPost }
+  } = await client.query(topPosts())
 
-      setPostList(post.list)
-      setTopPostList(topPost.list)
-    } catch {
-      setPostList([])
+  return {
+    initialData: {
+      topPost,
+      post,
     }
   }
-
-  useEffect(() => {
-    getMainPost()
-  }, [])
-
-  return (
-    <>
-      <HeadSet />
-      <Featured list={postList.slice(0, 3)} />
-      <ContentStyled>
-        <div className="left-area">
-          <MainAreaTitle>최신글</MainAreaTitle>
-          <PostList list={postList.slice(3)} />
-        </div>
-        <div className="right-area">
-          <MainAreaTitle>인기글</MainAreaTitle>
-          <PostList list={topPostList} mini />
-        </div>
-      </ContentStyled>
-    </>
-  )
 }
 
 export default HomePage
