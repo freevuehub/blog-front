@@ -1,11 +1,15 @@
-import React, { useEffect, useState } from 'react'
-import { useRouter } from 'next/router'
+import React, { useState } from 'react'
+import { NextPage, NextPageContext } from 'next'
 import Link from 'next/link'
 import styled from '@emotion/styled'
 import { client } from '../../lib'
 import { post } from '../../gql'
-import { ITheme } from '../../types'
+import { ITheme, IPostDetail } from '../../types'
 import { LazyImage, HeadSet, MarkDown, PostRemote } from '../../components'
+
+interface IProps {
+  response: IPostDetail
+}
 
 const PostPageStyled = styled.article`
   margin: 0 auto;
@@ -52,74 +56,55 @@ const PostPageStyled = styled.article`
   }
 `
 
-const PostPage: React.FC = () => {
-  const router = useRouter()
-  const [data, setData] = useState({
-    image: '',
-    title: '',
-    markdown: '',
-    description: '',
-    clickCount: 0,
-    source: '',
-    createDate: '',
-    updateDate: '',
-  })
+const PostPage: NextPage<IProps> = ({ response }) => {
   const [isFavorite] = useState<boolean>(false)
-
-  const getPosts = async () => {
-    try {
-      if (router.query.id) {
-        const {
-          data: {
-            post: { list: [item] }
-          }
-        } = await client.query(post(`${router.query.id}`))
-
-        setData(item)
-      }
-    } catch {
-    }
-  }
-
-  useEffect(() => {
-    getPosts()
-  }, [router.query.id])
 
   return (
     <PostPageStyled>
       <HeadSet
-        title={data.title}
-        description={data.description}
-        image={data.image}
+        title={response.title}
+        description={response.description}
+        image={response.image}
       />
       <header>
         <PostRemote
-          createDate={data.createDate}
-          updateDate={data.updateDate}
-          clickCount={data.clickCount}
+          createDate={response.createDate}
+          updateDate={response.updateDate}
+          clickCount={response.clickCount}
           favorite={isFavorite}
         />
-        <h1>{data.title}</h1>
-        <LazyImage className="article-image" src={data.image} />
+        <h1>{response.title}</h1>
+        <LazyImage className="article-image" src={response.image} />
       </header>
-      <MarkDown md={data.markdown} />
+      <MarkDown md={response.markdown} />
       <footer>
         {
-          data.source && (
+          response.source && (
             <p>
-              출처: <Link href={data.source}>{data.source}</Link>
+              출처: <Link href={response.source}>{response.source}</Link>
             </p>
           )
         }
         <PostRemote
-          createDate={data.createDate}
-          updateDate={data.updateDate}
-          clickCount={data.clickCount}
+          createDate={response.createDate}
+          updateDate={response.updateDate}
+          clickCount={response.clickCount}
           favorite={isFavorite}
         />
       </footer>
     </PostPageStyled>
   )
+}
+
+PostPage.getInitialProps = async (context: NextPageContext) => {
+  const {
+    data: {
+      post: { list: [item] }
+    }
+  } = await client.query(post(`${context.query.id}`))
+  return {
+    response: item
+  }
 }
 
 export default PostPage

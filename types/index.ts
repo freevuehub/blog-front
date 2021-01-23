@@ -40,3 +40,14 @@ export interface IPostListItem {
   description: string
   createDate: string
 }
+
+export interface IPostDetail {
+  image: string
+  title: string
+  markdown: string
+  description: string
+  clickCount: number
+  source: string
+  createDate: string
+  updateDate: string
+}
