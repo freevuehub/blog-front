@@ -1,4 +1,5 @@
 export * from './main'
+export * from './post'
 
 export { default as Layout } from './Layout'
 export { default as HeadSet } from './HeadSet'

@@ -2,15 +2,10 @@ import React, { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
 import styled from '@emotion/styled'
-import dayjs from 'dayjs'
-import relativeTime from 'dayjs/plugin/relativeTime'
-import 'dayjs/locale/ko'
 import { client } from '../../lib'
 import { post } from '../../gql'
 import { ITheme } from '../../types'
-import { LazyImage, HeadSet, MarkDown } from '../../components'
-
-dayjs.extend(relativeTime)
+import { LazyImage, HeadSet, MarkDown, PostRemote } from '../../components'
 
 const PostPageStyled = styled.article`
   margin: 0 auto;
@@ -28,19 +23,6 @@ const PostPageStyled = styled.article`
       font-size: 40px;
       word-break: keep-all;
     }
-    .create-date {
-      display: flex;
-      font-size: 14px;
-      line-height: 22px;
-      opacity: 0.5;
-      align-items: center;
-      .count {
-        margin-left: auto;
-        border: 1px solid #fff;
-        border-radius: 15px;
-        padding: 0 10px;
-      }
-    }
     .article-image {
       object-fit: cover;
     }
@@ -50,12 +32,15 @@ const PostPageStyled = styled.article`
     max-width: 740px;
   }
   footer {
+    border-top: 1px solid #fff;
+    padding-top: 10px;
     max-width: 740px;
     margin: 0 auto 120px;
     p {
       ${(props: ITheme) => ({
         color: props.theme?.text,
       })}
+      margin-bottom: 20px;
       word-break: break-all;
       a {
         font-style: italic;
@@ -67,9 +52,6 @@ const PostPageStyled = styled.article`
   }
 `
 
-const dateFormat = (date: string) => {
-  return dayjs(date, 'YYYY-MM-DD HH:mm').format('MMM DD, YYYY')
-}
 const PostPage: React.FC = () => {
   const router = useRouter()
   const [data, setData] = useState({
@@ -82,6 +64,7 @@ const PostPage: React.FC = () => {
     createDate: '',
     updateDate: '',
   })
+  const [isFavorite] = useState<boolean>(false)
 
   const getPosts = async () => {
     try {
@@ -110,10 +93,12 @@ const PostPage: React.FC = () => {
         image={data.image}
       />
       <header>
-        <p className="create-date">
-          {dateFormat(data.createDate)} / {dayjs().locale('ko').to(dayjs(data.updateDate))}
-          <span className="count">view {data.clickCount}</span>
-        </p>
+        <PostRemote
+          createDate={data.createDate}
+          updateDate={data.updateDate}
+          clickCount={data.clickCount}
+          favorite={isFavorite}
+        />
         <h1>{data.title}</h1>
         <LazyImage className="article-image" src={data.image} />
       </header>
@@ -126,6 +111,12 @@ const PostPage: React.FC = () => {
             </p>
           )
         }
+        <PostRemote
+          createDate={data.createDate}
+          updateDate={data.updateDate}
+          clickCount={data.clickCount}
+          favorite={isFavorite}
+        />
       </footer>
     </PostPageStyled>
   )
