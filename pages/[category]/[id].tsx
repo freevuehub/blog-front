@@ -4,12 +4,8 @@ import Link from 'next/link'
 import styled from '@emotion/styled'
 import { client } from '../../lib'
 import { post } from '../../gql'
-import { ITheme, IPostDetail } from '../../types'
+import { ITheme, IPostDetail, IInitialData } from '../../types'
 import { LazyImage, HeadSet, MarkDown, PostRemote } from '../../components'
-
-interface IProps {
-  response: IPostDetail
-}
 
 const PostPageStyled = styled.article`
   margin: 0 auto;
@@ -56,39 +52,39 @@ const PostPageStyled = styled.article`
   }
 `
 
-const PostPage: NextPage<IProps> = ({ response }) => {
+const PostPage: NextPage<IInitialData<IPostDetail>> = ({ initialData }) => {
   const [isFavorite] = useState<boolean>(false)
 
   return (
     <PostPageStyled>
       <HeadSet
-        title={response.title}
-        description={response.description}
-        image={response.image}
+        title={initialData.title}
+        description={initialData.description}
+        image={initialData.image}
       />
       <header>
         <PostRemote
-          createDate={response.createDate}
-          updateDate={response.updateDate}
-          clickCount={response.clickCount}
+          createDate={initialData.createDate}
+          updateDate={initialData.updateDate}
+          clickCount={initialData.clickCount}
           favorite={isFavorite}
         />
-        <h1>{response.title}</h1>
-        <LazyImage className="article-image" src={response.image} />
+        <h1>{initialData.title}</h1>
+        <LazyImage className="article-image" src={initialData.image} />
       </header>
-      <MarkDown md={response.markdown} />
+      <MarkDown md={initialData.markdown} />
       <footer>
         {
-          response.source && (
+          initialData.source && (
             <p>
-              출처: <Link href={response.source}>{response.source}</Link>
+              출처: <Link href={initialData.source}>{initialData.source}</Link>
             </p>
           )
         }
         <PostRemote
-          createDate={response.createDate}
-          updateDate={response.updateDate}
-          clickCount={response.clickCount}
+          createDate={initialData.createDate}
+          updateDate={initialData.updateDate}
+          clickCount={initialData.clickCount}
           favorite={isFavorite}
         />
       </footer>
@@ -103,7 +99,7 @@ PostPage.getInitialProps = async (context: NextPageContext) => {
     }
   } = await client.query(post(`${context.query.id}`))
   return {
-    response: item
+    initialData: item
   }
 }
 
