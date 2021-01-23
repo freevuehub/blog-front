@@ -63,7 +63,7 @@ const SocialAreaStyled = styled.footer`
     }
     ul {
       justify-content: center;
-      margin-bottom: 20px;
+      margin-bottom: 19px;
     }
   }
 `
