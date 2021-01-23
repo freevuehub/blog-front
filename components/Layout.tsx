@@ -53,6 +53,11 @@ const SectionStyled = styled.section<any>`
       padding: 60px 20px 0;
     }
   }
+  @media (max-width: ${breakPoint.mobile}) {
+    .container {
+      min-height: calc(100vh - 160px);
+    }
+  }
 `
 
 const Layout: React.FC = (props) => {
@@ -90,15 +95,11 @@ const Layout: React.FC = (props) => {
 
   return (
     <WrapStyled className={menu}>
-      {
-        router.route === '/login' || (
-          <HeaderBar
-            onClick={onMenuClick}
-            className={menu}
-            timer={timer}
-          />
-        )
-      }
+      <HeaderBar
+        onClick={onMenuClick}
+        className={menu}
+        timer={timer}
+      />
       <SectionStyled className={menu}>
         <main className="container" style={{ marginTop: `-${scrollY}px` }}>
           {props.children}
