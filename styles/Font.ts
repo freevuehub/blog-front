@@ -1,8 +1,6 @@
 import { css } from '@emotion/react'
 
 export default css`
-  @import url(//fonts.googleapis.com/earlyaccess/nanumgothiccoding.css);
-
   @font-face {
     font-family: '62570체';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.3/62570체.woff') format('woff');
@@ -57,11 +55,7 @@ export default css`
     font-weight: 100;
     font-style: normal;
   }
-
-  .nanumgothiccoding,
-  .nanumgothiccoding * {
-    font-family: 'Nanum Gothic Coding', monospace !important;
-  }
+  
   .koreawar,
   .koreawar * {
     font-family: '62570체' !important;
