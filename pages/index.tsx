@@ -1,10 +1,16 @@
-import React from 'react'
+import React  from 'react'
+import dynamic from 'next/dynamic'
 import { NextPage } from 'next'
 import styled from '@emotion/styled'
 import { client, breakPoint } from '../lib'
 import { posts, topPosts } from '../gql'
-import { Featured, PostList, MainAreaTitle, HeadSet } from '../components'
+// import { Featured, PostList, MainAreaTitle, HeadSet } from '../components'
 import { ITheme, IInitialData } from '../types'
+
+const HeadSet = dynamic(import('../components/HeadSet'))
+const MainAreaTitle = dynamic(import('../components/MainAreaTitle'))
+const Featured = dynamic(import('../components/main/Featured'))
+const PostList = dynamic(import('../components/PostList'))
 
 const ContentStyled = styled.article`
   display: flex;
