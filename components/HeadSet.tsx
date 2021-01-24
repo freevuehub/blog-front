@@ -31,6 +31,8 @@ const HeadSet: React.FC<IProps> = (props) => {
 
       <title>{title}</title>
 
+      <meta name="Copyright" content="FreeVue" />
+      <meta name="author" content="FreeVue" />
       <meta name="application-name" content="FreeVue Blog" />
       <meta name="apple-mobile-web-app-capable" content="yes" />
       <meta name="apple-mobile-web-app-status-bar-style" content="default" />
@@ -57,19 +59,20 @@ const HeadSet: React.FC<IProps> = (props) => {
       <link rel="manifest" href="/manifest.json" />
       <link rel="shortcut icon" href="/favicon.ico" />
 
+      {/* facebook, kakao */}
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
       <meta property="og:type" content="website" />
-      <meta property="og:site_name" content="FreeVue Blog" />
+      <meta property="og:site_name" content={title} />
       <meta property="og:image" content={image} />
       <meta property="og:url" content="https://freevue.dev" />
       <meta property="og:type" content="article" />
 
+      {/* twitter */}
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={image} />
-      <meta name="twitter:url" content="https://freevue.dev" />
-      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:card" content="photo" />
 
       <link rel="image_src" href={image} />
     </Head>
