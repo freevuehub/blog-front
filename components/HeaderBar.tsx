@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import styled from '@emotion/styled'
+import { NextPage } from 'next'
 import Link from 'next/link'
 import { faBars } from '@fortawesome/free-solid-svg-icons'
 import { client, breakPoint } from '../lib'
@@ -59,7 +60,7 @@ const HeaderStyled = styled.header`
     }
   }
 `
-const HeaderBar: React.FC<IProps> = (props) => {
+const HeaderBar: NextPage<IProps> = (props) => {
   const [list, setList] = useState([])
   const onMenuClick = (event: React.MouseEvent) => {
     event.preventDefault()
@@ -93,12 +94,6 @@ const HeaderBar: React.FC<IProps> = (props) => {
         <h1 className="ibmplexsans">
           <Link href="/">FreeVue Blog</Link>
         </h1>
-        {/* <iframe
-          src="https://ghbtns.com/github-btn.html?user=freevuehub&repo=freevuehub.github.io&type=star&count=true&size=large"
-          scrolling="0"
-          width="120px"
-          height="30px"
-        /> */}
         <Menu
           list={list}
           className={props.className}
