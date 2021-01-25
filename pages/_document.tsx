@@ -10,11 +10,11 @@ export default class MyDocument extends Document {
             async
             src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`}
           />
-          {/* <script
+          <script
             data-ad-client="ca-pub-4182995337229754"
             async
             src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
-          /> */}
+          />
           <script
             dangerouslySetInnerHTML={{
               __html: `
