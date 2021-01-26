@@ -61,7 +61,9 @@ const LoginPage = () => {
       Kakao.Auth.login({
         async success(response: IKakaoSuccess) {
           const {
-            data: { authData }
+            data: {
+              auth: authData
+            }
           } = await client.query(auth(response.access_token, 'kakao'))
 
           console.log(authData)
