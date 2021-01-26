@@ -31,7 +31,7 @@ export default class MyDocument extends Document {
           <script
             dangerouslySetInnerHTML={{
               __html: `
-                Kakao.init('e941f96517115e2341173b175121a459');
+                Kakao.init('${process.env.KAKAO_JS_SDK_KEY}');
                 Kakao.isInitialized();
               `
             }}
