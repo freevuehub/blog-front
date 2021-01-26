@@ -27,6 +27,15 @@ export default class MyDocument extends Document {
               `
             }}
           />
+          <script src="https://developers.kakao.com/sdk/js/kakao.js" />
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `
+                Kakao.init('e941f96517115e2341173b175121a459');
+                Kakao.isInitialized();
+              `
+            }}
+          />
         </Head>
         <body>
           <Main />
