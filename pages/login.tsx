@@ -1,9 +1,18 @@
 import React from 'react'
 import styled from '@emotion/styled'
-import axios from 'axios'
 import Link from 'next/link'
-import { breakPoint } from '../lib'
+import { auth } from '../gql'
+import {breakPoint, client} from '../lib'
 import { ITheme } from '../types'
+
+interface IKakaoSuccess {
+  access_token: string
+  expires_in: number
+  refresh_token: string
+  refresh_token_expires_in: number
+  scope: string
+  token_type: string
+}
 
 const PageWrapStyled = styled.article`
   display: flex;
@@ -43,15 +52,24 @@ const LoginCardStyled = styled.div`
 `
 
 const LoginPage = () => {
-  const onKakaoClick = async (event: React.MouseEvent) => {
+  const onKakaoClick = (event: React.MouseEvent) => {
     event.preventDefault()
 
-    try {
-      const item = await axios.get('https://kauth.kakao.com/oauth/authorize?client_id=181e3e82bc5d11bbc08f3c0eb7b7688b&redirect_uri=http://localhost:7764&response_type=code')
+    const { Kakao }: any = window
 
-      console.log(item)
-    } catch (error) {
-      console.dir(error)
+    if (Kakao) {
+      Kakao.Auth.login({
+        async success(response: IKakaoSuccess) {
+          const {
+            data: { authData }
+          } = await client.query(auth(response.access_token, 'kakao'))
+
+          console.log(authData)
+        },
+        fail(error: any) {
+          console.error(error)
+        },
+      })
     }
   }
 
