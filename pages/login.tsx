@@ -65,7 +65,7 @@ const LoginPage = () => {
           </button>
         </div>
         <div className="info">
-          <Link href="/privacy">개인정보취급방침</Link>
+          <Link href={{ pathname: '/privacy' }}>개인정보취급방침</Link>
         </div>
       </LoginCardStyled>
     </PageWrapStyled>
