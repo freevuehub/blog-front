@@ -12,11 +12,25 @@ const HeadSet = dynamic(import('../components/HeadSet'))
 const MainAreaTitle = dynamic(import('../components/MainAreaTitle'))
 const Featured = dynamic(import('../components/main/Featured'))
 const PostList = dynamic(import('../components/PostList'))
+const ReactGitHubCalendar = dynamic(() => import('react-ts-github-calendar'), {
+  ssr: false,
+})
 
 const ContentStyled = styled.article`
   display: flex;
   max-width: 960px;
   margin: 50px auto;
+  flex-wrap: wrap;
+  #github-container {
+    width: 100%;
+    .js-calendar-graph {
+      padding: 0;
+      height: 100%;
+    }
+    .contrib-footer {
+      display: none;
+    }
+  }
   .left-area {
     flex: 1;
     padding-right: 25px;
@@ -70,6 +84,7 @@ const HomePage: NextPage<IInitialData<any>> = ({ initialData }) => (
     <HeadSet />
     <Featured list={initialData.post.list.slice(0, 3)} />
     <ContentStyled>
+      <ReactGitHubCalendar userName="freevuehub" global_stats={false} responsive />
       <div className="left-area">
         <MainAreaTitle>최신글</MainAreaTitle>
         <PostList list={initialData.post.list.slice(3)} />
