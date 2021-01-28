@@ -6,6 +6,7 @@ import { client, breakPoint } from '../lib'
 import { posts, topPosts } from '../gql'
 // import { Featured, PostList, MainAreaTitle, HeadSet } from '../components'
 import { ITheme, IInitialData } from '../types'
+import { KakaoAuth } from '../components'
 
 const HeadSet = dynamic(import('../components/HeadSet'))
 const MainAreaTitle = dynamic(import('../components/MainAreaTitle'))
@@ -26,6 +27,17 @@ const ContentStyled = styled.article`
   }
   .right-area {
     width: 300px;
+    .button-wrap {
+      ${(props: ITheme) => ({
+        backgroundColor: props.theme?.background.content,
+        boxShadow: props.theme?.shadow.material,
+      })}
+      margin-bottom: 30px;
+      display: flex;
+      padding: 20px;
+      flex-direction: column;
+      justify-content: center;
+    }
   }
 
   @media (max-width: ${breakPoint.tabletPro}) {
@@ -40,7 +52,7 @@ const ContentStyled = styled.article`
   }
 
   @media (max-width: ${breakPoint.mobile}) {
-    flex-direction: column;
+    flex-direction: column-reverse;
     .left-area {
       padding-right: 0;
       margin-right: 0;
@@ -63,6 +75,10 @@ const HomePage: NextPage<IInitialData<any>> = ({ initialData }) => (
         <PostList list={initialData.post.list.slice(3)} />
       </div>
       <div className="right-area">
+        <MainAreaTitle>로그인</MainAreaTitle>
+        <div className="button-wrap">
+          <KakaoAuth />
+        </div>
         <MainAreaTitle>인기글</MainAreaTitle>
         <PostList list={initialData.topPost.list} mini />
       </div>
