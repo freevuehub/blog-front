@@ -1,18 +1,9 @@
 import React from 'react'
 import styled from '@emotion/styled'
 import Link from 'next/link'
-import { auth } from '../gql'
-import {breakPoint, client} from '../lib'
+import { breakPoint } from '../lib'
 import { ITheme } from '../types'
-
-interface IKakaoSuccess {
-  access_token: string
-  expires_in: number
-  refresh_token: string
-  refresh_token_expires_in: number
-  scope: string
-  token_type: string
-}
+import { KakaoAuth } from '../components'
 
 const PageWrapStyled = styled.article`
   display: flex;
@@ -52,37 +43,12 @@ const LoginCardStyled = styled.div`
 `
 
 const LoginPage = () => {
-  const onKakaoClick = (event: React.MouseEvent) => {
-    event.preventDefault()
-
-    const { Kakao }: any = window
-
-    if (Kakao) {
-      Kakao.Auth.login({
-        async success(response: IKakaoSuccess) {
-          const {
-            data: {
-              auth: authData
-            }
-          } = await client.query(auth(response.access_token, 'kakao'))
-
-          console.log(authData)
-        },
-        fail(error: any) {
-          console.error(error)
-        },
-      })
-    }
-  }
-
   return (
     <PageWrapStyled>
       <LoginCardStyled>
         <h1>Login</h1>
         <div className="button-wrap">
-          <button onClick={onKakaoClick}>
-            <img src="https://file.freevue.dev/uploads/7b24c616-ee24-4cd2-a7c8-0c728b0a92f0.png?x=300&y=45" alt="" />
-          </button>
+          <KakaoAuth />
         </div>
         <div className="info">
           <Link href={{ pathname: '/privacy' }}>개인정보취급방침</Link>
