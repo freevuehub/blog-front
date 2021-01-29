@@ -3,18 +3,15 @@ import dynamic from 'next/dynamic'
 import { NextPage } from 'next'
 import styled from '@emotion/styled'
 import { client, breakPoint } from '../lib'
-import { posts, topPosts } from '../gql'
-// import { Featured, PostList, MainAreaTitle, HeadSet } from '../components'
+import { posts, topPosts, githubContributions } from '../gql'
 import { ITheme, IInitialData } from '../types'
-import { KakaoAuth } from '../components'
 
 const HeadSet = dynamic(import('../components/HeadSet'))
 const MainAreaTitle = dynamic(import('../components/MainAreaTitle'))
 const Featured = dynamic(import('../components/main/Featured'))
 const PostList = dynamic(import('../components/PostList'))
-const ReactGitHubCalendar = dynamic(() => import('react-ts-github-calendar'), {
-  ssr: false,
-})
+const KakaoAuth = dynamic(import('../components/auth/KakaoAuth'))
+const GithubContributions = dynamic(import('../components/GithubContributions'))
 
 const ContentStyled = styled.article`
   display: flex;
@@ -84,7 +81,9 @@ const HomePage: NextPage<IInitialData<any>> = ({ initialData }) => (
     <HeadSet />
     <Featured list={initialData.post.list.slice(0, 3)} />
     <ContentStyled>
-      <ReactGitHubCalendar userName="freevuehub" global_stats={false} responsive />
+      <div style={{ width: '100%' }}>
+        <GithubContributions data={initialData.contributions} />
+      </div>
       <div className="left-area">
         <MainAreaTitle>최신글</MainAreaTitle>
         <PostList list={initialData.post.list.slice(3)} />
@@ -108,11 +107,15 @@ HomePage.getInitialProps = async () => {
   const {
     data: { post: topPost }
   } = await client.query(topPosts())
+  const {
+    data: { githubContributions: { contributions } }
+  } = await client.query(githubContributions({ name: 'freevuehub' }))
 
   return {
     initialData: {
       topPost,
       post,
+      contributions,
     }
   }
 }
