@@ -83,11 +83,9 @@ const HomePage: NextPage<IInitialData<any>> = ({ initialData }) => {
   const weekReduce = (weekPrev: number, weekCur: IContribution) => weekPrev + weekCur.count
   const contributionsCountReduce = (prev: number, cur: IContribution[]) => prev + cur.reduce(weekReduce, 0)
   const totalCount = initialData.contributions.reduce(contributionsCountReduce, 0)
-  const isContributionsCount = initialData.contributions.reduce((prev: number, cur: IContribution[]) => {
-    return prev + cur.filter((contribution: IContribution) => contribution.count > 0).length
-  }, 0)
-
-  console.log(isContributionsCount)
+  // const isContributionsCount = initialData.contributions.reduce((prev: number, cur: IContribution[]) => {
+  //   return prev + cur.filter((contribution: IContribution) => contribution.count > 0).length
+  // }, 0)
 
   return (
     <>
