@@ -66,12 +66,14 @@ const ContentStyled = styled.article`
 
   @media (max-width: ${breakPoint.mobile}) {
     .left-area {
+      order: 3;
       padding-right: 0;
       margin-right: 0;
       border: 0;
       margin-bottom: 40px;
     }
     .right-area {
+      order: 2;
       width: 100%;
     }
   }
