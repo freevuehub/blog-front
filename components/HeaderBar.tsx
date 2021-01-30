@@ -26,7 +26,7 @@ const HeaderStyled = styled.header`
   ${(props: ITheme) => ({
     backgroundColor: props.theme?.background.content,
     color: props.theme?.text,
-    boxShadow: props.theme?.shadow.new,
+    boxShadow: props.theme?.shadow.material,
   })}
   .inner {
     height: 60px;
