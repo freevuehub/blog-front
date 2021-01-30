@@ -42,6 +42,12 @@ export const colorSet: {
       background: '#32329005',
       border: '#D7E2EB',
     },
+    contributions: {
+      phase0: '#1e1e1e',
+      phase1: '#253c3e',
+      phase2: '#3d6467',
+      phase3: '#51878b',
+    }
   },
   dark: {
     white: '#ffffff',
@@ -70,5 +76,11 @@ export const colorSet: {
       background: '#202B3D',
       border: '#172334',
     },
+    contributions: {
+      phase0: '#1e1e1e',
+      phase1: '#253c3e',
+      phase2: '#3d6467',
+      phase3: '#51878b',
+    }
   },
 }

@@ -21,6 +21,12 @@ export interface IThemeSet {
     background: string
     border: string
   }
+  contributions: {
+    phase0: string
+    phase1: string
+    phase2: string
+    phase3: string
+  }
 }
 
 export interface ITheme {
@@ -54,4 +60,9 @@ export interface IPostDetail {
 
 export interface IInitialData<T> {
   initialData: T
+}
+
+export interface IContribution {
+  count: number
+  date: string
 }
