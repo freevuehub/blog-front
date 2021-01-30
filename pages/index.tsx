@@ -4,13 +4,13 @@ import { NextPage } from 'next'
 import styled from '@emotion/styled'
 import { client, breakPoint } from '../lib'
 import { posts, topPosts, githubContributions } from '../gql'
-import { ITheme, IInitialData } from '../types'
+import { ITheme, IInitialData, IContribution } from '../types'
 
 const HeadSet = dynamic(import('../components/HeadSet'))
 const MainAreaTitle = dynamic(import('../components/MainAreaTitle'))
 const Featured = dynamic(import('../components/main/Featured'))
 const PostList = dynamic(import('../components/PostList'))
-const KakaoAuth = dynamic(import('../components/auth/KakaoAuth'))
+// const KakaoAuth = dynamic(import('../components/auth/KakaoAuth'))
 const GithubContributions = dynamic(import('../components/GithubContributions'))
 
 const ContentStyled = styled.article`
@@ -32,12 +32,14 @@ const ContentStyled = styled.article`
     flex: 1;
     padding-right: 25px;
     margin-right: 25px;
+    order: 2;
     ${(props: ITheme) => ({
       borderRight: `1px solid ${props.theme?.border.color}`
     })}
   }
   .right-area {
     width: 300px;
+    order: 3;
     .button-wrap {
       ${(props: ITheme) => ({
         backgroundColor: props.theme?.background.content,
@@ -63,7 +65,6 @@ const ContentStyled = styled.article`
   }
 
   @media (max-width: ${breakPoint.mobile}) {
-    flex-direction: column-reverse;
     .left-area {
       padding-right: 0;
       margin-right: 0;
@@ -76,29 +77,38 @@ const ContentStyled = styled.article`
   }
 `
 
-const HomePage: NextPage<IInitialData<any>> = ({ initialData }) => (
-  <>
-    <HeadSet />
-    <Featured list={initialData.post.list.slice(0, 3)} />
-    <ContentStyled>
-      <div style={{ width: '100%' }}>
-        <GithubContributions data={initialData.contributions} />
-      </div>
-      <div className="left-area">
-        <MainAreaTitle>최신글</MainAreaTitle>
-        <PostList list={initialData.post.list.slice(3)} />
-      </div>
-      <div className="right-area">
-        <MainAreaTitle>로그인</MainAreaTitle>
-        <div className="button-wrap">
-          <KakaoAuth />
+const HomePage: NextPage<IInitialData<any>> = ({ initialData }) => {
+  const weekReduce = (weekPrev: number, weekCur: IContribution) => weekPrev + weekCur.count
+  const contributionsCountReduce = (prev: number, cur: IContribution[]) => prev + cur.reduce(weekReduce, 0)
+  const totalCount = initialData.contributions.reduce(contributionsCountReduce, 0)
+  const isContributionsCount = initialData.contributions.reduce((prev: number, cur: IContribution[]) => {
+    return prev + cur.filter((contribution: IContribution) => contribution.count > 0).length
+  }, 0)
+
+  console.log(isContributionsCount)
+
+  return (
+    <>
+      <HeadSet />
+      <Featured list={initialData.post.list.slice(0, 3)} />
+      <ContentStyled>
+        <GithubContributions data={initialData.contributions} totalCount={totalCount} />
+        <div className="left-area">
+          <MainAreaTitle>최신글</MainAreaTitle>
+          <PostList list={initialData.post.list.slice(3)} />
         </div>
-        <MainAreaTitle>인기글</MainAreaTitle>
-        <PostList list={initialData.topPost.list} mini />
-      </div>
-    </ContentStyled>
-  </>
-)
+        <div className="right-area">
+          {/*<MainAreaTitle>로그인</MainAreaTitle>*/}
+          {/*<div className="button-wrap">*/}
+          {/*  <KakaoAuth />*/}
+          {/*</div>*/}
+          <MainAreaTitle>인기글</MainAreaTitle>
+          <PostList list={initialData.topPost.list} mini />
+        </div>
+      </ContentStyled>
+    </>
+  )
+}
 
 HomePage.getInitialProps = async () => {
   const {
