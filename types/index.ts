@@ -26,6 +26,7 @@ export interface IThemeSet {
     phase1: string
     phase2: string
     phase3: string
+    phase4: string
   }
 }
 

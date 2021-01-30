@@ -43,10 +43,11 @@ export const colorSet: {
       border: '#D7E2EB',
     },
     contributions: {
-      phase0: '#1e1e1e',
-      phase1: '#253c3e',
-      phase2: '#3d6467',
-      phase3: '#51878b',
+      phase0: '#f5f6f7',
+      phase1: '#cfe5e7',
+      phase2: '#9fcccf',
+      phase3: '#559da2',
+      phase4: '#487477',
     }
   },
   dark: {
@@ -78,9 +79,10 @@ export const colorSet: {
     },
     contributions: {
       phase0: '#1e1e1e',
-      phase1: '#253c3e',
-      phase2: '#3d6467',
-      phase3: '#51878b',
+      phase1: '#273a3b',
+      phase2: '#487477',
+      phase3: '#6bb3b8',
+      phase4: '#9fcccf',
     }
   },
 }
