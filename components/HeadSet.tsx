@@ -58,6 +58,7 @@ const HeadSet: React.FC<IProps> = (props) => {
       <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png" />
       <link rel="manifest" href="/manifest.json" />
       <link rel="shortcut icon" href="/favicon.ico" />
+      <link rel="icon" href="/favicon.ico" type="image/x-icon" />
 
       {/* facebook, kakao */}
       <meta property="og:title" content={title} />

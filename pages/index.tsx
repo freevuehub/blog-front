@@ -64,6 +64,7 @@ const ContentStyled = styled.article`
       margin-bottom: 40px;
     }
     .right-area {
+      margin-top: 0;
       order: 2;
       width: 100%;
     }
