@@ -36,6 +36,7 @@ export default class MyDocument extends Document {
               `
             }}
           />
+          <script async defer src="https://buttons.github.io/buttons.js"></script>
         </Head>
         <body>
           <Main />

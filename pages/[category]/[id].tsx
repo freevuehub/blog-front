@@ -54,37 +54,38 @@ const PostPageStyled = styled.article`
 
 const PostPage: NextPage<IInitialData<IPostDetail>> = ({ initialData }) => {
   const [isFavorite] = useState<boolean>(false)
+  const { title, description, createDate, updateDate, clickCount, image, markdown, source } = initialData
 
   return (
     <PostPageStyled>
       <HeadSet
-        title={initialData.title}
-        description={initialData.description}
-        image={initialData.image}
+        title={title}
+        description={description}
+        image={image}
       />
       <header>
         <PostRemote
-          createDate={initialData.createDate}
-          updateDate={initialData.updateDate}
-          clickCount={initialData.clickCount}
+          createDate={createDate}
+          updateDate={updateDate}
+          clickCount={clickCount}
           favorite={isFavorite}
         />
         <h1>{initialData.title}</h1>
-        <LazyImage className="article-image" src={initialData.image} />
+        <LazyImage className="article-image" src={image} />
       </header>
-      <MarkDown md={initialData.markdown} />
+      <MarkDown md={markdown} />
       <footer>
         {
-          initialData.source && (
+          source && (
             <p>
-              출처: <Link href={initialData.source}>{initialData.source}</Link>
+              출처: <Link href={source}>{source}</Link>
             </p>
           )
         }
         <PostRemote
-          createDate={initialData.createDate}
-          updateDate={initialData.updateDate}
-          clickCount={initialData.clickCount}
+          createDate={createDate}
+          updateDate={updateDate}
+          clickCount={clickCount}
           favorite={isFavorite}
         />
       </footer>

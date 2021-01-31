@@ -46,6 +46,7 @@ export const posts = ({ type, value }: { type?: string, value?: string }) => ({
           category
           image
           title
+          clickCount
           description
           createDate
         }
