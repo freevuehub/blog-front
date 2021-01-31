@@ -16,6 +16,7 @@ const SvgWrapStyled = styled.div`
   width: 100%;
   order: 1;
   margin-bottom: 30px;
+  padding-right: 350px;
   .title-wrap {
     display: flex;
     align-items: center;
@@ -34,6 +35,8 @@ const SvgWrapStyled = styled.div`
 `
 const SvgStyled = styled.svg`
   display: block;
+  width: 685px;
+  height: 81px;
 `
 const RectStyled = styled.rect`
   rx: 2;
@@ -61,8 +64,8 @@ const RectStyled = styled.rect`
 }}
 `
 
-const Day = (item: IContributions, index: number) => <RectStyled date={item.date} count={item.count} key={item.date} width={10} height={10} x={0} y={index * 13} />
-const Week = (item: IContributions[], index: number) => <g style={{ transform: `translate(${index * 14}px)` }} key={index}>{item.map(Day)}</g>
+const Day = (item: IContributions, index: number) => <RectStyled date={item.date} count={item.count} key={item.date} width={9} height={9} x={0} y={index * 12} />
+const Week = (item: IContributions[], index: number) => <g style={{ transform: `translate(${index * 13}px)` }} key={index}>{item.map(Day)}</g>
 
 const GithubContributions: React.FC<IProps> = (props) => {
   return (
@@ -82,7 +85,7 @@ const GithubContributions: React.FC<IProps> = (props) => {
         </a>
       </div>
       <div>
-        <SvgStyled width={738} height={90}>{props.data.map(Week)}</SvgStyled>
+        <SvgStyled>{props.data.map(Week)}</SvgStyled>
       </div>
     </SvgWrapStyled>
   )
