@@ -10,24 +10,14 @@ const HeadSet = dynamic(import('../components/HeadSet'))
 const MainAreaTitle = dynamic(import('../components/MainAreaTitle'))
 const Featured = dynamic(import('../components/main/Featured'))
 const PostList = dynamic(import('../components/PostList'))
-// const KakaoAuth = dynamic(import('../components/auth/KakaoAuth'))
+const KakaoAuth = dynamic(import('../components/auth/KakaoAuth'))
 const GithubContributions = dynamic(import('../components/GithubContributions'))
 
 const ContentStyled = styled.article`
   display: flex;
-  max-width: 960px;
+  max-width: ${breakPoint.tabletPro};
   margin: 50px auto;
   flex-wrap: wrap;
-  #github-container {
-    width: 100%;
-    .js-calendar-graph {
-      padding: 0;
-      height: 100%;
-    }
-    .contrib-footer {
-      display: none;
-    }
-  }
   .left-area {
     flex: 1;
     padding-right: 25px;
@@ -38,6 +28,7 @@ const ContentStyled = styled.article`
     })}
   }
   .right-area {
+    margin-top: -145px;
     width: 300px;
     order: 3;
     .button-wrap {
@@ -45,7 +36,7 @@ const ContentStyled = styled.article`
         backgroundColor: props.theme?.background.content,
         boxShadow: props.theme?.shadow.material,
       })}
-      margin-bottom: 30px;
+      margin-bottom: 32px;
       display: flex;
       padding: 20px;
       flex-direction: column;
@@ -98,10 +89,10 @@ const HomePage: NextPage<IInitialData<any>> = ({ initialData }) => {
           <PostList list={initialData.post.list.slice(3)} />
         </div>
         <div className="right-area">
-          {/*<MainAreaTitle>로그인</MainAreaTitle>*/}
-          {/*<div className="button-wrap">*/}
-          {/*  <KakaoAuth />*/}
-          {/*</div>*/}
+          <MainAreaTitle>로그인</MainAreaTitle>
+          <div className="button-wrap">
+            <KakaoAuth />
+          </div>
           <MainAreaTitle>인기글</MainAreaTitle>
           <PostList list={initialData.topPost.list} mini />
         </div>
@@ -111,21 +102,29 @@ const HomePage: NextPage<IInitialData<any>> = ({ initialData }) => {
 }
 
 HomePage.getInitialProps = async () => {
-  const {
-    data: { post }
-  } = await client.query(posts({ type: 'main' }))
-  const {
-    data: { post: topPost }
-  } = await client.query(topPosts())
-  const {
-    data: { githubContributions: { contributions } }
-  } = await client.query(githubContributions({ name: 'freevuehub' }))
+  try {
+    const {
+      data: { post }
+    } = await client.query(posts({ type: 'main' }))
+    const {
+      data: { post: topPost }
+    } = await client.query(topPosts())
+    const {
+      data: { githubContributions: { contributions } }
+    } = await client.query(githubContributions({ name: 'freevuehub' }))
 
-  return {
-    initialData: {
-      topPost,
-      post,
-      contributions,
+    return {
+      initialData: {
+        topPost,
+        post,
+        contributions,
+      }
+    }
+  } catch (err) {
+    console.log('err', err)
+
+    return {
+      initialData: {}
     }
   }
 }

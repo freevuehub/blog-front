@@ -31,7 +31,7 @@ const HeaderStyled = styled.header`
   .inner {
     height: 60px;
     margin: 0 auto;
-    max-width: 960px;
+    max-width: ${breakPoint.tabletPro};
     display: flex;
     align-items: center;
     h1 {

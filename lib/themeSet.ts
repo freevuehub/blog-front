@@ -2,7 +2,7 @@ import { IThemeSet } from '../types'
 
 export const breakPoint = {
   desktop: '1920px',
-  tabletPro: '1024px',
+  tabletPro: '1080px',
   tabletAir: '840px',
   mobile: '640px',
 }

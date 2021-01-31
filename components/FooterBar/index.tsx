@@ -13,7 +13,7 @@ const FooterStyled = styled.footer`
     justify-content: space-between;
     align-items: center;
     min-height: 120px;
-    max-width: 960px;
+    max-width: ${breakPoint.tabletPro};
     margin: 0 auto;
   }
 
