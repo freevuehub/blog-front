@@ -16,15 +16,15 @@ const SvgWrapStyled = styled.div`
   width: 100%;
   order: 1;
   margin-bottom: 30px;
-  h1 {
-    line-height: 34px;
+  .title-wrap {
     display: flex;
     align-items: center;
-    ${(props: ITheme) => ({
-      color: props.theme?.text
-    })}
-    iframe {
-      margin-left: 10px;
+    h1 {
+      line-height: 34px;
+      margin-right: 10px;
+      ${(props: ITheme) => ({
+        color: props.theme?.text
+      })}
     }
   }
   & > div {
@@ -67,12 +67,20 @@ const Week = (item: IContributions[], index: number) => <g style={{ transform: `
 const GithubContributions: React.FC<IProps> = (props) => {
   return (
     <SvgWrapStyled>
-      <h1>
-        {`${props.totalCount || 0}`.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,')} Contributions
-        <iframe
-          src="https://ghbtns.com/github-btn.html?user=freevuehub&amp;repo=freevuehub.github.io&amp;type=star&amp;count=true&amp;size=small"
-          frameBorder="0" scrolling="0" width="80px" height="30px" />
-      </h1>
+      <div className="title-wrap">
+        <h1>
+          {`${props.totalCount || 0}`.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,')} Contributions
+        </h1>
+        <a
+          className="github-button"
+          href="https://github.com/freevuehub"
+          data-color-scheme="no-preference: light; light: dark; dark: light;"
+          data-show-count="true"
+          aria-label="Follow @freevuehub on GitHub"
+        >
+          Follow
+        </a>
+      </div>
       <div>
         <SvgStyled width={738} height={90}>{props.data.map(Week)}</SvgStyled>
       </div>
