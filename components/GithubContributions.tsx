@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from '@emotion/styled'
 import { ITheme, IContribution } from '../types'
+import { breakPoint } from '../lib'
 
 interface IProps {
   data: IContribution[][]
@@ -31,6 +32,9 @@ const SvgWrapStyled = styled.div`
   & > div {
     overflow-x: auto;
     overflow-y: hidden;
+  }
+  @media (max-width: ${breakPoint.mobile}) {
+    padding-right: 0;
   }
 `
 const SvgStyled = styled.svg`
