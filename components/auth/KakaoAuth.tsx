@@ -14,6 +14,8 @@ interface IKakaoSuccess {
 
 const ButtonStyled = styled.button`
   display: block;
+  cursor: pointer;
+  min-height: 39px;
   img {
     display: block;
     width: 100%;
@@ -30,9 +32,7 @@ const KakaoAuth: React.FC = () => {
       Kakao.Auth.login({
         async success(response: IKakaoSuccess) {
           const {
-            data: {
-              auth: authData
-            }
+            data: { auth: authData }
           } = await client.query(auth(response.access_token, 'kakao'))
 
           console.log(authData)

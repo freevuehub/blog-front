@@ -10,7 +10,7 @@ const HeadSet = dynamic(import('../components/HeadSet'))
 const MainAreaTitle = dynamic(import('../components/MainAreaTitle'))
 const Featured = dynamic(import('../components/main/Featured'))
 const PostList = dynamic(import('../components/PostList'))
-const KakaoAuth = dynamic(import('../components/auth/KakaoAuth'))
+// const KakaoAuth = dynamic(import('../components/auth/KakaoAuth'))
 const GithubContributions = dynamic(import('../components/GithubContributions'))
 
 const ContentStyled = styled.article`
@@ -90,10 +90,10 @@ const HomePage: NextPage<IInitialData<any>> = ({ initialData }) => {
           <PostList list={initialData.post.list.slice(3)} />
         </div>
         <div className="right-area">
-          <MainAreaTitle>로그인</MainAreaTitle>
-          <div className="button-wrap">
-            <KakaoAuth />
-          </div>
+          {/*<MainAreaTitle>로그인</MainAreaTitle>*/}
+          {/*<div className="button-wrap">*/}
+          {/*  <KakaoAuth />*/}
+          {/*</div>*/}
           <MainAreaTitle>인기글</MainAreaTitle>
           <PostList list={initialData.topPost.list} mini />
         </div>
