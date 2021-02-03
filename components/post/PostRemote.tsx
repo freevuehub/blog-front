@@ -20,14 +20,16 @@ const PostRemoteWrapStyled = styled.div`
   display: flex;
   font-size: 14px;
   line-height: 22px;
-  opacity: 0.5;
   align-items: center;
   ${(props: ITheme) => ({
     color: props.theme?.text,
   })}
+  .date {
+    opacity: 0.5;
+  }
   .remote {
     ${(props: ITheme) => ({
-      border: `1px solid ${props.theme?.text}`,
+      border: `2px solid ${props.theme?.text}`,
     })}
     margin-left: auto;
     border-radius: 15px;
@@ -83,11 +85,13 @@ const PostRemote: React.FC<IProps> = (props) => {
 
   return (
     <PostRemoteWrapStyled>
-      {dateFormat(props.createDate)} / {dayjs().locale('ko').to(dayjs(props.updateDate))}
+      <div className="date">
+        {dateFormat(props.createDate)} / {dayjs().locale('ko').to(dayjs(props.updateDate))}
+      </div>
       <div className="remote">
         <span className="count">view {props.clickCount}</span>
         <button className={`favorite ${props.favorite ? 'on' : ''}`} onClick={onFavoriteClick}>
-          <Icon className="icon" icon={faStar} />
+          <Icon className="far icon" icon={faStar} />
         </button>
         <button onClick={onShareClick}>
           <Icon className="icon" icon={faShareSquare} />
