@@ -1,5 +1,6 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import styled from '@emotion/styled'
+import { ITheme } from '../types'
 
 interface  IProps {
   src: string
@@ -9,11 +10,26 @@ interface  IProps {
 
 const ImageWrapStyled = styled.div`
   position: relative;
+  display: flex;
   width: 100%;
   height: 100%;
-  display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
+  ${(props: ITheme) => ({
+    backgroundColor: props.theme?.text,
+  })}
+  canvas {
+    filter: blur(5px);
+    transform: scale(1.2);
+    transition: all .3s;
+  }
+  &.on {
+    canvas {
+      transform: scale(1);
+      filter: blur(0);
+    }
+  }
 `
 const CanvasStyled = styled.canvas`
   display: block;
@@ -23,6 +39,7 @@ const CanvasStyled = styled.canvas`
 
 const LazyImage: React.FC<IProps> = (props) => {
   const canvas = useRef<HTMLCanvasElement>(null)
+  const [loading, setLoading] = useState<boolean>(true)
   const onImageLoad = (event: any) => {
     const { current: $canvas } = canvas
     const $img: HTMLImageElement = event.currentTarget
@@ -40,20 +57,32 @@ const LazyImage: React.FC<IProps> = (props) => {
         $canvas.width = clientWidth
         $canvas.height = clientHeight
 
+        context.clearRect(0, 0, clientWidth, clientHeight)
         context.drawImage($img, 0, 0, clientWidth, clientHeight)
+
+        setLoading(false)
       }
     }
   }
 
   useEffect(() => {
-    const image = new Image()
+    const io = new IntersectionObserver(() => {
+      const image = new Image()
 
-    image.onload = onImageLoad
-    image.src = props.src
+      image.onload = onImageLoad
+
+      if (loading) {
+        image.src = `${props.src}?size=medium`
+      }
+    })
+
+    if (canvas.current) {
+      io.observe(canvas.current)
+    }
   }, [props.src])
 
   return props.src ? (
-      <ImageWrapStyled>
+      <ImageWrapStyled className={loading ? '' : 'on'}>
         <CanvasStyled className={props.className || ''} ref={canvas} />
       </ImageWrapStyled>
     ) : <></>
