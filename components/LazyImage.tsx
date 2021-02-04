@@ -20,13 +20,13 @@ const ImageWrapStyled = styled.div`
     backgroundColor: props.theme?.text,
   })}
   canvas {
+    display: none;
     filter: blur(5px);
-    transform: scale(1.2);
     transition: all .3s;
   }
   &.on {
     canvas {
-      transform: scale(1);
+      display: block;
       filter: blur(0);
     }
   }
@@ -83,6 +83,7 @@ const LazyImage: React.FC<IProps> = (props) => {
 
   return props.src ? (
       <ImageWrapStyled className={loading ? '' : 'on'}>
+        { !loading && (<img src={`${props.src}?size=tiny`} alt="" />) }
         <CanvasStyled className={props.className || ''} ref={canvas} />
       </ImageWrapStyled>
     ) : <></>
