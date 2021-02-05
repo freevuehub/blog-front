@@ -16,6 +16,9 @@ const Markdown = (props: IThemeSet) => css`
         font-size: 85%;
         padding: .2em .4em;
         word-break: break-word;
+        *:first-child {
+          margin-left: -0.4em;
+        }
       }
     }
     h1 {
