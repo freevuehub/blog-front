@@ -83,7 +83,6 @@ const LazyImage: React.FC<IProps> = (props) => {
 
   return props.src ? (
       <ImageWrapStyled className={loading ? '' : 'on'}>
-        { !loading && (<img src={`${props.src}?size=tiny`} alt="" />) }
         <CanvasStyled className={props.className || ''} ref={canvas} />
       </ImageWrapStyled>
     ) : <></>
