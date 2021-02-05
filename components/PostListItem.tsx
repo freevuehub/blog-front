@@ -9,7 +9,6 @@ const ImageWrapStyled = styled.div`
   width: 220px;
   height: 124px;
   position: relative;
-  border-radius: 15px;
   box-shadow: ${(props: ITheme) => props.theme?.shadow.material};
   margin-right: 25px;
   overflow: hidden;
