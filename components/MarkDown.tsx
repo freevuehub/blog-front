@@ -1,17 +1,38 @@
 import React from 'react'
+import styled from '@emotion/styled'
 import ReactMarkdown from 'react-markdown'
 import gfm from 'remark-gfm'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 import { a11yDark } from 'react-syntax-highlighter/dist/cjs/styles/prism'
 // @ts-ignore
 import emoji from 'emoji-dictionary'
+import { LazyImage } from './'
 
 interface  IProps {
   md: string
   className?: string
 }
 
+const ImageWrapStyled = styled(LazyImage)`
+  cursor: pointer;
+`
+
+const ImageChild = (props: { src: string }) => {
+  const onImageClick = () => {
+    console.log(props.src)
+  }
+
+  return (
+    <ImageWrapStyled onClick={onImageClick} src={`${props.src}?size=bigger`} />
+  )
+}
+
 const renderers = {
+  image: (value: any) => /https:\/\/file\.freevue\.dev/g.test(value.src) ? (
+    <ImageChild src={value.src} />
+  ) : (
+    <img src={value.src} alt={value.alt} />
+  ),
   text: ({ value }: any) => {
     return value.replace(/:\w+:/gi, (name: string) => emoji.getUnicode(name))
   },
