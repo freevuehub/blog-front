@@ -91,7 +91,7 @@ const PostListItem: React.FC<IProps> = (props) => {
       {
         (props.item.image && !props.mini) && (
           <ImageWrapStyled className="img-wrap">
-            <LazyImage className="image" src={props.item.image} />
+            <LazyImage className="image" src={`${props.item.image}?size=small`} />
           </ImageWrapStyled>
         )
       }

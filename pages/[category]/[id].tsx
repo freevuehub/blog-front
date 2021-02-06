@@ -71,7 +71,7 @@ const PostPage: NextPage<IInitialData<IPostDetail>> = ({ initialData }) => {
           favorite={isFavorite}
         />
         <h1>{initialData.title}</h1>
-        <LazyImage className="article-image" src={image} />
+        <LazyImage className="article-image" src={`${image}?size=medium`} />
       </header>
       <MarkDown md={markdown} />
       <footer>

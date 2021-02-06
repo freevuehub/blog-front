@@ -6,9 +6,10 @@ interface  IProps {
   src: string
   alt?: string
   className?: string
+  onClick?: Function
 }
 
-const ImageWrapStyled = styled.div`
+const ImageWrapStyled = styled.span`
   position: relative;
   display: flex;
   width: 100%;
@@ -40,6 +41,9 @@ const CanvasStyled = styled.canvas`
 const LazyImage: React.FC<IProps> = (props) => {
   const canvas = useRef<HTMLCanvasElement>(null)
   const [loading, setLoading] = useState<boolean>(true)
+  const onImageClick = () => {
+    props.onClick && props.onClick()
+  }
   const onImageLoad = (event: any) => {
     const { current: $canvas } = canvas
     const $img: HTMLImageElement = event.currentTarget
@@ -72,7 +76,7 @@ const LazyImage: React.FC<IProps> = (props) => {
       image.onload = onImageLoad
 
       if (loading) {
-        image.src = `${props.src}?size=medium`
+        image.src = props.src
       }
     })
 
@@ -82,7 +86,7 @@ const LazyImage: React.FC<IProps> = (props) => {
   }, [props.src])
 
   return props.src ? (
-      <ImageWrapStyled className={loading ? '' : 'on'}>
+      <ImageWrapStyled className={loading ? '' : 'on'} onClick={onImageClick}>
         <CanvasStyled className={props.className || ''} ref={canvas} />
       </ImageWrapStyled>
     ) : <></>
