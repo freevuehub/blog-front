@@ -10,7 +10,7 @@ const HeadSet = dynamic(import('../components/HeadSet'))
 const MainAreaTitle = dynamic(import('../components/MainAreaTitle'))
 const Featured = dynamic(import('../components/main/Featured'))
 const PostList = dynamic(import('../components/PostList'))
-// const KakaoAuth = dynamic(import('../components/auth/KakaoAuth'))
+const KakaoAuth = dynamic(import('../components/auth/KakaoAuth'))
 const GithubContributions = dynamic(import('../components/GithubContributions'))
 
 const ContentStyled = styled.article`
@@ -79,6 +79,8 @@ const HomePage: NextPage<IInitialData<any>> = ({ initialData }) => {
   //   return prev + cur.filter((contribution: IContribution) => contribution.count > 0).length
   // }, 0)
 
+  console.log(process.env.NODE_ENV)
+
   return (
     <>
       <HeadSet />
@@ -90,10 +92,16 @@ const HomePage: NextPage<IInitialData<any>> = ({ initialData }) => {
           <PostList list={initialData.post.list.slice(3)} />
         </div>
         <div className="right-area">
-          {/*<MainAreaTitle>로그인</MainAreaTitle>*/}
-          {/*<div className="button-wrap">*/}
-          {/*  <KakaoAuth />*/}
-          {/*</div>*/}
+          {
+            process.env.NODE_ENV === 'development' && (
+              <>
+                <MainAreaTitle>로그인</MainAreaTitle>
+                <div className="button-wrap">
+                  <KakaoAuth />
+                </div>
+              </>
+            )
+          }
           <MainAreaTitle>인기글</MainAreaTitle>
           <PostList list={initialData.topPost.list} mini />
         </div>
