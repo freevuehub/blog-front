@@ -79,8 +79,6 @@ const HomePage: NextPage<IInitialData<any>> = ({ initialData }) => {
   //   return prev + cur.filter((contribution: IContribution) => contribution.count > 0).length
   // }, 0)
 
-  console.log(process.env.NODE_ENV)
-
   return (
     <>
       <HeadSet />
