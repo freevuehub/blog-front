@@ -3,14 +3,14 @@ const withPWA = require('next-pwa')
 module.exports = withPWA({
   pwa: {
     dest: 'public',
-    runtimeCaching: [
-      {
-        urlPattern: '/*',
-        handler: 'networkFirst',
-        method: 'GET',
+    runtimeCaching: [{
+      urlPattern: '/*',
+      handler: 'NetworkFirst',
+      method: 'GET',
+      options: {
+        cacheName: 'start-url',
       },
-    ],
-
+    }],
   },
   env: {
     API_PROTOCOL: process.env.API_PROTOCOL,
