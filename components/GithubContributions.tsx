@@ -65,7 +65,7 @@ const RectStyled = styled.rect`
     return {
       fill: color(),
     }
-}}
+  }}
 `
 
 const Day = (item: IContributions, index: number) => <RectStyled date={item.date} count={item.count} key={item.date} width={9} height={9} x={0} y={index * 12} />
