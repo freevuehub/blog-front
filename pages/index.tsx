@@ -78,6 +78,7 @@ const HomePage: NextPage<IInitialData<any>> = ({ initialData }) => {
   // const isContributionsCount = initialData.contributions.reduce((prev: number, cur: IContribution[]) => {
   //   return prev + cur.filter((contribution: IContribution) => contribution.count > 0).length
   // }, 0)
+  // console.log(totalCount / isContributionsCount)
 
   return (
     <>
