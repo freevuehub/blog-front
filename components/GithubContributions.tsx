@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from '@emotion/styled'
 import { ITheme, IContribution } from '../types'
 import { breakPoint } from '../lib'
@@ -68,10 +68,20 @@ const RectStyled = styled.rect`
   }}
 `
 
-const Day = (item: IContributions, index: number) => <RectStyled date={item.date} count={item.count} key={item.date} width={9} height={9} x={0} y={index * 12} />
-const Week = (item: IContributions[], index: number) => <g style={{ transform: `translate(${index * 13}px)` }} key={index}>{item.map(Day)}</g>
-
 const GithubContributions: React.FC<IProps> = (props) => {
+  const [viewTip, setViewTip] = useState<boolean>(false)
+  const Day = (item: IContributions, index: number) => {
+    const onMouseOver = () => {
+      console.log(item.count)
+      setViewTip(true)
+    }
+
+    return (
+      <RectStyled onMouseOver={onMouseOver} date={item.date} count={item.count} key={item.date} width={9} height={9} x={0} y={index * 12} />
+    )
+  }
+  const Week = (item: IContributions[], index: number) => <g style={{ transform: `translate(${index * 13}px)` }} key={index}>{item.map(Day)}</g>
+
   return (
     <SvgWrapStyled>
       <div className="title-wrap">
@@ -89,7 +99,10 @@ const GithubContributions: React.FC<IProps> = (props) => {
         </a>
       </div>
       <div>
-        <SvgStyled>{props.data.map(Week)}</SvgStyled>
+        <SvgStyled>
+          {props.data.map(Week)}
+          {viewTip && <text x="10" y="10">Jan</text>}
+        </SvgStyled>
       </div>
     </SvgWrapStyled>
   )
