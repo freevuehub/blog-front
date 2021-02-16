@@ -81,6 +81,11 @@ const PostRemote: React.FC<IProps> = (props) => {
     document.execCommand('copy')
 
     textField.remove()
+
+    alert(`
+      주소가 복사되었습니다.
+      원하는 곳에 붙여넣기 해주세요.
+    `)
   }
 
   return (
