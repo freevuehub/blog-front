@@ -36,7 +36,7 @@ const App: React.FC<AppProps> = (props) => {
         <Layout>
           <props.Component {...props.pageProps} />
         </Layout>
-        <SnackBar />
+        {process.env.NODE_ENV === 'development' && <SnackBar />}
       </ThemeProvider>
     </ApolloProvider>
   )
