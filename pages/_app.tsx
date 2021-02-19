@@ -18,7 +18,7 @@ const onEffect = (router: NextRouter) => () => {
     router.events.off('routeChangeComplete', onRouteChange)
   }
 
-  router.events.on('rwouteChangeComplete', onRouteChange)
+  router.events.on('routeChangeComplete', onRouteChange)
 
   return effectCallBack
 }
