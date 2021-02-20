@@ -1,13 +1,13 @@
 import React from 'react'
 import { NextPage, NextPageContext } from 'next'
 import { useRouter } from 'next/router'
-import styled from '@emotion/styled'
+import { css } from '@emotion/react'
 import { IInitialData } from '~/types'
 import { client, breakPoint } from '~/lib'
 import { posts, staticPost, category as categoryQuery } from '~/gql'
 import {CategoryTitle, PostList, HeadSet, MarkDown} from '~/components'
 
-const CategoryPageStyled = styled.article`
+const CategoryPageCss = css`
   margin: 0 auto 50px;
   padding-top: 40px;
   max-width: 960px;
@@ -23,7 +23,7 @@ const CategoryPage: NextPage<IInitialData<any>> = ({ initialData }) => {
   const { list, total } = initialData.post
 
   return (
-    <CategoryPageStyled>
+    <article css={CategoryPageCss}>
       <HeadSet title={category} description={category} />
       {
         initialData.type === 'post' ? (
@@ -37,7 +37,7 @@ const CategoryPage: NextPage<IInitialData<any>> = ({ initialData }) => {
           <MarkDown md={list[0].markdown} />
         )
       }
-    </CategoryPageStyled>
+    </article>
   )
 }
 
