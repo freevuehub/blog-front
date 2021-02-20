@@ -1,10 +1,10 @@
 import React  from 'react'
 import dynamic from 'next/dynamic'
 import { NextPage } from 'next'
-import styled from '@emotion/styled'
-import { client, breakPoint } from '../lib'
-import { posts, topPosts, githubContributions } from '../gql'
-import { ITheme, IInitialData, IContribution } from '../types'
+import { css, Theme, useTheme } from '@emotion/react'
+import { client, breakPoint } from '~/lib'
+import { posts, topPosts, githubContributions } from '~/gql'
+import { IInitialData, IContribution } from '~/types'
 
 const HeadSet = dynamic(import('../components/HeadSet'))
 const MainAreaTitle = dynamic(import('../components/MainAreaTitle'))
@@ -13,7 +13,7 @@ const PostList = dynamic(import('../components/PostList'))
 const KakaoAuth = dynamic(import('../components/auth/KakaoAuth'))
 const GithubContributions = dynamic(import('../components/GithubContributions'))
 
-const ContentStyled = styled.article`
+const ContentCss = (theme: Theme) => css`
   display: flex;
   max-width: ${breakPoint.tabletPro};
   margin: 50px auto;
@@ -23,19 +23,15 @@ const ContentStyled = styled.article`
     padding-right: 25px;
     margin-right: 25px;
     order: 2;
-    ${(props: ITheme) => ({
-      borderRight: `1px solid ${props.theme?.border.color}`
-    })}
+    border-right: 1px solid ${theme.border.color};
   }
   .right-area {
     margin-top: -145px;
     width: 300px;
     order: 3;
     .button-wrap {
-      ${(props: ITheme) => ({
-        backgroundColor: props.theme?.background.content,
-        boxShadow: props.theme?.shadow.material,
-      })}
+      background-color: ${theme.background.content};
+      box-shadow: ${theme.shadow.material};
       margin-bottom: 32px;
       display: flex;
       padding: 20px;
@@ -72,6 +68,7 @@ const ContentStyled = styled.article`
 `
 
 const HomePage: NextPage<IInitialData<any>> = ({ initialData }) => {
+  const theme = useTheme()
   const weekReduce = (weekPrev: number, weekCur: IContribution) => weekPrev + weekCur.count
   const contributionsCountReduce = (prev: number, cur: IContribution[]) => prev + cur.reduce(weekReduce, 0)
   const totalCount = initialData.contributions.reduce(contributionsCountReduce, 0)
@@ -84,7 +81,7 @@ const HomePage: NextPage<IInitialData<any>> = ({ initialData }) => {
     <>
       <HeadSet />
       <Featured list={initialData.post.list.slice(0, 3)} />
-      <ContentStyled>
+      <article css={ContentCss(theme)}>
         <GithubContributions data={initialData.contributions} totalCount={totalCount} />
         <div className="left-area">
           <MainAreaTitle>최신글</MainAreaTitle>
@@ -104,7 +101,7 @@ const HomePage: NextPage<IInitialData<any>> = ({ initialData }) => {
           <MainAreaTitle>인기글</MainAreaTitle>
           <PostList list={initialData.topPost.list} mini />
         </div>
-      </ContentStyled>
+      </article>
     </>
   )
 }
