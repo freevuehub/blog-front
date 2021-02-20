@@ -1,7 +1,7 @@
-import { HeadSet, MarkDown } from '../components'
-import styled from '@emotion/styled'
+import { HeadSet, MarkDown } from '~/components'
+import { css } from '@emotion/react'
 
-const PageStyled = styled.article`
+const PageCss = css`
   margin: 0 auto;
   padding: 40px 0;
   max-width: 960px;
@@ -166,10 +166,10 @@ FreeVue 은 정보주체의 이용정보를 저장하고 수시로 불러오는 
 `
 const PrivacyPage = () => {
   return (
-    <PageStyled>
+    <article css={PageCss}>
       <HeadSet />
       <MarkDown md={md} />
-    </PageStyled>
+    </article>
   )
 }
 
