@@ -21,7 +21,6 @@ const ImageWrapStyled = styled.div`
     height: 90px;
   }
   @media (max-width: 600px) {
-    border-radius: 10px;
     width: 120px;
     height: 67.5px;
     margin-right: 15px;
