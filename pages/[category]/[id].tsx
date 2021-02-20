@@ -2,10 +2,10 @@ import React, { useState } from 'react'
 import { NextPage, NextPageContext } from 'next'
 import Link from 'next/link'
 import styled from '@emotion/styled'
-import { client } from '../../lib'
-import { post } from '../../gql'
-import { ITheme, IPostDetail, IInitialData } from '../../types'
-import { LazyImage, HeadSet, MarkDown, PostRemote } from '../../components'
+import { client } from '~/lib'
+import { post } from '~/gql'
+import { ITheme, IPostDetail, IInitialData } from '~/types'
+import { LazyImage, HeadSet, MarkDown, PostRemote } from '~/components'
 
 const PostPageStyled = styled.article`
   margin: 0 auto;
