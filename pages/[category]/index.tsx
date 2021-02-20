@@ -2,10 +2,10 @@ import React from 'react'
 import { NextPage, NextPageContext } from 'next'
 import { useRouter } from 'next/router'
 import styled from '@emotion/styled'
-import { IInitialData } from '../../types'
-import { client, breakPoint } from '../../lib'
-import { posts, staticPost, category as categoryQuery } from '../../gql'
-import {CategoryTitle, PostList, HeadSet, MarkDown} from '../../components'
+import { IInitialData } from '~/types'
+import { client, breakPoint } from '~/lib'
+import { posts, staticPost, category as categoryQuery } from '~/gql'
+import {CategoryTitle, PostList, HeadSet, MarkDown} from '~/components'
 
 const CategoryPageStyled = styled.article`
   margin: 0 auto 50px;
