@@ -1,4 +1,3 @@
-import React  from 'react'
 import dynamic from 'next/dynamic'
 import { NextPage } from 'next'
 import { css, Theme, useTheme } from '@emotion/react'
