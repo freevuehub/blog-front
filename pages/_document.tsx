@@ -1,5 +1,5 @@
 import Document, { Html, Head, Main, NextScript } from 'next/document'
-import { GA_TRACKING_ID } from '../lib/gtag'
+import { GA_TRACKING_ID } from '~/lib/gtag'
 
 export default class MyDocument extends Document {
   render() {
@@ -36,7 +36,8 @@ export default class MyDocument extends Document {
               `
             }}
           />
-          <script async defer src="https://buttons.github.io/buttons.js"></script>
+          <script async defer src="https://buttons.github.io/buttons.js" />
+          <title>FreeVue Blog</title>
         </Head>
         <body>
           <Main />
