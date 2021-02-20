@@ -3,8 +3,8 @@ import { useRouter } from 'next/router'
 import styled from '@emotion/styled'
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
 import Icon from './Icon'
-import { ITheme } from '../types'
-import { breakPoint } from '../lib'
+import { ITheme } from '~/types'
+import { breakPoint } from '~/lib'
 
 const SearchWrapStyled = styled.div`
   position: relative;
