@@ -1,10 +1,22 @@
 import React from 'react'
 import styled from '@emotion/styled'
+import { css } from '@emotion/react'
 import Link from 'next/link'
-import { breakPoint } from '../lib'
-import { ITheme } from '../types'
+import { breakPoint } from '~/lib'
+import { ITheme } from '~/types'
 import { KakaoAuth } from '../components'
 
+const PageWrapCss = css`
+  display: flex;
+  width: 100%;
+  min-height: calc(100vh - 180px);
+  align-items: center;
+  justify-content: center;
+  
+  @media (max-width: ${breakPoint.mobile}) {
+    min-height: calc(100vh - 220px);
+  }
+`
 const PageWrapStyled = styled.article`
   display: flex;
   width: 100%;
@@ -44,7 +56,7 @@ const LoginCardStyled = styled.div`
 
 const LoginPage = () => {
   return (
-    <PageWrapStyled>
+    <article css={PageWrapCss}>
       <LoginCardStyled>
         <h1>Login</h1>
         <div className="button-wrap">
@@ -54,7 +66,7 @@ const LoginPage = () => {
           <Link href={{ pathname: '/privacy' }}>개인정보취급방침</Link>
         </div>
       </LoginCardStyled>
-    </PageWrapStyled>
+    </article>
   )
 }
 
