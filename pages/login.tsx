@@ -1,9 +1,7 @@
 import React from 'react'
-import styled from '@emotion/styled'
-import { css } from '@emotion/react'
+import { css, Theme, useTheme } from '@emotion/react'
 import Link from 'next/link'
 import { breakPoint } from '~/lib'
-import { ITheme } from '~/types'
 import { KakaoAuth } from '../components'
 
 const PageWrapCss = css`
@@ -17,47 +15,32 @@ const PageWrapCss = css`
     min-height: calc(100vh - 220px);
   }
 `
-const PageWrapStyled = styled.article`
-  display: flex;
-  width: 100%;
-  min-height: calc(100vh - 180px);
-  align-items: center;
-  justify-content: center;
-  
-  @media (max-width: ${breakPoint.mobile}) {
-    min-height: calc(100vh - 220px);
-  }
-`
-const LoginCardStyled = styled.div`
-  padding: 20px;
-  ${(props: ITheme) => ({
-    boxShadow: props.theme?.shadow.new,
-    color: props.theme?.text,
-  })}
-  .button-wrap {
-    margin: 20px 0;
-    padding: 20px 0;
-    ${(props: ITheme) => ({
-      borderTop: `1px solid ${props.theme?.table.border}`,
-      borderBottom: `1px solid ${props.theme?.table.border}`
-    })}
-  }
-  .info {
-    display: flex;
-    a {
-      margin-left: auto;
-      text-decoration: underline;
-      ${(props: ITheme) => ({
-        color: props.theme?.primary
-      })}
+const LoginCardCss = (theme: Theme) => css`
+    padding: 20px;
+    box-shadow: ${theme.shadow.new};
+    color: ${theme.text};
+    .button-wrap {
+      margin: 20px 0;
+      padding: 20px 0;
+      border-top: 1px solid ${theme.table.border};
+      border-bottom: 1px solid ${theme.table.border};
     }
-  }
+    .info {
+      display: flex;
+      a {
+        margin-left: auto;
+        text-decoration: underline;
+        color: ${theme.primary};
+      }
+    }
 `
 
 const LoginPage = () => {
+  const theme = useTheme()
+
   return (
     <article css={PageWrapCss}>
-      <LoginCardStyled>
+      <div css={LoginCardCss(theme)}>
         <h1>Login</h1>
         <div className="button-wrap">
           <KakaoAuth />
@@ -65,7 +48,7 @@ const LoginPage = () => {
         <div className="info">
           <Link href={{ pathname: '/privacy' }}>개인정보취급방침</Link>
         </div>
-      </LoginCardStyled>
+      </div>
     </article>
   )
 }
