@@ -2,7 +2,7 @@ import React from 'react'
 import { css, Theme, useTheme } from '@emotion/react'
 import Link from 'next/link'
 import { breakPoint } from '~/lib'
-import { KakaoAuth } from '../components'
+import { KakaoAuth } from '~/components'
 
 const PageWrapCss = css`
   display: flex;
