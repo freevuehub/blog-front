@@ -60,10 +60,10 @@ const SearchInput: React.FC<{ className?: string }> = (props) => {
   const onInutChange = (event: ChangeEvent<HTMLInputElement>) => {
     setText(event.target.value)
   }
-  const onSearchSubmit = (event: FormEvent) => {
+  const onSearchSubmit = async (event: FormEvent) => {
     event.preventDefault()
 
-    router.push(`/search?q=${text}`)
+    await router.push(`/search?q=${text}`)
   }
 
   return (
