@@ -57,7 +57,7 @@ const SearchInput: React.FC<{ className?: string }> = (props) => {
   const onSearchWrapClick = (event: React.MouseEvent) => {
     event.stopPropagation()
   }
-  const onInutChange = (event: ChangeEvent<HTMLInputElement>) => {
+  const onInputChange = (event: ChangeEvent<HTMLInputElement>) => {
     setText(event.target.value)
   }
   const onSearchSubmit = async (event: FormEvent) => {
@@ -69,7 +69,7 @@ const SearchInput: React.FC<{ className?: string }> = (props) => {
   return (
     <SearchWrapStyled className={props.className} onClick={onSearchWrapClick}>
       <form onSubmit={onSearchSubmit}>
-        <input type="text" value={text} onChange={onInutChange} />
+        <input type="text" value={text} onChange={onInputChange} />
         <button>
           <Icon className="icon" icon={faSearch} />
         </button>
