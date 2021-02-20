@@ -1,22 +1,20 @@
 import React, { useState } from 'react'
 import { NextPage, NextPageContext } from 'next'
 import Link from 'next/link'
-import styled from '@emotion/styled'
+import { css, Theme, useTheme } from '@emotion/react'
 import { client } from '~/lib'
 import { post } from '~/gql'
-import { ITheme, IPostDetail, IInitialData } from '~/types'
+import { IPostDetail, IInitialData } from '~/types'
 import { LazyImage, HeadSet, MarkDown, PostRemote } from '~/components'
 
-const PostPageStyled = styled.article`
+const PostPageCss = (theme: Theme) => css`
   margin: 0 auto;
   padding-top: 40px;
   max-width: 960px;
   header {
     max-width: 740px;
     margin: 0 auto;
-    ${(props: ITheme) => ({
-      color: props.theme?.text,
-    })}
+    color: ${theme.text};
     h1 {
       padding: 4px 2px;
       margin: 5px 0;
@@ -37,27 +35,24 @@ const PostPageStyled = styled.article`
     max-width: 740px;
     margin: 0 auto 120px;
     p {
-      ${(props: ITheme) => ({
-        color: props.theme?.text,
-      })}
+      color: ${theme.text};
       margin-bottom: 20px;
       word-break: break-all;
       a {
         font-style: italic;
-        ${(props: ITheme) => ({
-          color: props.theme?.primary,
-        })}
+        color: ${theme.primary};
       }
     }
   }
 `
 
 const PostPage: NextPage<IInitialData<IPostDetail>> = ({ initialData }) => {
+  const theme = useTheme()
   const [isFavorite] = useState<boolean>(false)
   const { title, description, createDate, updateDate, clickCount, image, markdown, source } = initialData
 
   return (
-    <PostPageStyled>
+    <article css={PostPageCss(theme)}>
       <HeadSet
         title={title}
         description={description}
@@ -89,7 +84,7 @@ const PostPage: NextPage<IInitialData<IPostDetail>> = ({ initialData }) => {
           favorite={isFavorite}
         />
       </footer>
-    </PostPageStyled>
+    </article>
   )
 }
 
