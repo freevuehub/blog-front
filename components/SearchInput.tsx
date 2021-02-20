@@ -1,12 +1,11 @@
 import React, { ChangeEvent, FormEvent, useState } from 'react'
 import { useRouter } from 'next/router'
-import styled from '@emotion/styled'
+import { css, Theme, useTheme } from '@emotion/react'
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
 import Icon from './Icon'
-import { ITheme } from '~/types'
 import { breakPoint } from '~/lib'
 
-const SearchWrapStyled = styled.div`
+const SearchWrapCss = (theme: Theme) => css`
   position: relative;
   width: 200px;
   margin-left: 16px;
@@ -20,12 +19,10 @@ const SearchWrapStyled = styled.div`
       border: 1px solid #bcbcbc;
       border-radius: 4px;
       font-size: 13px;
-      ${(props: ITheme) => ({
-        color: props.theme?.primary,
-        backgroundColor: props.theme?.background.app,
-      })}
+      color: ${theme.primary};
+      background-color: ${theme.background.app};
       &:focus {
-        ${(props: ITheme) => ({ outline: `1px auto ${props.theme?.primary}` })}
+        outline: 1px auto ${theme.primary};
       }
     }
     button {
@@ -38,7 +35,7 @@ const SearchWrapStyled = styled.div`
       width: 14px;
       .icon {
         font-size: 14px;
-        ${(props: ITheme) => ({ color: props.theme?.text })}
+        color: ${theme.text};
       }
     }
   }
@@ -53,6 +50,7 @@ const SearchWrapStyled = styled.div`
 
 const SearchInput: React.FC<{ className?: string }> = (props) => {
   const router = useRouter()
+  const theme = useTheme()
   const [text, setText] = useState<string>('')
   const onSearchWrapClick = (event: React.MouseEvent) => {
     event.stopPropagation()
@@ -67,14 +65,14 @@ const SearchInput: React.FC<{ className?: string }> = (props) => {
   }
 
   return (
-    <SearchWrapStyled className={props.className} onClick={onSearchWrapClick}>
+    <div css={SearchWrapCss(theme)} className={props.className} onClick={onSearchWrapClick}>
       <form onSubmit={onSearchSubmit}>
         <input type="text" value={text} onChange={onInputChange} />
         <button>
           <Icon className="icon" icon={faSearch} />
         </button>
       </form>
-    </SearchWrapStyled>
+    </div>
   )
 }
 
