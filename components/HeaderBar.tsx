@@ -3,12 +3,10 @@ import styled from '@emotion/styled'
 import { NextPage } from 'next'
 import Link from 'next/link'
 import { faBars } from '@fortawesome/free-solid-svg-icons'
-import { client, breakPoint } from '../lib'
-import { ITheme } from '../types'
-import { categories } from '../gql'
-import Menu from './Menu'
-import SearchInput from './SearchInput'
-import Icon from './Icon'
+import { client, breakPoint } from '~/lib'
+import { ITheme } from '~/types'
+import { categories } from '~/gql'
+import { Menu, SearchInput, Icon } from './'
 
 interface IProps {
   className: string
