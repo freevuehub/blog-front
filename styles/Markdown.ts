@@ -1,14 +1,13 @@
-import { css } from '@emotion/react'
-import { IThemeSet } from '../types'
+import { css, Theme } from '@emotion/react'
 
-const Markdown = (props: IThemeSet) => css`
+const Markdown = (theme: Theme) => css`
   .article-markdown {
     & > * {
       padding: 3px 2px;
       word-break: break-word;
-      color: ${props.text};
+      color: ${theme.text};
       code {
-        font-family: SFMono-Regular,Consolas,Liberation Mono,Menlo,Courier,monospace;
+        font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, Courier, monospace;
         line-height: normal;
         background: rgba(135,131,120,.15);
         color: #eb5757;
@@ -91,25 +90,25 @@ const Markdown = (props: IThemeSet) => css`
         width: auto;
         min-width: 100%;
         th {
-          background-color: ${props.table.background};
-          color: ${props.table.th};
+          background-color: ${theme.table.background};
+          color: ${theme.table.th};
           font-size: 16px;
           line-height: 1.6;
           letter-spacing: -0.009em;
           padding: 0.25rem 0.75rem;
           vertical-align: middle;
-          border: 1px solid ${props.table.border};
+          border: 1px solid ${theme.table.border};
           min-width: 4rem;
           white-space: nowrap;
         }
         td {
-          background-color: ${props.table.background};
-          color: ${props.table.td};
+          background-color: ${theme.table.background};
+          color: ${theme.table.td};
           line-height: 1.6;
           letter-spacing: -0.009em;
           padding: 0.25rem 0.75rem;
           vertical-align: middle;
-          border: 1px solid ${props.table.border};
+          border: 1px solid ${theme.table.border};
           font-size: 16px;
           white-space: nowrap;
         }
@@ -119,9 +118,9 @@ const Markdown = (props: IThemeSet) => css`
       margin: 10px 0;
       padding-left: 15px;
       position: relative;
-      color: ${props.primary};
-      background-color: ${props.primary}20;
-      border-left: 4px solid ${props.primary};
+      color: ${theme.primary};
+      background-color: ${theme.primary}20;
+      border-left: 4px solid ${theme.primary};
       &:before {
         content: '“';
         text-align: center;
@@ -129,17 +128,17 @@ const Markdown = (props: IThemeSet) => css`
         height: 20px;
         width: 20px;
         border-radius: 50%;
-        background-color: ${props.primary};
+        background-color: ${theme.primary};
         font-size: 28px;
         line-height: 36px;
-        color: ${props.white};
+        color: ${theme.white};
         position: absolute;
         top: 13px;
         left: -12px;
       }
     }
     a {
-      color: ${props.text};
+      color: ${theme.text};
       text-decoration: underline;
     }
     hr {
