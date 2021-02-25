@@ -1,16 +1,15 @@
 import React from 'react'
-import { Global, ThemeProvider, useTheme } from '@emotion/react'
+import { Global, ThemeProvider } from '@emotion/react'
 import { addDecorator } from '@storybook/react'
 import { FontStyle, ResetStyle, MarkdownStyle } from '~/styles'
+import { colorSet } from '~/lib'
 
 addDecorator((story) => {
-  const theme = useTheme()
-
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={colorSet['dark']}>
       <Global styles={FontStyle} />
       <Global styles={ResetStyle} />
-      <Global styles={MarkdownStyle(theme)} />
+      <Global styles={(theme) => MarkdownStyle(theme)} />
       {story()}
     </ThemeProvider>
   )
