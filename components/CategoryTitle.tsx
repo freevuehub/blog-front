@@ -1,11 +1,10 @@
 import React from 'react'
-import styled from '@emotion/styled'
-import { ITheme } from '../types'
+import { css, Theme, useTheme } from '@emotion/react'
 
-const TitleWrapStyled = styled.div`
+const TitleWrapCss = (theme: Theme) => css`
   margin-bottom: 10px;
   h2 {
-    color: ${(props: ITheme) => props.theme?.text};
+    color: ${theme.text};
     font-size: 28px;
     text-transform: capitalize;
     span {
@@ -15,10 +14,12 @@ const TitleWrapStyled = styled.div`
 `
 
 const CategoryTitle: React.FC = (props) => {
+  const theme = useTheme()
+
   return (
-    <TitleWrapStyled>
+    <div css={TitleWrapCss(theme)}>
       <h2>{props.children}</h2>
-    </TitleWrapStyled>
+    </div>
   )
 }
 
