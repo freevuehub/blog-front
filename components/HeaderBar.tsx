@@ -1,31 +1,28 @@
 import React, { useState, useEffect } from 'react'
-import styled from '@emotion/styled'
+import { css, Theme, useTheme } from '@emotion/react'
 import { NextPage } from 'next'
 import Link from 'next/link'
 import { faBars } from '@fortawesome/free-solid-svg-icons'
 import { client, breakPoint } from '~/lib'
-import { ITheme } from '~/types'
 import { categories } from '~/gql'
 import { Menu, SearchInput, Icon } from './'
 
-interface IProps {
+export interface IProps {
   className: string
   onClick: Function
   timer: number
 }
 
-const HeaderStyled = styled.header`
+const HeaderCss = (theme: Theme) => css`
   position: fixed;
   left: 0;
   top: 0;
   right: 0;
   z-index: 50;
   padding: 0 20px;
-  ${(props: ITheme) => ({
-    backgroundColor: props.theme?.background.content,
-    color: props.theme?.text,
-    boxShadow: props.theme?.shadow.material,
-  })}
+  background-color: ${theme.background.content};
+  color: ${theme.text};
+  box-shadow: ${theme.shadow.material};
   .inner {
     height: 60px;
     margin: 0 auto;
@@ -36,12 +33,12 @@ const HeaderStyled = styled.header`
       font-size: 20px;
       font-weight: 700;
       a {
-        ${(props: ITheme) => ({ color: props.theme?.text })}
-
+        color: ${theme.text};
+        
         @media (min-width: ${breakPoint.mobile}) {
           &:hover {
             transition: color 0.3s;
-            ${(props: ITheme) => ({ color: props.theme?.primary })}
+            color: ${theme.primary};
           }
         }
       }
@@ -50,15 +47,17 @@ const HeaderStyled = styled.header`
       margin-right: auto;
       font-size: 20px;
       width: 20px;
-      ${(props: ITheme) => ({ color: props.theme?.text })}
-
+      color: ${theme.text};
+      
       @media (min-width: ${breakPoint.tabletAir}) {
         display: none;
       }
     }
   }
 `
+
 const HeaderBar: NextPage<IProps> = (props) => {
+  const theme = useTheme()
   const [list, setList] = useState([])
   const onMenuClick = (event: React.MouseEvent) => {
     event.preventDefault()
@@ -84,7 +83,7 @@ const HeaderBar: NextPage<IProps> = (props) => {
   })
 
   return (
-    <HeaderStyled>
+    <header css={HeaderCss(theme)}>
       <div className="inner">
         <button className="menu-btn" onClick={onMenuClick} aria-label="Menu Button">
           <Icon icon={faBars} />
@@ -99,7 +98,7 @@ const HeaderBar: NextPage<IProps> = (props) => {
         />
         <SearchInput />
       </div>
-    </HeaderStyled>
+    </header>
   )
 }
 
