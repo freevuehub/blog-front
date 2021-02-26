@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
-import styled from '@emotion/styled'
-import { ITheme } from '~/types'
+import { css, Theme, useTheme } from '@emotion/react'
 
 interface  IProps {
   src: string
@@ -9,7 +8,7 @@ interface  IProps {
   onClick?: Function
 }
 
-const ImageWrapStyled = styled.span`
+const ImageWrapCss = (theme: Theme) => css`
   position: relative;
   display: flex;
   width: 100%;
@@ -17,9 +16,7 @@ const ImageWrapStyled = styled.span`
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  ${(props: ITheme) => ({
-    backgroundColor: props.theme?.text,
-  })}
+  background-color: ${theme.text};
   canvas {
     display: none;
     filter: blur(5px);
@@ -32,13 +29,14 @@ const ImageWrapStyled = styled.span`
     }
   }
 `
-const CanvasStyled = styled.canvas`
+const CanvasCss = css`
   display: block;
   width: 100%;
   min-height: 100%;
 `
 
 const LazyImage: React.FC<IProps> = (props) => {
+  const theme = useTheme()
   const canvas = useRef<HTMLCanvasElement>(null)
   const [loading, setLoading] = useState<boolean>(true)
   const onImageClick = () => {
@@ -86,9 +84,9 @@ const LazyImage: React.FC<IProps> = (props) => {
   }, [props.src])
 
   return props.src ? (
-      <ImageWrapStyled className={loading ? '' : 'on'} onClick={onImageClick}>
-        <CanvasStyled className={props.className || ''} ref={canvas} />
-      </ImageWrapStyled>
+      <span css={ImageWrapCss(theme)} className={loading ? '' : 'on'} onClick={onImageClick}>
+        <canvas css={CanvasCss} className={props.className || ''} ref={canvas} />
+      </span>
     ) : <></>
 }
 
