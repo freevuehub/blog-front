@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 import styled from '@emotion/styled'
-import { ITheme } from '../types'
+import { ITheme } from '~/types'
 
 interface  IProps {
   src: string
