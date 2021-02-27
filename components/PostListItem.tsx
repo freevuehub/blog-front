@@ -2,7 +2,7 @@ import React from 'react'
 import styled from '@emotion/styled'
 import dayjs from 'dayjs'
 import { ITheme, IPostListItem } from '../types'
-import { breakPoint } from '../lib'
+import { breakPoint } from '~/lib'
 import { LazyImage } from './'
 
 const ImageWrapStyled = styled.div`
