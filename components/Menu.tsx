@@ -1,9 +1,8 @@
 import React from 'react'
-import styled from '@emotion/styled'
+import { css, Theme, useTheme } from '@emotion/react'
 import Link from 'next/link'
-import { ICategory } from '../types'
-import { ITheme } from '../types'
-import { breakPoint } from '../lib'
+import { ICategory } from '~/types'
+import { breakPoint } from '~/lib'
 import SearchInput from './SearchInput'
 
 interface IProps {
@@ -12,7 +11,7 @@ interface IProps {
   onBgClick: Function
 }
 
-const MenuStyled = styled.div`
+const MenuCss = (theme: Theme) => css`
   margin-left: auto;
   ul {
     display: flex;
@@ -20,12 +19,12 @@ const MenuStyled = styled.div`
       margin-left: 24px;
       a {
         text-transform: capitalize;
-        ${(props: ITheme) => ({ color: props.theme?.text })}
+        color: ${theme.text};
 
         @media (min-width: ${breakPoint.mobile}) {
           &:hover {
             transition: color 0.3s;
-            ${(props: ITheme) => ({ color: props.theme?.primary })}
+            color: ${theme.primary};
           }
         }
       }
@@ -98,17 +97,18 @@ const listMap = (item: ICategory) => {
   )
 }
 const Menu: React.FC<IProps> = (props) => {
+  const theme = useTheme()
   const onMenuBgClick = () => {
     props.onBgClick()
   }
 
   return (
-    <MenuStyled className={props.className} onClick={onMenuBgClick}>
+    <div css={MenuCss(theme)} className={props.className} onClick={onMenuBgClick}>
       <SearchInput className="search-wrap" />
       <ul className="gmarketsans">
         {props.list.map(listMap)}
       </ul>
-    </MenuStyled>
+    </div>
   )
 }
 
