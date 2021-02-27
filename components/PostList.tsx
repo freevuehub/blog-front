@@ -1,9 +1,9 @@
 import React from 'react'
 import styled from '@emotion/styled'
 import Link from 'next/link'
-import { ITheme, IPostListItem } from '../types'
+import { ITheme, IPostListItem } from '~/types'
 import { PostListItem } from './'
-import { breakPoint } from '../lib'
+import { breakPoint } from '~/lib'
 
 interface IProps {
   list: IPostListItem[]
