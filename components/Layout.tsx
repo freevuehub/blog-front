@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
-import { HeaderBar, FooterBar } from '../components'
-import styled from '@emotion/styled'
-import { ITheme } from '../types'
-import { breakPoint } from '../lib'
+import { css, Theme, useTheme } from '@emotion/react'
+import { HeaderBar, FooterBar } from '~/components'
+import { breakPoint } from '~/lib'
 
 const timer = 500
-const WrapStyled = styled.div`
-  ${(props: ITheme) => ({ backgroundColor: props.theme?.background.app })}
-
+const WrapCss = (theme: Theme) => css`
+  background-color: ${theme.background.app};
+  
   @media (max-width: ${breakPoint.tabletAir}) {
     &.on, &.move-out, &.move-in {
       overflow: hidden;
@@ -16,10 +15,9 @@ const WrapStyled = styled.div`
     }
   }
 `
-const SectionStyled = styled.section<any>`
-  ${(props: ITheme) => ({
-    backgroundColor: props.theme?.background.app,
-  })}
+
+const SectionCss = (theme: Theme) => css`
+  background-color: ${theme.background.app};
   .container {
     padding-top: 60px;
     min-height: calc(100vh - 120px);
@@ -37,7 +35,7 @@ const SectionStyled = styled.section<any>`
       overflow: hidden;
       transform: translateX(50%) translateZ(0) scale(0.6) rotateY(-10deg);
       border-radius: 50px;
-      ${(props: ITheme) => ({ boxShadow: props.theme?.shadow.background })}
+      box-shadow: ${theme.shadow.background};
     }
     &.on {
       filter: blur(5px);
@@ -46,7 +44,7 @@ const SectionStyled = styled.section<any>`
       height: 100vh;
       overflow: hidden;
       transform: translateX(0) translateZ(0) scale(1) rotateY(0);
-      ${(props: ITheme) => ({ boxShadow: props.theme?.shadow.background })}
+      box-shadow: ${theme.shadow.background};
     }
     .container {
       width: 100%;
@@ -62,6 +60,7 @@ const SectionStyled = styled.section<any>`
 
 const Layout: React.FC = (props) => {
   const router = useRouter()
+  const theme = useTheme()
   const [menu, setMenu] = useState<string>('')
   const [scrollY, setScrollY] = useState<number>(0)
   const onMenuClick = () => {
@@ -94,19 +93,19 @@ const Layout: React.FC = (props) => {
   }, [router])
 
   return (
-    <WrapStyled className={menu}>
+    <div css={WrapCss(theme)} className={menu}>
       <HeaderBar
         onClick={onMenuClick}
         className={menu}
         timer={timer}
       />
-      <SectionStyled className={menu}>
+      <section css={SectionCss(theme)} className={menu}>
         <main className="container" style={{ marginTop: `-${scrollY}px` }}>
           {props.children}
         </main>
         <FooterBar />
-      </SectionStyled>
-    </WrapStyled>
+      </section>
+    </div>
   )
 }
 
