@@ -1,7 +1,7 @@
 import React from 'react'
-import styled from '@emotion/styled'
+import { css, Theme, useTheme } from '@emotion/react'
 import Link from 'next/link'
-import { ITheme, IPostListItem } from '~/types'
+import { IPostListItem } from '~/types'
 import { PostListItem } from './'
 import { breakPoint } from '~/lib'
 
@@ -10,10 +10,10 @@ interface IProps {
   mini?: boolean
 }
 
-const PostListStyled = styled.ul`
+const PostListCss = (theme: Theme) => css`
   li {
     padding: 25px 0;
-    border-bottom: 1px solid ${(props: ITheme) => props.theme?.border.color};
+    border-bottom: 1px solid ${theme.border.color};
     a {
       display: flex;
 
@@ -22,7 +22,7 @@ const PostListStyled = styled.ul`
           .text-wrap {
             h3 {
               transition: color 0.3s;
-              ${(props: ITheme) => ({ color: props.theme?.primary })}
+              color: ${theme.primary};
             }
           }
         }
@@ -35,8 +35,10 @@ const PostListStyled = styled.ul`
 `
 
 const PostList: React.FC<IProps> = (props) => {
+  const theme = useTheme()
+
   return (
-    <PostListStyled>
+    <ul css={PostListCss(theme)}>
       {
         props.list.map((item: IPostListItem) => (
           <li key={item.id} className={props.mini ? 'mini' : ''}>
@@ -48,7 +50,7 @@ const PostList: React.FC<IProps> = (props) => {
           </li>
         ))
       }
-    </PostListStyled>
+    </ul>
   )
 }
 
