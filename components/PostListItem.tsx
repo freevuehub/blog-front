@@ -1,22 +1,22 @@
 import React from 'react'
-import styled from '@emotion/styled'
+import { css, Theme, useTheme } from '@emotion/react'
 import dayjs from 'dayjs'
-import { ITheme, IPostListItem } from '~/types'
+import { IPostListItem } from '~/types'
 import { breakPoint } from '~/lib'
 import { LazyImage } from './'
 
-const ImageWrapStyled = styled.div`
+const ImageWrapCss = (theme: Theme) => css`
   width: 220px;
   height: 124px;
   position: relative;
-  box-shadow: ${(props: ITheme) => props.theme?.shadow.material};
+  box-shadow: ${theme.shadow.material};
   margin-right: 25px;
   overflow: hidden;
   .image {
     object-fit: cover;
   }
 
-  @media (max-width: 840px) {
+  @media (max-width: ${breakPoint.tabletAir}) {
     width: 160px;
     height: 90px;
   }
@@ -26,7 +26,7 @@ const ImageWrapStyled = styled.div`
     margin-right: 15px;
   }
 `
-const TextWrapStyled = styled.div`
+const TextWrapCss = (theme: Theme) => css`
   position: relative;
   flex: 1;
   width: 100%;
@@ -38,7 +38,7 @@ const TextWrapStyled = styled.div`
     font-weight: 700;
   }
   h1 {
-    ${(props: ITheme) => ({ color: props.theme?.text })}
+    color: ${theme.text};
     font-size: 24px;
     cursor: pointer;
   }
@@ -46,11 +46,11 @@ const TextWrapStyled = styled.div`
     margin-top: 10px;
     font-size: 14px;
     line-height: 17px;
-    ${(props: ITheme) => ({ color: props.theme?.text })}
+    color: ${theme.text};
     opacity: 0.8;
   }
   .text-datetime {
-    ${(props: ITheme) => ({ color: props.theme?.text })}
+    color: ${theme.text};
     opacity: 0.5;
     font-size: 12px;
   }
@@ -85,23 +85,25 @@ interface IProps {
 }
 
 const PostListItem: React.FC<IProps> = (props) => {
+  const theme = useTheme()
+
   return (
     <>
       {
         (props.item.image && !props.mini) && (
-          <ImageWrapStyled className="img-wrap">
+          <div css={ImageWrapCss(theme)} className="img-wrap">
             <LazyImage className="image" src={`${props.item.image}?size=small`} />
-          </ImageWrapStyled>
+          </div>
         )
       }
-      <TextWrapStyled className={`text-wrap ${props.mini ? 'mini' : ''}`}>
+      <div css={TextWrapCss(theme)} className={`text-wrap ${props.mini ? 'mini' : ''}`}>
         <span className="text-category">{props.item.category}</span>
         <h1>{props.item.title}</h1>
         {
           props.mini || (<p>{props.item.description}</p>)
         }
         <span className="text-datetime">{dayjs(props.item.createDate, 'YYYY-MM-DD HH:mm').format('MMM DD, YYYY')}</span>
-      </TextWrapStyled>
+      </div>
     </>
   )
 }
