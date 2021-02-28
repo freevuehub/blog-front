@@ -1,9 +1,9 @@
 import React from 'react'
 import styled from '@emotion/styled'
 // import Link from 'next/link'
-import { breakPoint } from '../../lib'
+import { breakPoint } from '~/lib'
 import SocialArea  from './SocialArea'
-import {ITheme} from "../../types";
+import {ITheme} from "~/types";
 
 const FooterStyled = styled.footer`
   background: #000;
