@@ -1,11 +1,10 @@
 import React from 'react'
-import styled from '@emotion/styled'
+import { css, Theme, useTheme } from '@emotion/react'
 // import Link from 'next/link'
 import { breakPoint } from '~/lib'
 import SocialArea  from './SocialArea'
-import {ITheme} from "~/types";
 
-const FooterStyled = styled.footer`
+const FooterCss = (theme: Theme) => css`
   background: #000;
   color: #fff;
   min-height: 120px;
@@ -22,9 +21,7 @@ const FooterStyled = styled.footer`
         font-size: 12px;
         opacity: .5;
         margin-right: 10px;
-        ${(props: ITheme) => ({
-          color: props.theme?.text
-        })}
+        color: ${theme.text};
       }
     }
   }
@@ -36,9 +33,12 @@ const FooterStyled = styled.footer`
     }
   }
 `
+
 const FooterBar: React.FC = () => {
+  const theme = useTheme()
+
   return (
-    <FooterStyled>
+    <footer css={FooterCss(theme)}>
       <div className="inner">
         <SocialArea />
         <div className="right-side">
@@ -46,7 +46,7 @@ const FooterBar: React.FC = () => {
           © <b>FreeVue</b>
         </div>
       </div>
-    </FooterStyled>
+    </footer>
   )
 }
 
