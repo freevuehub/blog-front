@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from '@emotion/styled'
-import { ITheme, IContribution } from '../types'
-import { breakPoint } from '../lib'
+import { ITheme, IContribution } from '~/types'
+import { breakPoint } from '~/lib'
 
 interface IProps {
   data: IContribution[][]
