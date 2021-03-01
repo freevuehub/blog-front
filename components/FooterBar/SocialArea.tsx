@@ -1,8 +1,8 @@
 import React from 'react'
-import styled from '@emotion/styled'
+import { css } from '@emotion/react'
 import { faYoutube, faLinkedinIn, faGithub } from '@fortawesome/free-brands-svg-icons'
 import { Icon } from '../'
-import { breakPoint } from '../../lib'
+import { breakPoint } from '~/lib'
 
 interface ISns {
   name: string
@@ -10,7 +10,7 @@ interface ISns {
   icon: any
 }
 
-const SocialAreaStyled = styled.footer`
+const SocialAreaCss = css`
   h1 {
     color: hsla(0,0%,100%,.5);
     font-size: 21px;
@@ -97,12 +97,12 @@ const snsMap = (item: ISns) => {
 }
 const SocialArea: React.FC = () => {
   return (
-    <SocialAreaStyled>
+    <div css={SocialAreaCss}>
       <h1 className="ibmplexsans">Follow Us</h1>
       <ul>
         {snsList.map(snsMap)}
       </ul>
-    </SocialAreaStyled>
+    </div>
   )
 }
 
