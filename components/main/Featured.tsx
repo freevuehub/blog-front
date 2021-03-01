@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from '@emotion/styled'
-import { IPostListItem } from '../../types'
-import { breakPoint } from '../../lib'
+import { IPostListItem } from '~/types'
+import { breakPoint } from '~/lib'
 import FeaturedCard from './FeaturedCard'
 
 interface IProps {
