@@ -1,7 +1,7 @@
 import React from 'react'
-import styled from '@emotion/styled'
-import { client } from '../../lib'
-import { auth } from '../../gql'
+import { css } from '@emotion/react'
+import { client } from '~/lib'
+import { auth } from '~/gql'
 
 interface IKakaoSuccess {
   access_token: string
@@ -12,7 +12,7 @@ interface IKakaoSuccess {
   token_type: string
 }
 
-const ButtonStyled = styled.button`
+const ButtonCss = css`
   display: block;
   cursor: pointer;
   min-height: 39px;
@@ -45,9 +45,9 @@ const KakaoAuth: React.FC = () => {
   }
 
   return (
-    <ButtonStyled onClick={onKakaoClick}>
+    <button css={ButtonCss} onClick={onKakaoClick}>
       <img src="https://file.freevue.dev/uploads/7b24c616-ee24-4cd2-a7c8-0c728b0a92f0.png?x=300&y=45" alt="" />
-    </ButtonStyled>
+    </button>
   )
 }
 
