@@ -1,5 +1,5 @@
 import React from 'react'
-import styled from '@emotion/styled'
+import { css } from '@emotion/react'
 import ReactMarkdown from 'react-markdown'
 import gfm from 'remark-gfm'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
@@ -13,7 +13,7 @@ interface  IProps {
   className?: string
 }
 
-const ImageWrapStyled = styled(LazyImage)`
+const ImageWrapCss = css`
   cursor: pointer;
 `
 
@@ -23,7 +23,7 @@ const ImageChild = (props: { src: string }) => {
   }
 
   return (
-    <ImageWrapStyled onClick={onImageClick} src={`${props.src}?size=bigger`} />
+    <LazyImage css={ImageWrapCss} onClick={onImageClick} src={`${props.src}?size=bigger`} />
   )
 }
 
