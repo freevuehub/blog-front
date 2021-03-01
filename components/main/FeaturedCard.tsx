@@ -1,7 +1,7 @@
 import React from 'react'
-import styled from '@emotion/styled'
+import { css } from '@emotion/react'
 import Link from 'next/link'
-import { breakPoint } from '../../lib'
+import { breakPoint } from '~/lib'
 import { LazyImage } from '../'
 
 interface IProps {
@@ -12,7 +12,7 @@ interface IProps {
   className?: string
 }
 
-const FeaturedCardStyled = styled.a`
+const FeaturedCardCss = css`
   display: block;
   position: relative;
   top: 0;
@@ -88,7 +88,7 @@ const FeaturedCardStyled = styled.a`
 const FeaturedCard: React.FC<IProps> = (props) => {
   return (
     <Link href={props.href}>
-      <FeaturedCardStyled className={props.className}>
+      <a css={FeaturedCardCss} className={props.className}>
         <div className="image-wrapper">
           <LazyImage src={props.src} alt="" />
         </div>
@@ -97,7 +97,7 @@ const FeaturedCard: React.FC<IProps> = (props) => {
           <span>{props.category}</span>
         </div>
         <div className="featured-overlay">Featured Overlay</div>
-      </FeaturedCardStyled>
+      </a>
     </Link>
   )
 }
