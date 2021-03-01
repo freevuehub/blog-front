@@ -1,5 +1,5 @@
 import React from 'react'
-import styled from '@emotion/styled'
+import { css } from '@emotion/react'
 import { IPostListItem } from '~/types'
 import { breakPoint } from '~/lib'
 import FeaturedCard from './FeaturedCard'
@@ -8,7 +8,7 @@ interface IProps {
   list: IPostListItem[]
 }
 
-const FeaturedStyled = styled.div`
+const FeaturedCss = css`
   display: grid;
   grid-template-columns: repeat(3, 33.333%);
   grid-template-rows: 250px 250px;
@@ -25,7 +25,7 @@ const FeaturedStyled = styled.div`
 
 const Featured: React.FC<IProps> = (props) => {
   return (
-    <FeaturedStyled>
+    <div css={FeaturedCss}>
       {
         props.list.map((item: IPostListItem, index: number) => {
           return (
@@ -40,7 +40,7 @@ const Featured: React.FC<IProps> = (props) => {
           )
         })
       }
-    </FeaturedStyled>
+    </div>
   )
 }
 
