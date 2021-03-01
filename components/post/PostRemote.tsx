@@ -1,11 +1,10 @@
 import React from 'react'
-import styled from '@emotion/styled'
+import { css, Theme, useTheme } from '@emotion/react'
 import dayjs from 'dayjs'
 import relativeTime from 'dayjs/plugin/relativeTime'
 import 'dayjs/locale/ko'
 import { faShareSquare, faStar } from '@fortawesome/free-solid-svg-icons'
 import { Icon } from '../'
-import { ITheme } from '../../types'
 
 dayjs.extend(relativeTime)
 
@@ -16,21 +15,17 @@ interface IProps {
   favorite: boolean
 }
 
-const PostRemoteWrapStyled = styled.div`
+const PostRemoteWrapCss = (theme: Theme) => css`
   display: flex;
   font-size: 14px;
   line-height: 22px;
   align-items: center;
-  ${(props: ITheme) => ({
-    color: props.theme?.text,
-  })}
+  color: ${theme.text};
   .date {
     opacity: 0.5;
   }
   .remote {
-    ${(props: ITheme) => ({
-      border: `2px solid ${props.theme?.text}`,
-    })}
+    border: 2px solid ${theme.text};
     margin-left: auto;
     border-radius: 15px;
     padding: 0 5px 0 10px;
@@ -39,19 +34,15 @@ const PostRemoteWrapStyled = styled.div`
       margin-right: 10px;
     }
     button {
-      ${(props: ITheme) => ({
-        color: props.theme?.text,
-        borderLeft: `1px solid ${props.theme?.text}`,
-      })}
+      color: ${theme.text};
+      border-left: 1px solid ${theme.text};
       cursor: pointer;
       padding: 0 5px;
       .icon {
         width: 14px;
       }
       &.favorite.on {
-        ${(props: ITheme) => ({
-          backgroundColor: props.theme?.primary,
-        })}
+        background-color: ${theme.primary};
       }
     }
   }
@@ -61,6 +52,7 @@ const dateFormat = (date: string) => {
   return dayjs(date, 'YYYY-MM-DD HH:mm').format('MMM DD, YYYY')
 }
 const PostRemote: React.FC<IProps> = (props) => {
+  const theme = useTheme()
   const onFavoriteClick = (event: React.MouseEvent) => {
     event.preventDefault()
 
@@ -89,7 +81,7 @@ const PostRemote: React.FC<IProps> = (props) => {
   }
 
   return (
-    <PostRemoteWrapStyled>
+    <div css={PostRemoteWrapCss(theme)}>
       <div className="date">
         {dateFormat(props.createDate)} / {dayjs().locale('ko').to(dayjs(props.updateDate))}
       </div>
@@ -102,7 +94,7 @@ const PostRemote: React.FC<IProps> = (props) => {
           <Icon className="icon" icon={faShareSquare} />
         </button>
       </div>
-    </PostRemoteWrapStyled>
+    </div>
   )
 }
 
