@@ -1,13 +1,13 @@
 import React from 'react'
-import styled from '@emotion/styled'
+import { css } from '@emotion/react'
 
-const SwitchWrapStyled = styled.div``
+const SwitchWrapCss = css``
 
 const Switch: React.FC = () => {
   return (
-    <SwitchWrapStyled>
+    <div css={SwitchWrapCss}>
       <input type="checkbox"/>
-    </SwitchWrapStyled>
+    </div>
   )
 }
 
