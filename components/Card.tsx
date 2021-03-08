@@ -1,11 +1,20 @@
 import React from 'react'
-import { css } from '@emotion/react'
+import { css, Theme, useTheme } from '@emotion/react'
 
-const CardCss = css``
+const CardCss = (theme: Theme) => css`
+  width: 220px;
+  height: 124px;
+  position: relative;
+  box-shadow: ${theme.shadow.material};
+  margin-right: 25px;
+  overflow: hidden;
+`
 
 const Card: React.FC = (props) => {
+  const theme = useTheme()
+
   return (
-    <div css={CardCss}>{props.children}</div>
+    <div css={CardCss(theme)}>{props.children}</div>
   )
 }
 
