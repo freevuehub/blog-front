@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
-import styled from '@emotion/styled'
+import { css } from '@emotion/react'
 
-const SnackBarWrapStyled = styled.div`
+const SnackbarCss = css`
   position: fixed;
   right: 0;
   top: 0;
@@ -9,7 +9,7 @@ const SnackBarWrapStyled = styled.div`
   z-index: 300;
 `
 
-const SnackBar: React.FC = () => {
+const Snackbar: React.FC = () => {
   useEffect(() => {
     window.addEventListener('snackbar', () => {
       console.log('test')
@@ -17,10 +17,10 @@ const SnackBar: React.FC = () => {
   }, [])
 
   return (
-    <SnackBarWrapStyled>
+    <div css={SnackbarCss}>
       tset
-    </SnackBarWrapStyled>
+    </div>
   )
 }
 
-export default SnackBar
+export default Snackbar
