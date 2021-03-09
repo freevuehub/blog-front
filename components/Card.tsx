@@ -1,5 +1,10 @@
 import React from 'react'
 import { css, Theme, useTheme } from '@emotion/react'
+import { LazyImage } from '~/components'
+
+export interface IProps {
+  src?: string
+}
 
 const CardCss = (theme: Theme) => css`
   width: 220px;
@@ -10,11 +15,16 @@ const CardCss = (theme: Theme) => css`
   overflow: hidden;
 `
 
-const Card: React.FC = (props) => {
+const Card: React.FC<IProps> = (props) => {
   const theme = useTheme()
 
   return (
-    <div css={CardCss(theme)}>{props.children}</div>
+    <div css={CardCss(theme)}>
+      {
+        props.src && <LazyImage src={props.src} />
+      }
+      {props.children}
+    </div>
   )
 }
 
