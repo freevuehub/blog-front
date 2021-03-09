@@ -5,7 +5,7 @@ import { ApolloProvider } from '@apollo/client'
 import { Global, ThemeProvider, Theme } from '@emotion/react'
 import { client, colorSet } from '~/lib'
 import { FontStyle, ResetStyle, MarkdownStyle } from '~/styles'
-import { Layout, SnackBar } from '~/components'
+import { Layout, Snackbar } from '~/components'
 import * as gtag from '~/lib/gtag'
 
 const mode: 'dark' | 'light' = 'dark'
@@ -36,7 +36,7 @@ const App: React.FC<AppProps> = (props) => {
         <Layout>
           <props.Component {...props.pageProps} />
         </Layout>
-        {process.env.NODE_ENV === 'development' && <SnackBar />}
+        {process.env.NODE_ENV === 'development' && <Snackbar />}
       </ThemeProvider>
     </ApolloProvider>
   )
