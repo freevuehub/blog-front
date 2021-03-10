@@ -13,6 +13,7 @@ const CardCss = (theme: Theme) => css`
   box-shadow: ${theme.shadow.material};
   margin-right: 25px;
   overflow: hidden;
+  border-radius: 30px;
 `
 
 const Card: React.FC<IProps> = (props) => {
