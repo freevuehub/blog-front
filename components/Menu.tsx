@@ -14,9 +14,7 @@ interface IProps {
 const MenuCss = (theme: Theme) => css`
   margin-left: auto;
   ul {
-    display: flex;
     li {
-      margin-left: 24px;
       a {
         text-transform: capitalize;
         color: ${theme.text};

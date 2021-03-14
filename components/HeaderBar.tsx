@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import { css, Theme, useTheme } from '@emotion/react'
 import { NextPage } from 'next'
-import Link from 'next/link'
-import { faBars } from '@fortawesome/free-solid-svg-icons'
-import { client, breakPoint } from '~/lib'
+import { client } from '~/lib'
 import { categories } from '~/gql'
-import { Menu, SearchInput, Icon } from './'
+import { Menu, SearchInput } from './'
 
 export interface IProps {
   className: string
@@ -17,40 +15,39 @@ const HeaderCss = (theme: Theme) => css`
   position: fixed;
   left: 0;
   top: 0;
-  right: 0;
+  bottom: 0;
   z-index: 50;
-  padding: 0 20px;
   background-color: ${theme.background.content};
   color: ${theme.text};
-  box-shadow: ${theme.shadow.material};
-  .inner {
-    height: 60px;
-    margin: 0 auto;
-    max-width: ${breakPoint.tabletPro};
-    display: flex;
-    align-items: center;
-    h1 {
-      font-size: 20px;
-      font-weight: 700;
-      a {
-        color: ${theme.text};
-        
-        @media (min-width: ${breakPoint.mobile}) {
-          &:hover {
-            transition: color 0.3s;
-            color: ${theme.primary};
-          }
-        }
+  padding: 15px 0;
+`
+const MenuButtonCss = (theme: Theme) => css`
+  margin: 0 auto;
+  align-items: center;
+  font-size: 20px;
+  width: 40px;
+  height: 40px;
+  color: ${theme.text};
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  span {
+    font-size: 0;
+    height: 3px;
+    width: 70%;
+    background-color: ${theme.text};
+    transition: all .3s;
+  }
+  &.on, &.move-in {
+    span {
+      &:nth-child(1) {
+        transform: translateY(11px) rotate(135deg);
       }
-    }
-    .menu-btn {
-      margin-right: auto;
-      font-size: 20px;
-      width: 20px;
-      color: ${theme.text};
-      
-      @media (min-width: ${breakPoint.tabletAir}) {
-        display: none;
+      &:nth-child(2) {
+        transform: scaleX(0);
+      }
+      &:nth-child(3) {
+        transform: translateY(-10px) rotate(-135deg);
       }
     }
   }
@@ -85,12 +82,11 @@ const HeaderBar: NextPage<IProps> = (props) => {
   return (
     <header css={HeaderCss(theme)}>
       <div className="inner">
-        <button className="menu-btn" onClick={onMenuClick} aria-label="Menu Button">
-          <Icon icon={faBars} />
+        <button css={MenuButtonCss(theme)} className={`${props.className} pointer`} onClick={onMenuClick} aria-label="Menu Button">
+          <span>Line 1</span>
+          <span>Line 2</span>
+          <span>Line 3</span>
         </button>
-        <h1 className="ibmplexsans">
-          <Link href="/">FreeVue Blog</Link>
-        </h1>
         <Menu
           list={list}
           className={props.className}
