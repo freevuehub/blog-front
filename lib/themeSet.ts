@@ -1,4 +1,4 @@
-import { IThemeSet } from '../types'
+import { IThemeSet } from '~/types'
 
 export const breakPoint = {
   desktop: '1920px',
@@ -19,7 +19,7 @@ export const colorSet: {
     white: '#ffffff',
     primary,
     background: {
-      app: '#ffffff',
+      app: '#f4f4f4',
       content: '#ffffff',
     },
     text: '#37352f',
