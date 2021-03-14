@@ -3,6 +3,7 @@ import { useRouter } from 'next/router'
 import { css, Theme, useTheme } from '@emotion/react'
 import { HeaderBar, FooterBar } from '~/components'
 import { breakPoint } from '~/lib'
+import { useScroll } from '~/lib/hooks'
 
 const timer = 500
 const WrapCss = (theme: Theme) => css`
@@ -63,21 +64,25 @@ const Layout: React.FC = (props) => {
   const theme = useTheme()
   const [menu, setMenu] = useState<string>('')
   const [scrollY, setScrollY] = useState<number>(0)
+  const [{ scrollTop }, setScroll] = useScroll('y')
+
   const onMenuClick = () => {
+    setMenu('move-out')
+
     if (menu) {
       const moveTo = scrollY
 
-      setMenu('move-out')
+      console.log(scrollTop)
 
       setTimeout(() => {
         setMenu('')
         setScrollY(0)
-        window.scrollTo(0, moveTo)
+        setScroll(moveTo)
       }, timer)
     } else {
-      const moveTo = window.scrollY
+      const moveTo = scrollTop
 
-      window.scrollTo(0, 0)
+      setScroll(0)
 
       setMenu('move-in')
       setScrollY(moveTo)
