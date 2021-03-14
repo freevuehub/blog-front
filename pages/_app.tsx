@@ -4,11 +4,11 @@ import { NextRouter, useRouter } from 'next/router'
 import { ApolloProvider } from '@apollo/client'
 import { Global, ThemeProvider, Theme } from '@emotion/react'
 import { client, colorSet } from '~/lib'
-import { FontStyle, ResetStyle, MarkdownStyle } from '~/styles'
+import { FontStyle, ResetStyle, MarkdownStyle, Common } from '~/styles'
 import { Layout, Snackbar } from '~/components'
 import * as gtag from '~/lib/gtag'
 
-const mode: 'dark' | 'light' = 'dark'
+const mode: 'dark' | 'light' = 'light'
 const themeSet: Theme = colorSet[mode]
 const onEffect = (router: NextRouter) => () => {
   const onRouteChange = (url: URL) => {
@@ -32,6 +32,7 @@ const App: React.FC<AppProps> = (props) => {
       <ThemeProvider theme={themeSet}>
         <Global styles={FontStyle} />
         <Global styles={ResetStyle} />
+        <Global styles={Common} />
         <Global styles={(theme: Theme) => MarkdownStyle(theme)} />
         <Layout>
           <props.Component {...props.pageProps} />
