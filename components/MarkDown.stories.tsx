@@ -1,15 +1,15 @@
 import { Story, Meta } from '@storybook/react/types-6-0'
-import SnackbarComponent from '~/components/SnackBar'
+import MarkDownComponent from '~/components/MarkDown'
 
 export default {
-  title: 'Component/Snackbar',
-  component: SnackbarComponent,
+  title: 'Component/MarkDown',
+  component: MarkDownComponent,
 } as Meta
 
 const Template: Story = () => (
-  <SnackbarComponent />
+  <MarkDownComponent md="## markdown" />
 )
 
-export const Snackbar = Template.bind({})
+export const MarkDown = Template.bind({})
 
-Snackbar.args = {}
+MarkDown.args = {}
