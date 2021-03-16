@@ -20,7 +20,7 @@ const WrapCss = (theme: Theme) => css`
 const SectionCss = (theme: Theme) => css`
   background-color: ${theme.background.app};
   .container {
-    padding-top: 60px;
+    padding-left: 60px;
     min-height: calc(100vh - 120px);
   }
 
