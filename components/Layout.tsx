@@ -49,7 +49,7 @@ const SectionCss = (theme: Theme) => css`
     }
     .container {
       width: 100%;
-      padding: 60px 20px 0;
+      padding: 0 20px 0 60px;
     }
   }
   @media (max-width: ${breakPoint.mobile}) {
