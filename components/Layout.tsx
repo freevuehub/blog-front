@@ -35,8 +35,6 @@ const SectionCss = (theme: Theme) => css`
       height: 100vh;
       overflow: hidden;
       transform: translateX(50%) translateZ(0) scale(0.6) rotateY(-10deg);
-      border-radius: 50px;
-      box-shadow: ${theme.shadow.background};
     }
     &.on {
       filter: blur(5px);
@@ -45,7 +43,6 @@ const SectionCss = (theme: Theme) => css`
       height: 100vh;
       overflow: hidden;
       transform: translateX(0) translateZ(0) scale(1) rotateY(0);
-      box-shadow: ${theme.shadow.background};
     }
     .container {
       width: 100%;
@@ -55,6 +52,7 @@ const SectionCss = (theme: Theme) => css`
   @media (max-width: ${breakPoint.mobile}) {
     .container {
       min-height: calc(100vh - 160px);
+      padding: 60px 20px 0;
     }
   }
 `

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { css, Theme, useTheme } from '@emotion/react'
 import { NextPage } from 'next'
-import { client } from '~/lib'
+import { client, breakPoint } from '~/lib'
 import { categories } from '~/gql'
 import { Menu, SearchInput } from './'
 
@@ -17,9 +17,18 @@ const HeaderCss = (theme: Theme) => css`
   top: 0;
   bottom: 0;
   z-index: 50;
+  width: 60px;
   background-color: ${theme.background.content};
   color: ${theme.text};
   padding: 15px 0;
+  
+  @media (max-width: ${breakPoint.mobile}) {
+    background-color: ${theme.background.app};
+    bottom: unset;
+    width: 100%;
+    right: 0;
+    padding: 10px 0;
+  }
 `
 const MenuButtonCss = (theme: Theme) => css`
   margin: 0 auto;
@@ -44,12 +53,13 @@ const MenuButtonCss = (theme: Theme) => css`
         transform: translateY(11px) rotate(135deg);
       }
       &:nth-child(2) {
-        transform: scaleX(0);
-      }
-      &:nth-child(3) {
         transform: translateY(-10px) rotate(-135deg);
       }
     }
+  }
+  
+  @media (max-width: ${breakPoint.mobile}) {
+    margin: 0 0 0 10px;
   }
 `
 
@@ -85,7 +95,6 @@ const HeaderBar: NextPage<IProps> = (props) => {
         <button css={MenuButtonCss(theme)} className={`${props.className} pointer`} onClick={onMenuClick} aria-label="Menu Button">
           <span>Line 1</span>
           <span>Line 2</span>
-          <span>Line 3</span>
         </button>
         <Menu
           list={list}
