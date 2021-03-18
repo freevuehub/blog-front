@@ -5,8 +5,8 @@ import { breakPoint } from '~/lib'
 import SocialArea  from './SocialArea'
 
 const FooterCss = (theme: Theme) => css`
-  background: #000;
-  color: #fff;
+  background-color: #fff;
+  color: #2e2e2e;
   min-height: 120px;
   padding: 0 20px;
   .inner {

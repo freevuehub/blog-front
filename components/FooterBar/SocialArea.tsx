@@ -12,7 +12,7 @@ interface ISns {
 
 const SocialAreaCss = css`
   h1 {
-    color: hsla(0,0%,100%,.5);
+    color: #2e2e2e;
     font-size: 21px;
     font-weight: 700;
   }
@@ -89,7 +89,6 @@ const snsMap = (item: ISns) => {
   return (
     <li key={item.name}>
       <a href={item.to} className={item.name} target="_blank" rel="noopener noreferrer">
-        test
         <Icon icon={item.icon} className="icon" />
       </a>
     </li>
