@@ -22,9 +22,10 @@ export const useScroll = (axis: 'x' | 'y' = 'y'): [IUseScrollValue, (value: numb
   useEffect(() => {
     window.onscroll = function() {
       if (axis === 'y') {
+        setScrollTop(this.scrollY)
         setIsUp(scrollTop > this.scrollY)
         setIsDown(scrollTop <= this.scrollY)
-        setScrollTop(this.scrollY)
+        console.log(scrollTop > this.scrollY)
       }
       if (axis === 'x') {
         setIsUp(scrollTop > this.scrollX)

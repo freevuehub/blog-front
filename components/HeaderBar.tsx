@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { css, Theme, useTheme } from '@emotion/react'
 import { NextPage } from 'next'
 import { client, breakPoint } from '~/lib'
+import { useScroll } from '~/lib/hooks'
 import { categories } from '~/gql'
 import { Menu, SearchInput } from './'
 
@@ -65,6 +66,7 @@ const MenuButtonCss = (theme: Theme) => css`
 
 const HeaderBar: NextPage<IProps> = (props) => {
   const theme = useTheme()
+  const [{ isUp }] = useScroll('y')
   const [list, setList] = useState([])
   const onMenuClick = (event: React.MouseEvent) => {
     event.preventDefault()
@@ -91,6 +93,7 @@ const HeaderBar: NextPage<IProps> = (props) => {
 
   return (
     <header css={HeaderCss(theme)}>
+      {`${isUp}`}
       <div className="inner">
         <button css={MenuButtonCss(theme)} className={`${props.className} pointer`} onClick={onMenuClick} aria-label="Menu Button">
           <span>Line 1</span>
