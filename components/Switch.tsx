@@ -1,7 +1,9 @@
 import React from 'react'
 import { css } from '@emotion/react'
 
-const SwitchWrapCss = css``
+const SwitchWrapCss = css`
+  overflow: hidden;
+`
 
 const Switch: React.FC = () => {
   return (
