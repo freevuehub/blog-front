@@ -30,9 +30,7 @@ const App: React.FC<AppProps> = (props) => {
   return (
     <ApolloProvider client={client}>
       <ThemeProvider theme={themeSet}>
-        <Global styles={FontStyle} />
-        <Global styles={ResetStyle} />
-        <Global styles={Common} />
+        <Global styles={[FontStyle, ResetStyle, Common]} />
         <Global styles={(theme: Theme) => MarkdownStyle(theme)} />
         <Layout>
           <props.Component {...props.pageProps} />
