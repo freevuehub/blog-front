@@ -41,6 +41,13 @@ const TextWrapCss = (theme: Theme) => css`
     color: ${theme.text};
     font-size: 24px;
     cursor: pointer;
+    span {
+      background-image: linear-gradient(180deg, transparent 89%, #6bb3b8 0);
+      background-repeat: no-repeat;
+      background-size: 0 100%;
+      transition: background-size .6s ease;
+      position: relative;
+    }
   }
   p {
     margin-top: 10px;
@@ -98,7 +105,9 @@ const PostListItem: React.FC<IProps> = (props) => {
       }
       <div css={TextWrapCss(theme)} className={`text-wrap ${props.mini ? 'mini' : ''}`}>
         <span className="text-category">{props.item.category}</span>
-        <h1>{props.item.title}</h1>
+        <h1>
+          <span>{props.item.title}</span>
+        </h1>
         {
           props.mini || (<p>{props.item.description}</p>)
         }

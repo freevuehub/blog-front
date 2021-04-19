@@ -20,9 +20,10 @@ const PostListCss = (theme: Theme) => css`
       @media (min-width: ${breakPoint.mobile}) {
         &:hover {
           .text-wrap {
-            h3 {
-              transition: color 0.3s;
-              color: ${theme.primary};
+            h1 {
+              span {
+                background-size: 100% 100%;
+              }
             }
           }
         }
