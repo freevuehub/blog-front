@@ -97,11 +97,13 @@ const Layout: React.FC = (props) => {
 
   return (
     <div css={WrapCss(theme)} className={menu}>
-      <HeaderBar
-        onClick={onMenuClick}
-        className={menu}
-        timer={timer}
-      />
+      {
+        process.env.NODE_ENV === 'development' || <HeaderBar
+          onClick={onMenuClick}
+          className={menu}
+          timer={timer}
+        />
+      }
       <section css={SectionCss(theme)} className={menu}>
         <main className="container" style={{ marginTop: `-${scrollY}px` }}>
           {props.children}

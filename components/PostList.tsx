@@ -11,12 +11,18 @@ interface IProps {
 }
 
 const PostListCss = (theme: Theme) => css`
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr;
+  grid-gap: 30px;
   li {
-    padding: 25px 0;
-    border-bottom: 1px solid ${theme.border.color};
+    box-shadow: ${theme.shadow.material};
+    border-radius: 15px;
+    overflow: hidden;
+    background-color: #fff;
     a {
-      display: flex;
-
+      display: block;
+    
       @media (min-width: ${breakPoint.mobile}) {
         &:hover {
           .text-wrap {
@@ -31,6 +37,12 @@ const PostListCss = (theme: Theme) => css`
     }
     &.mini {
       padding: 20px 0;
+    }
+    &:first-child {
+      grid-column-start: 1;
+      grid-column-end: 3;
+      grid-row-start: 1;
+      grid-row-end: 3;
     }
   }
 `

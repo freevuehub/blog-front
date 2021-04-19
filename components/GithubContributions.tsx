@@ -17,7 +17,10 @@ const SvgWrapCss = (theme: Theme) => css`
   width: 100%;
   order: 1;
   margin-bottom: 30px;
-  padding-right: 350px;
+  box-shadow: ${theme.shadow.material};
+  border-radius: 15px;
+  background-color: #fff;
+  padding: 20px;
   .title-wrap {
     display: flex;
     align-items: center;

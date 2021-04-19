@@ -5,11 +5,9 @@ import { IPostListItem } from '~/types'
 import { breakPoint } from '~/lib'
 import { LazyImage } from './'
 
-const ImageWrapCss = (theme: Theme) => css`
-  width: 220px;
-  height: 124px;
+const ImageWrapCss = css`
+  width: 100%;
   position: relative;
-  box-shadow: ${theme.shadow.material};
   margin-right: 25px;
   overflow: hidden;
   .image {
@@ -30,6 +28,7 @@ const TextWrapCss = (theme: Theme) => css`
   position: relative;
   flex: 1;
   width: 100%;
+  padding: 10px 20px;
   .text-category {
     font-size: 12px;
     line-height: 17px;
@@ -98,8 +97,8 @@ const PostListItem: React.FC<IProps> = (props) => {
     <>
       {
         (props.item.image && !props.mini) && (
-          <div css={ImageWrapCss(theme)} className="img-wrap">
-            <LazyImage className="image" src={`${props.item.image}?size=small`} />
+          <div css={ImageWrapCss} className="img-wrap">
+            <LazyImage className="image" src={`${props.item.image}?size=medium`} />
           </div>
         )
       }

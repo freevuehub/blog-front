@@ -6,14 +6,13 @@ import { posts, topPosts, githubContributions } from '~/gql'
 import { IInitialData, IContribution } from '~/types'
 
 const HeadSet = dynamic(import('../components/HeadSet'))
-const MainAreaTitle = dynamic(import('../components/MainAreaTitle'))
-const Featured = dynamic(import('../components/main/Featured'))
+// const MainAreaTitle = dynamic(import('../components/MainAreaTitle'))
+// const Featured = dynamic(import('../components/main/Featured'))
 const PostList = dynamic(import('../components/PostList'))
-const KakaoAuth = dynamic(import('../components/auth/KakaoAuth'))
+// const KakaoAuth = dynamic(import('../components/auth/KakaoAuth'))
 const GithubContributions = dynamic(import('../components/GithubContributions'))
 
 const ContentCss = (theme: Theme) => css`
-  display: flex;
   max-width: ${breakPoint.tabletPro};
   margin: 50px auto;
   flex-wrap: wrap;
@@ -79,27 +78,27 @@ const HomePage: NextPage<IInitialData<any>> = ({ initialData }) => {
   return (
     <>
       <HeadSet />
-      <Featured list={initialData.post.list.slice(0, 3)} />
+      {/*<Featured list={initialData.post.list.slice(0, 3)} />*/}
       <article css={ContentCss(theme)}>
         <GithubContributions data={initialData.contributions} totalCount={totalCount} />
-        <div className="left-area">
-          <MainAreaTitle>최신글</MainAreaTitle>
-          <PostList list={initialData.post.list.slice(3)} />
-        </div>
-        <div className="right-area">
-          {
-            process.env.NODE_ENV === 'development' && (
-              <>
-                <MainAreaTitle>로그인</MainAreaTitle>
-                <div className="button-wrap">
-                  <KakaoAuth />
-                </div>
-              </>
-            )
-          }
-          <MainAreaTitle>인기글</MainAreaTitle>
-          <PostList list={initialData.topPost.list} mini />
-        </div>
+        <PostList list={initialData.post.list.slice(3)} />
+        {/*<div className="left-area">*/}
+        {/*  <MainAreaTitle>최신글</MainAreaTitle>*/}
+        {/*</div>*/}
+        {/*<div className="right-area">*/}
+        {/*  {*/}
+        {/*    process.env.NODE_ENV === 'development' && (*/}
+        {/*      <>*/}
+        {/*        <MainAreaTitle>로그인</MainAreaTitle>*/}
+        {/*        <div className="button-wrap">*/}
+        {/*          <KakaoAuth />*/}
+        {/*        </div>*/}
+        {/*      </>*/}
+        {/*    )*/}
+        {/*  }*/}
+        {/*  <MainAreaTitle>인기글</MainAreaTitle>*/}
+        {/*  <PostList list={initialData.topPost.list} mini />*/}
+        {/*</div>*/}
       </article>
     </>
   )
